@@ -1,15 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'bh-contracts-list',
   templateUrl: './contracts-list.component.html',
   styleUrls: ['./contracts-list.component.scss']
 })
-export class ContractsListComponent implements OnInit {
+export class ContractsListComponent{
 
-  constructor() { }
-
-  ngOnInit() {
-  }
 
 }
