@@ -1,0 +1,9 @@
+@import "variables";
+
+.card {
+  background-color: $background-alt;
+
+  & &-body {
+    padding: 2rem;
+  }
+}
