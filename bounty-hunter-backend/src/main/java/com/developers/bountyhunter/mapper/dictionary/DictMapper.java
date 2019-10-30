@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import java.util.List;
 
 @Mapper
-public interface DictionaryMapper {
+public interface DictMapper {
 
 	DictDTO dictToDictDTO(Dict dict);
 	Dict dictDTOtoDict(DictDTO dictDTO);

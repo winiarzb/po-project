@@ -1,8 +1,9 @@
 package com.developers.bountyhunter.model.contract;
 
 import com.developers.bountyhunter.model.base.IdentifiableEntity;
-import com.developers.bountyhunter.model.person.Client;
+import com.developers.bountyhunter.model.person.UserAccount;
 import com.developers.bountyhunter.model.person.Victim;
+import com.developers.bountyhunter.model.review.Review;
 import com.developers.bountyhunter.model.world.District;
 import lombok.Data;
 
@@ -18,6 +19,8 @@ import java.util.Date;
 @Data
 public class Contract extends IdentifiableEntity {
 
+	private String name;
+
 	@Enumerated(EnumType.STRING)
 	private ContractStatus contractStatus;
 
@@ -30,17 +33,24 @@ public class Contract extends IdentifiableEntity {
 
 	private Date thruDate;
 
-	@ManyToOne()
-	@JoinColumn(name = "district_id", referencedColumnName = "id")
-	private District district;
+	@OneToOne()
+	@JoinColumn(name = "hunter_id")
+	private UserAccount hunter;
 
-	@ManyToOne()
-	@JoinColumn(name = "client_id", referencedColumnName = "person_id")
-	private Client client;
+	@OneToOne()
+	@JoinColumn(name = "client_id")
+	private UserAccount client;
 
 	@OneToOne()
 	@JoinColumn(name = "victim_id")
 	private Victim victim;
 
+	@ManyToOne()
+	@JoinColumn(name = "district_id", referencedColumnName = "id")
+	private District district;
+
+	@OneToOne()
+	@JoinColumn(name = "review_id")
+	private Review review;
 
 }

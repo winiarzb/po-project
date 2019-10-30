@@ -6,10 +6,10 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class PersonDTO extends IdentifiableDTO {
+public abstract class PersonDTO extends IdentifiableDTO {
 
 	private String name;
-	private String lastName;
-	private Date birthdate;
+	private String alias;
+	private Date birthDate;
 
 }

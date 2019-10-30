@@ -1,12 +1,13 @@
 package com.developers.bountyhunter.dto.person;
 
-import com.developers.bountyhunter.dto.base.IdentifiableDTO;
-import com.developers.bountyhunter.dto.contract.ContractDTO;
+import com.developers.bountyhunter.model.person.ThreatLevel;
 import lombok.Data;
 
 @Data
-public class VictimDTO extends IdentifiableDTO {
+public class VictimDTO extends PersonDTO{
 
-	private ContractDTO contract;
+	private int age;
+	private boolean forceSensitive;
+	private ThreatLevel threatLevel;
 
 }

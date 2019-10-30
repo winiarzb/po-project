@@ -5,15 +5,17 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import java.util.Date;
 
 @Entity
 @Data
-public class Victim extends Person {
+public class UserAccount extends Person{
 
-	private int age;
-	private boolean forceSensitive;
+	private String username;
+	private String password;
+	private Date registeredDate;
+	private boolean enabled;
 
 	@Enumerated(EnumType.STRING)
-	private ThreatLevel threatLevel;
-
+	private UserRole userRole;
 }

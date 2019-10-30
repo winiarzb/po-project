@@ -1,12 +1,12 @@
-package com.developers.bountyhunter.resource;
+package com.developers.bountyhunter.resource.dict;
 
 import com.developers.bountyhunter.dto.dictionary.DictDTO;
-import com.developers.bountyhunter.mapper.dictionary.DictionaryMapper;
+import com.developers.bountyhunter.mapper.dictionary.DictMapper;
 import com.developers.bountyhunter.model.dictionary.Dict;
 import com.developers.bountyhunter.model.dictionary.DictType;
-import com.developers.bountyhunter.service.DictService;
+import com.developers.bountyhunter.service.dictionary.DictService;
+import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -25,19 +25,19 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/dict")
+@RequiredArgsConstructor
 public class DictResource {
 
-	@Autowired
-	private DictService dictService;
+	private final DictService dictService;
 
-	private DictionaryMapper dictionaryMapper = Mappers.getMapper(DictionaryMapper.class);
+	private DictMapper dictMapper = Mappers.getMapper(DictMapper.class);
 
 	@GetMapping("/{id}")
 	private ResponseEntity<DictDTO> getById(@PathVariable("id") Long id) {
 
 		Optional<Dict> dict = dictService.findById(id);
 
-		return dict.map(value -> new ResponseEntity<>(dictionaryMapper.dictToDictDTO(value), HttpStatus.OK)).
+		return dict.map(value -> new ResponseEntity<>(dictMapper.dictToDictDTO(value), HttpStatus.OK)).
 				orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
 
 	}
@@ -45,15 +45,7 @@ public class DictResource {
 	@GetMapping("/all")
 	private ResponseEntity<List<DictDTO>> getAll() {
 
-		List<DictDTO> dictDTOS = dictionaryMapper.dictsToDictsDTO(dictService.findAll());
-		return new ResponseEntity<>(dictDTOS, HttpStatus.OK);
-
-	}
-
-	@GetMapping("/all/{type}")
-	private ResponseEntity<List<DictDTO>> getAllByType(@PathVariable("type") DictType type) {
-
-		List<DictDTO> dictDTOS = dictionaryMapper.dictsToDictsDTO(dictService.findAllByType(type));
+		List<DictDTO> dictDTOS = dictMapper.dictsToDictsDTO(dictService.findAll());
 		return new ResponseEntity<>(dictDTOS, HttpStatus.OK);
 
 	}
@@ -65,9 +57,9 @@ public class DictResource {
 			return new ResponseEntity<>(dictDTO, HttpStatus.BAD_REQUEST);
 		}
 
-		Dict dict = dictionaryMapper.dictDTOtoDict(dictDTO);
+		Dict dict = dictMapper.dictDTOtoDict(dictDTO);
 		dict = dictService.save(dict);
-		dictDTO = dictionaryMapper.dictToDictDTO(dict);
+		dictDTO = dictMapper.dictToDictDTO(dict);
 
 		return new ResponseEntity<>(dictDTO, HttpStatus.CREATED);
 	}
@@ -82,7 +74,7 @@ public class DictResource {
 		Optional<Dict> dict = dictService.findById(dictDTO.getId());
 
 		if (dict.isPresent()) {
-			dictService.save(dictionaryMapper.dictDTOtoDict(dictDTO));
+			dictService.save(dictMapper.dictDTOtoDict(dictDTO));
 			return new ResponseEntity<>(dictDTO, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(dictDTO, HttpStatus.NOT_FOUND);
@@ -101,6 +93,14 @@ public class DictResource {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 
 		}
+	}
+
+	@GetMapping("/all/{type}")
+	private ResponseEntity<List<DictDTO>> getAllByType(@PathVariable("type") DictType type) {
+
+		List<DictDTO> dictDTOS = dictMapper.dictsToDictsDTO(dictService.findAllByType(type));
+		return new ResponseEntity<>(dictDTOS, HttpStatus.OK);
+
 	}
 
 }
