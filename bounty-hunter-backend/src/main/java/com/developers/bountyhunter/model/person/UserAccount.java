@@ -5,10 +5,12 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.PrimaryKeyJoinColumn;
 import java.util.Date;
 
 @Entity
 @Data
+@PrimaryKeyJoinColumn(name = "person_id")
 public class UserAccount extends Person{
 
 	private String username;
