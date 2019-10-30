@@ -8,8 +8,7 @@ import javax.persistence.Id;
 @Entity
 @Data
 public class Hunter {
-
     @Id
-    private Long id;
-    private String name;
+    private Long id;        // Badge
+    private String name;    // Forename
 }
