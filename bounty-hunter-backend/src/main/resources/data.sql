@@ -23,25 +23,24 @@ INSERT INTO dict(value, type, version) VALUES ('MEDIUM', 'THREAT_LEVEL', 0)
 INSERT INTO dict(value, type, version) VALUES ('LOW', 'THREAT_LEVEL', 0)
 INSERT INTO dict(value, type, version) VALUES ('NONE', 'THREAT_LEVEL', 0)
 -- GALAXY --
-<<<<<<< HEAD
 INSERT INTO galaxy(name) VALUES ('Galaxy Far, Far Away')
 INSERT INTO galaxy(name) VALUES ('Eye of Sauron Galaxy')
 INSERT INTO galaxy(name) VALUES ('Ymielinium Galaxy')
 INSERT INTO galaxy(name) VALUES ('Cosmos Redshift 7')
 -- PLANET --
-INSERT INTO planet(name, planet_type, galaxy_id) VALUES ('Tatooine', '1','1')
-INSERT INTO planet(name, planet_type, galaxy_id) VALUES ('Alderan', '2','1')
-INSERT INTO planet(name, planet_type, galaxy_id) VALUES ('Hoth', '3','1')
-INSERT INTO planet(name, planet_type, galaxy_id) VALUES ('Bespin', '4','1')
-INSERT INTO planet(name, planet_type, galaxy_id) VALUES ('Coruscant', '5','1')
+INSERT INTO planet(name, planet_type, galaxy_id) VALUES ('Tatooine', '6','1')
+INSERT INTO planet(name, planet_type, galaxy_id) VALUES ('Alderan', '7','1')
+INSERT INTO planet(name, planet_type, galaxy_id) VALUES ('Hoth', '8','1')
+INSERT INTO planet(name, planet_type, galaxy_id) VALUES ('Bespin', '9','1')
+INSERT INTO planet(name, planet_type, galaxy_id) VALUES ('Coruscant', '10','1')
 
-INSERT INTO planet(name, planet_type, galaxy_id) VALUES ('Middle-Earth', '1','2')
+INSERT INTO planet(name, planet_type, galaxy_id) VALUES ('Middle-Earth', '6','2')
 
-INSERT INTO planet(name, planet_type, galaxy_id) VALUES ('Ymielin', '6','3')
+INSERT INTO planet(name, planet_type, galaxy_id) VALUES ('Ymielin', '10','3')
 
-INSERT INTO planet(name, planet_type, galaxy_id) VALUES ('Centax-1', '3','4')
-INSERT INTO planet(name, planet_type, galaxy_id) VALUES ('Centax-2', '3','4')
-INSERT INTO planet(name, planet_type, galaxy_id) VALUES ('Centax-3', '2','4')
+INSERT INTO planet(name, planet_type, galaxy_id) VALUES ('Centax-1', '8','4')
+INSERT INTO planet(name, planet_type, galaxy_id) VALUES ('Centax-2', '8','4')
+INSERT INTO planet(name, planet_type, galaxy_id) VALUES ('Centax-3', '7','4')
 -- DISTRICT --
 INSERT INTO district(name, planet_id) VALUES ('Federal District','1')
 INSERT INTO district(name, planet_id) VALUES ('CoCo Town','1')
@@ -86,5 +85,4 @@ INSERT INTO review(comment, rating, would_recommend) VALUES ('Wszystko ok poleca
 --CONTRACT--
 INSERT INTO contract(contract_status, from_date, name, payment, priority, thru_date, client_id, district_id, hunter_id, review_id, victim_id) VALUES ('3', parsedatetime('01-10-2019', 'dd-MM-yyyy'), 'Quick job', '9000', '13', parsedatetime('30-10-2019', 'dd-MM-yyyy'), '3', '15', '2', '1', '6')
 INSERT INTO contract(contract_status, from_date, name, payment, priority, thru_date, client_id, district_id, hunter_id, review_id, victim_id) VALUES ('1', parsedatetime('01-11-2019', 'dd-MM-yyyy'), 'Training Day', '99999999', '11', parsedatetime('30-10-2020', 'dd-MM-yyyy'), '3', '1', null, null, '4')
-=======
->>>>>>> backend-initial
+
