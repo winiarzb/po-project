@@ -23,6 +23,7 @@ INSERT INTO dict(value, type, version) VALUES ('MEDIUM', 'THREAT_LEVEL', 0)
 INSERT INTO dict(value, type, version) VALUES ('LOW', 'THREAT_LEVEL', 0)
 INSERT INTO dict(value, type, version) VALUES ('NONE', 'THREAT_LEVEL', 0)
 -- GALAXY --
+<<<<<<< HEAD
 INSERT INTO galaxy(name) VALUES ('Galaxy Far, Far Away')
 INSERT INTO galaxy(name) VALUES ('Eye of Sauron Galaxy')
 INSERT INTO galaxy(name) VALUES ('Ymielinium Galaxy')
@@ -85,3 +86,5 @@ INSERT INTO review(comment, rating, would_recommend) VALUES ('Wszystko ok poleca
 --CONTRACT--
 INSERT INTO contract(contract_status, from_date, name, payment, priority, thru_date, client_id, district_id, hunter_id, review_id, victim_id) VALUES ('3', parsedatetime('01-10-2019', 'dd-MM-yyyy'), 'Quick job', '9000', '13', parsedatetime('30-10-2019', 'dd-MM-yyyy'), '3', '15', '2', '1', '6')
 INSERT INTO contract(contract_status, from_date, name, payment, priority, thru_date, client_id, district_id, hunter_id, review_id, victim_id) VALUES ('1', parsedatetime('01-11-2019', 'dd-MM-yyyy'), 'Training Day', '99999999', '11', parsedatetime('30-10-2020', 'dd-MM-yyyy'), '3', '1', null, null, '4')
+=======
+>>>>>>> backend-initial
