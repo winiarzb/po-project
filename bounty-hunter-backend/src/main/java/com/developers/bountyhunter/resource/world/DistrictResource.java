@@ -1,9 +1,12 @@
 package com.developers.bountyhunter.resource.world;
 
 import com.developers.bountyhunter.dto.world.DistrictDTO;
+import com.developers.bountyhunter.dto.world.DistrictFormDTO;
 import com.developers.bountyhunter.mapper.world.DistrictMapper;
 import com.developers.bountyhunter.model.world.District;
+import com.developers.bountyhunter.model.world.Planet;
 import com.developers.bountyhunter.service.world.DistrictService;
+import com.developers.bountyhunter.service.world.PlanetService;
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
 import org.springframework.http.HttpStatus;
@@ -28,6 +31,7 @@ import java.util.Optional;
 public class DistrictResource {
 
 	private final DistrictService districtService;
+	private final PlanetService planetService;
 
 	private DistrictMapper districtMapper = Mappers.getMapper(DistrictMapper.class);
 
@@ -50,15 +54,24 @@ public class DistrictResource {
 	}
 
 	@PostMapping()
-	private ResponseEntity<DistrictDTO> createDistrict(@Valid @RequestBody DistrictDTO districtDTO, BindingResult bindingResult) {
+	private ResponseEntity<DistrictDTO> createDistrict(@Valid @RequestBody DistrictFormDTO districtFormDTO, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
-			return new ResponseEntity<>(districtDTO, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 
-		District district = districtMapper.districtDTOtoDistrict(districtDTO);
+		District district = districtMapper.districtFormDTOtoDistrict(districtFormDTO);
+
+		Optional<Planet> planet = planetService.findById(districtFormDTO.getPlanetId());
+
+		if (planet.isPresent()) {
+			district.setPlanet(planet.get());
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+
 		district = districtService.save(district);
-		districtDTO = districtMapper.districtToDistrictDTO(district);
+		DistrictDTO districtDTO = districtMapper.districtToDistrictDTO(district);
 
 		return new ResponseEntity<>(districtDTO, HttpStatus.CREATED);
 	}

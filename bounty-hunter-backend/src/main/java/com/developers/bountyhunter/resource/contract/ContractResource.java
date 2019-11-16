@@ -1,9 +1,17 @@
 package com.developers.bountyhunter.resource.contract;
 
 import com.developers.bountyhunter.dto.contract.ContractDTO;
+import com.developers.bountyhunter.dto.contract.ContractFormDTO;
 import com.developers.bountyhunter.mapper.contract.ContractMapper;
 import com.developers.bountyhunter.model.contract.Contract;
+import com.developers.bountyhunter.model.person.UserAccount;
+import com.developers.bountyhunter.model.person.Victim;
+import com.developers.bountyhunter.model.world.District;
 import com.developers.bountyhunter.service.contract.ContractService;
+import com.developers.bountyhunter.service.person.UserAccountService;
+import com.developers.bountyhunter.service.person.VictimService;
+import com.developers.bountyhunter.service.review.ReviewService;
+import com.developers.bountyhunter.service.world.DistrictService;
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
 import org.springframework.http.HttpStatus;
@@ -28,6 +36,9 @@ import java.util.Optional;
 public class ContractResource {
 
 	private final ContractService contractService;
+	private final DistrictService districtService;
+	private final VictimService victimService;
+	private final UserAccountService userAccountService;
 
 	private ContractMapper contractMapper = Mappers.getMapper(ContractMapper.class);
 
@@ -50,15 +61,40 @@ public class ContractResource {
 	}
 
 	@PostMapping()
-	private ResponseEntity<ContractDTO> createContract(@Valid @RequestBody ContractDTO contractDTO, BindingResult bindingResult) {
+	private ResponseEntity<ContractDTO> createContract(@Valid @RequestBody ContractFormDTO contractFormDTO, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
-			return new ResponseEntity<>(contractDTO, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 
-		Contract contract = contractMapper.contractDTOtoContract(contractDTO);
+		Contract contract = contractMapper.contractFormDTOtoContract(contractFormDTO);
+
+		Optional<UserAccount> client = userAccountService.findById(contractFormDTO.getClientId());
+
+		if (client.isPresent()) {
+			contract.setClient(client.get());
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+
+		Optional<Victim> victim = victimService.findById(contractFormDTO.getVictimId());
+
+		if (victim.isPresent()) {
+			contract.setVictim(victim.get());
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+
+		Optional<District> district = districtService.findById(contractFormDTO.getDistrictId());
+
+		if (district.isPresent()) {
+			contract.setDistrict(district.get());
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+
 		contract = contractService.save(contract);
-		contractDTO = contractMapper.contractToContractDTO(contract);
+		ContractDTO contractDTO = contractMapper.contractToContractDTO(contract);
 
 		return new ResponseEntity<>(contractDTO, HttpStatus.CREATED);
 	}

@@ -1,6 +1,7 @@
 package com.developers.bountyhunter.resource.person;
 
 import com.developers.bountyhunter.dto.person.VictimDTO;
+import com.developers.bountyhunter.dto.person.VictimFormDTO;
 import com.developers.bountyhunter.mapper.person.VictimMapper;
 import com.developers.bountyhunter.model.person.Victim;
 import com.developers.bountyhunter.service.person.VictimService;
@@ -50,15 +51,15 @@ public class VictimResource {
 	}
 
 	@PostMapping()
-	private ResponseEntity<VictimDTO> createVictim(@Valid @RequestBody VictimDTO victimDTO, BindingResult bindingResult) {
+	private ResponseEntity<VictimDTO> createVictim(@Valid @RequestBody VictimFormDTO victimFormDTO, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
-			return new ResponseEntity<>(victimDTO, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 
-		Victim victim = victimMapper.victimDTOtoVictim(victimDTO);
+		Victim victim = victimMapper.victimFormDTOToVictim(victimFormDTO);
 		victim = victimService.save(victim);
-		victimDTO = victimMapper.victimToVictimDTO(victim);
+		VictimDTO victimDTO = victimMapper.victimToVictimDTO(victim);
 
 		return new ResponseEntity<>(victimDTO, HttpStatus.CREATED);
 	}
