@@ -23,17 +23,17 @@ const routes: Routes = [
           {
             path: 'user',
             loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule)
-          }
+          },
+          {
+            path: 'login',
+            component: LoginComponent
+          },
         ]
       },
       {
         path: '',
         component: SimplifiedLayoutComponent,
         children: [
-          {
-            path: 'login',
-            component: LoginComponent
-          },
           {
             path: 'registration',
             component: RegistrationComponent

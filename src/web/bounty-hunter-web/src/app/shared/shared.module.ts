@@ -7,6 +7,10 @@ import { CardComponent } from './components/card/card.component';
 import { CardHeaderDirective } from './components/card/directives/card-header.directive';
 import { MainComponent } from './layout/components/main/main.component';
 import { SimplifiedLayoutComponent } from './layout/components/simplified-layout/simplified-layout.component';
+import { ButtonDirective } from './directives/button.directive';
+import { UserComponent } from './layout/components/user/user.component';
+import { LogoComponent } from './layout/components/logo/logo.component';
+import { InputDirective } from './directives/input.directive';
 
 
 
@@ -17,12 +21,18 @@ import { SimplifiedLayoutComponent } from './layout/components/simplified-layout
     CardComponent,
     CardHeaderDirective,
     MainComponent,
-    SimplifiedLayoutComponent
+    SimplifiedLayoutComponent,
+    ButtonDirective,
+    UserComponent,
+    LogoComponent,
+    InputDirective
   ],
   exports: [
     HeaderComponent,
     MainComponent,
-    CardComponent
+    CardComponent,
+    ButtonDirective,
+    InputDirective
   ],
   imports: [
     CommonModule,

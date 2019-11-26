@@ -1,0 +1,14 @@
+@import 'variables';
+
+.bh-button {
+  &.secondary {
+    color: $button-secondary-text;
+    background: $button-secondary-bg;
+    border: 1px solid $button-secondary-border;
+
+    &.outline {
+      background: $button-secondary-text;
+      color: $button-outline-text;
+    }
+  }
+}

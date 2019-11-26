@@ -1,24 +1,15 @@
 <header class="header">
   <div class="header-logo">
-    <h2>Bounty Hunter</h2>
+    <bh-logo></bh-logo>
   </div>
   <div class="header-navigation">
-    <nav class="nav header-navigation-wrapper">
-      <ul class="nav header-navigation-list">
-        <ng-container *ngFor="let link of links">
-          <li bh-navigation-link [url]="link.url" [name]="link.name"></li>
-        </ng-container>
-      </ul>
-    </nav>
+<!--    <nav class="nav header-navigation-wrapper">-->
+<!--      <ul class="nav header-navigation-list">-->
+<!--        <ng-container *ngFor="let link of links">-->
+<!--          <li bh-navigation-link [url]="link.url" [name]="link.name"></li>-->
+<!--        </ng-container>-->
+<!--      </ul>-->
+<!--    </nav>-->
   </div>
-  <div class="header-user">
-    <a routerLink="/user" class="nav-link header-user-button">
-      <div class="header-user-button-icon">
-        <img src="/assets/profile-1.jpg" alt="user">
-      </div>
-      <div class="header-user-button-text">
-        Example user
-      </div>
-    </a>
-  </div>
+  <bh-user></bh-user>
 </header>
