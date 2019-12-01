@@ -10,9 +10,11 @@ import java.util.List;
 public interface DictMapper {
 
 	DictDTO dictToDictDTO(Dict dict);
+
 	Dict dictDTOtoDict(DictDTO dictDTO);
 
 	List<DictDTO> dictsToDictsDTO(List<Dict> dicts);
+
 	List<Dict> dictsDTOtoDicts(List<DictDTO> dictsDTO);
 
 }

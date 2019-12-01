@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Optional;
 
-public  class BaseServiceImpl<T extends IdentifiableEntity, ID> implements BaseService<T, ID>{
+public class BaseServiceImpl<T extends IdentifiableEntity, ID> implements BaseService<T, ID> {
 
 	@Autowired
 	private BaseRepository<T, ID> baseRepository;

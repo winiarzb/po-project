@@ -11,7 +11,7 @@ import java.util.Date;
 @Entity
 @Data
 @PrimaryKeyJoinColumn(name = "person_id")
-public class UserAccount extends Person{
+public class UserAccount extends Person {
 
 	private String username;
 	private String password;

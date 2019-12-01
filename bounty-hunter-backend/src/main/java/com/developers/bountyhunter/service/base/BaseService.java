@@ -8,8 +8,11 @@ import java.util.Optional;
 public interface BaseService<T extends IdentifiableEntity, ID> {
 
 	List<T> findAll();
+
 	Optional<T> findById(ID id);
+
 	T save(T t);
+
 	void deleteById(ID id);
 
 }
