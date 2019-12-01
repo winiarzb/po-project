@@ -1,0 +1,37 @@
+@import 'variables';
+
+:host {
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem;
+}
+
+.header-user {
+  &-button {
+    padding: 0.5rem;
+    border: 1px solid $background-alt;
+    border-radius: $radius;
+    display: flex;
+
+    &:hover {
+      border-color: $borders;
+    }
+
+    &-icon {
+      height: 30px;
+      width: 30px;
+
+      img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    &-text {
+      font-weight: bold;
+      padding-left: 1rem;
+      line-height: 28px;
+    }
+  }
+}

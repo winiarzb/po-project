@@ -1,0 +1,14 @@
+@import 'variables';
+
+.bh-button {
+  &.primary {
+    color: $button-primary-text;
+    border: 1px solid $button-primary-border;
+    background: $button-primary-bg;
+
+    &.outline {
+      background: $button-primary-text;
+      color: $button-outline-text;
+    }
+  }
+}
