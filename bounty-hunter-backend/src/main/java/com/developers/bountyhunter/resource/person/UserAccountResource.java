@@ -1,6 +1,7 @@
 package com.developers.bountyhunter.resource.person;
 
 import com.developers.bountyhunter.dto.person.UserAccountDTO;
+import com.developers.bountyhunter.dto.person.UserAccountFormDTO;
 import com.developers.bountyhunter.mapper.person.UserAccountMapper;
 import com.developers.bountyhunter.model.person.UserAccount;
 import com.developers.bountyhunter.service.person.UserAccountService;
@@ -50,15 +51,15 @@ public class UserAccountResource {
 	}
 
 	@PostMapping()
-	private ResponseEntity<UserAccountDTO> createUserAccount(@Valid @RequestBody UserAccountDTO userAccountDTO, BindingResult bindingResult) {
+	private ResponseEntity<UserAccountDTO> createUserAccount(@Valid @RequestBody UserAccountFormDTO userAccountFormDTO, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
-			return new ResponseEntity<>(userAccountDTO, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 
-		UserAccount userAccount = userAccountMapper.userAccountDTOtoUserAccount(userAccountDTO);
+		UserAccount userAccount = userAccountMapper.userAccountFormDTOtoUserAccount(userAccountFormDTO);
 		userAccount = userAccountService.save(userAccount);
-		userAccountDTO = userAccountMapper.userAccountToUserAccountDTO(userAccount);
+		UserAccountDTO userAccountDTO = userAccountMapper.userAccountToUserAccountDTO(userAccount);
 
 		return new ResponseEntity<>(userAccountDTO, HttpStatus.CREATED);
 	}

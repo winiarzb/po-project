@@ -1,9 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "node_modules/bootstrap/scss/bootstrap";
+@import "utils";
 @import "variables";
 
+// Imports from styles
+@import "styles/button/button.scss";
+@import 'styles/input/input';
+
+
+// Import fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&display=swap&subset=latin-ext');
+
 body {
-  background-color: $background;
+  background: $background;
+  background-size: cover;
   color: $text;
+  font-family: Roboto;
 }

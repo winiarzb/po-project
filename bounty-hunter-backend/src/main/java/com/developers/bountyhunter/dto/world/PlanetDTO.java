@@ -11,7 +11,6 @@ public class PlanetDTO extends IdentifiableDTO {
 
 	private String name;
 	private PlanetType planetType;
-	private GalaxyDTO galaxy;
 	private List<DistrictDTO> districts;
 
 }

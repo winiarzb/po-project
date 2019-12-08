@@ -1,9 +1,12 @@
 package com.developers.bountyhunter.resource.world;
 
 import com.developers.bountyhunter.dto.world.GalaxyDTO;
+import com.developers.bountyhunter.dto.world.GalaxyFormDTO;
 import com.developers.bountyhunter.mapper.world.GalaxyMapper;
 import com.developers.bountyhunter.model.world.Galaxy;
+import com.developers.bountyhunter.model.world.Planet;
 import com.developers.bountyhunter.service.world.GalaxyService;
+import com.developers.bountyhunter.service.world.PlanetService;
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
 import org.springframework.http.HttpStatus;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +32,7 @@ import java.util.Optional;
 public class GalaxyResource {
 
 	private final GalaxyService galaxyService;
+	private final PlanetService planetService;
 
 	private GalaxyMapper galaxyMapper = Mappers.getMapper(GalaxyMapper.class);
 
@@ -50,15 +55,21 @@ public class GalaxyResource {
 	}
 
 	@PostMapping()
-	private ResponseEntity<GalaxyDTO> createGalaxy(@Valid @RequestBody GalaxyDTO galaxyDTO, BindingResult bindingResult) {
+	private ResponseEntity<GalaxyDTO> createGalaxy(@Valid @RequestBody GalaxyFormDTO galaxyFormDTO, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
-			return new ResponseEntity<>(galaxyDTO, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 
-		Galaxy galaxy = galaxyMapper.galaxyDTOtoGalaxy(galaxyDTO);
+		List<Planet> planets = new ArrayList<>();
+
+		Galaxy galaxy = galaxyMapper.galaxyFormDTOtoGalaxy(galaxyFormDTO);
+
+		galaxyFormDTO.getPlanetsId().forEach((id) -> planetService.findById(id).ifPresent(planets::add));
+		galaxy.setPlanets(planets);
 		galaxy = galaxyService.save(galaxy);
-		galaxyDTO = galaxyMapper.galaxyToGalaxyDTO(galaxy);
+
+		GalaxyDTO galaxyDTO = galaxyMapper.galaxyToGalaxyDTO(galaxy);
 
 		return new ResponseEntity<>(galaxyDTO, HttpStatus.CREATED);
 	}

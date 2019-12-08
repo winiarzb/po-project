@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class VictimServiceImpl extends BaseServiceImpl<Victim, Long> implements VictimService{
+public class VictimServiceImpl extends BaseServiceImpl<Victim, Long> implements VictimService {
 
 	private final VictimRepository victimRepository;
 

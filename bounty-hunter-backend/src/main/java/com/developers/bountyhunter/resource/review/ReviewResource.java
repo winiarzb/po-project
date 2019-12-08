@@ -1,8 +1,11 @@
 package com.developers.bountyhunter.resource.review;
 
 import com.developers.bountyhunter.dto.review.ReviewDTO;
+import com.developers.bountyhunter.dto.review.ReviewFormDTO;
 import com.developers.bountyhunter.mapper.review.ReviewMapper;
+import com.developers.bountyhunter.model.contract.Contract;
 import com.developers.bountyhunter.model.review.Review;
+import com.developers.bountyhunter.service.contract.ContractService;
 import com.developers.bountyhunter.service.review.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
@@ -28,6 +31,7 @@ import java.util.Optional;
 public class ReviewResource {
 
 	private final ReviewService reviewService;
+	private final ContractService contractService;
 
 	private ReviewMapper reviewMapper = Mappers.getMapper(ReviewMapper.class);
 
@@ -50,15 +54,24 @@ public class ReviewResource {
 	}
 
 	@PostMapping()
-	private ResponseEntity<ReviewDTO> createReview(@Valid @RequestBody ReviewDTO reviewDTO, BindingResult bindingResult) {
+	private ResponseEntity<ReviewDTO> createReview(@Valid @RequestBody ReviewFormDTO reviewFormDTO, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
-			return new ResponseEntity<>(reviewDTO, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 
-		Review review = reviewMapper.reviewDTOtoReview(reviewDTO);
+		Review review = reviewMapper.reviewFormDTOtoReview(reviewFormDTO);
+
+		Optional<Contract> contract = contractService.findById(reviewFormDTO.getContractId());
+
+		if (contract.isPresent()) {
+			review.setContract(contract.get());
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+
 		review = reviewService.save(review);
-		reviewDTO = reviewMapper.reviewToReviewDTO(review);
+		ReviewDTO reviewDTO = reviewMapper.reviewToReviewDTO(review);
 
 		return new ResponseEntity<>(reviewDTO, HttpStatus.CREATED);
 	}
