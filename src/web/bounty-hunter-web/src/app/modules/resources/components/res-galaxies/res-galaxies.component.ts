@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
 import {ResourceStateService} from '../../services/resource-state.service';
 import {Galaxy} from '../../../../shared/models/galaxy.model';
 
@@ -10,7 +10,7 @@ import {Galaxy} from '../../../../shared/models/galaxy.model';
 export class ResGalaxiesComponent implements OnInit {
 
   constructor(
-    @Input('ResGalaxyStateService') private _state: ResourceStateService<Galaxy[]>
+    @Inject('ResGalaxyStateService') private _state: ResourceStateService<Galaxy[]>
   ) { }
 
   ngOnInit() {

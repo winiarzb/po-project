@@ -13,7 +13,7 @@ import {ResVictimsComponent} from './components/res-victims/res-victims.componen
 import {ResUsersComponent} from './components/res-users/res-users.component';
 import {ResourceStateService} from './services/resource-state.service';
 import {ResourcesApiService} from './services/resources-api.service';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {ResDictionaryRequestFactoryService} from './services/request-services/res-dictionary-request-factory.service';
 import {ResDistrictRequestFactoryService} from './services/request-services/res-district-request-factory.service';
 import {ResGalaxyRequestFactoryService} from './services/request-services/res-galaxy-request-factory.service';
@@ -33,6 +33,7 @@ const resourceStateServiceFactoryProvider = <TModel>(apiService: ResourcesApiSer
   imports: [
     CommonModule,
     ResourcesRoutingModule,
+    HttpClientModule,
     DxTabsModule,
     DxDataGridModule
   ],
