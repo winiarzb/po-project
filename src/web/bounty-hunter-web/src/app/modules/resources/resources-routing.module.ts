@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {ContractsListComponent} from '../contract/components/contracts-list/contracts-list.component';
-import {CreateContractComponent} from '../contract/components/create-contract/create-contract.component';
 import {ResourcesComponent} from './components/resources/resources.component';
-import {ResourceEditComponent} from './components/resource-edit/resource-edit.component';
+import {ResContractsComponent} from './components/res-contracts/res-contracts.component';
+import {ResDictionariesComponent} from './components/res-dictionaries/res-dictionaries.component';
+import {ResDistrictsComponent} from './components/res-districts/res-districts.component';
+import {ResGalaxiesComponent} from './components/res-galaxies/res-galaxies.component';
+import {ResPlanetsComponent} from './components/res-planets/res-planets.component';
+import {ResReviewsComponent} from './components/res-reviews/res-reviews.component';
+import {ResVictimsComponent} from './components/res-victims/res-victims.component';
 
 const routes: Routes = [
   {
@@ -12,36 +15,32 @@ const routes: Routes = [
     component: ResourcesComponent,
     children: [
       {
-        path: '',
-        redirectTo: 'contracts'
-      },
-      {
         path: 'contracts',
-        component: ResourceEditComponent
+        component: ResContractsComponent
       },
       {
         path: 'dictionaries',
-        component: ResourceEditComponent
+        component: ResDictionariesComponent
       },
       {
         path: 'districts',
-        component: ResourceEditComponent
+        component: ResDistrictsComponent
       },
       {
         path: 'galaxies',
-        component: ResourceEditComponent
+        component: ResGalaxiesComponent
       },
       {
         path: 'planets',
-        component: ResourceEditComponent
+        component: ResPlanetsComponent
       },
       {
         path: 'reviews',
-        component: ResourceEditComponent
+        component: ResReviewsComponent
       },
       {
         path: 'victims',
-        component: ResourceEditComponent
+        component: ResVictimsComponent
       }
     ]
   }

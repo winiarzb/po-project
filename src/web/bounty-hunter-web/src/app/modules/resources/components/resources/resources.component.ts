@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ResourceTab} from './models/resource-tab.model';
 import {ResourceNavigationService} from '../../services/resource-navigation.service';
 import {ActivatedRoute} from '@angular/router';
@@ -9,7 +9,7 @@ import {Subscription} from 'rxjs';
   templateUrl: './resources.component.html',
   styleUrls: ['./resources.component.scss']
 })
-export class ResourcesComponent implements OnInit, OnDestroy {
+export class ResourcesComponent implements OnInit {
 
   public readonly tabs: ReadonlyArray<ResourceTab> = Object.freeze([
     new ResourceTab('Kontrakty', 'contracts'),
@@ -30,23 +30,17 @@ export class ResourcesComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this._setInitialSelectedTab();
-  }
-
-  ngOnDestroy() {
-    this.subscriptions.unsubscribe();
+    this._setInitialTab();
   }
 
   public navigateToResource(tab: ResourceTab): void {
     this._navigator.navigate(tab.url);
   }
 
-  private _setInitialSelectedTab(): void {
-    const subscription = this._route.url.subscribe((url) => {
-      if (url[0]) {
-        this.selectedTab = this.tabs.find(tab => tab.url === url[0].path);
-      }
-    });
-    this.subscriptions.add(subscription);
+  private _setInitialTab(): void {
+    if (this._route.firstChild) {
+      const url = this._route.firstChild.snapshot.url[0].path;
+      this.selectedTab = this.tabs.find(tab => tab.url === url);
+    }
   }
 }
