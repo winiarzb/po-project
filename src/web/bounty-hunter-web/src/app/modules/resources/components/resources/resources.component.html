@@ -1,0 +1,11 @@
+<header id="header">
+  <dx-tabs
+    [items]="tabs"
+    [(selectedItem)]="selectedTab"
+    (selectedItemChange)="navigateToResource($event)"
+  ></dx-tabs>
+</header>
+
+<article class="resource-list">
+  <router-outlet></router-outlet>
+</article>
