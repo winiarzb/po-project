@@ -1,3 +1,5 @@
+import {ThreatLevel} from '../../../../shared/enums/threat-level.enum';
+
 export class VictimUpdateRequest {
   public age: number;
   public alias: string;
@@ -5,6 +7,6 @@ export class VictimUpdateRequest {
   public forceSensitive: boolean;
   public id: number;
   public name: string;
-  public threatLevel: string; // TODO enum
+  public threatLevel: ThreatLevel;
   public version: number;
 }

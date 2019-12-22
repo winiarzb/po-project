@@ -1,3 +1,5 @@
+import {UserRole} from '../../../../shared/enums/user-role.enum';
+
 export class UserAccountUpdateRequest {
   public alias: string;
   public birthDate: Date;
@@ -6,7 +8,7 @@ export class UserAccountUpdateRequest {
   public name: string;
   public password: string;
   public registeredDate: Date;
-  public userRole: string; // TODO should be enum
+  public userRole: UserRole;
   public username: string;
-  public version: number // TODO ?
+  public version: number;
 }

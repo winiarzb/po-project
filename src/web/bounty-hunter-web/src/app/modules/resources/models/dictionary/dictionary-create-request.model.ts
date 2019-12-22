@@ -1,6 +1,8 @@
+import {DictionaryType} from '../../../../shared/enums/dictionary-type.enum';
+
 export class DictionaryCreateRequest {
   public id: number;
-  public type: string; // TODO Contract status enum
+  public type: DictionaryType;
   public value: string;
   public version: number;
 }

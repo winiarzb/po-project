@@ -1,7 +1,10 @@
+import {PlanetType} from '../../../../shared/enums/planet-type.enum';
+import {District} from '../../../../shared/models/district.model';
+
 export class PlanetUpdateRequest {
-  public districts: any[]; // TODO districts
+  public districts: District[];
   public id: number;
   public name: string;
-  public planetType: string; // TODO should be enum
+  public planetType: PlanetType;
   public version: number;
 }

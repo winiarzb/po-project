@@ -1,3 +1,5 @@
+import {UserRole} from '../../../../shared/enums/user-role.enum';
+
 export class UserAccountCreateRequest {
   public alias: string;
   public birthDate: Date;
@@ -5,6 +7,6 @@ export class UserAccountCreateRequest {
   public name: string;
   public password: string;
   public registeredDate: Date;
-  public userRole: string; // TODO Should be enum
+  public userRole: UserRole;
   public username: string;
 }

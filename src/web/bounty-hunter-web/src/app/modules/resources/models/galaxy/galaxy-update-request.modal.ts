@@ -1,6 +1,8 @@
+import {Planet} from '../../../../shared/models/planet.model';
+
 export class GalaxyUpdateRequest {
   public id: number;
   public name: string;
-  public planets: any[]; // TODO look planets
+  public planets: Planet[];
   public version: number;
 }
