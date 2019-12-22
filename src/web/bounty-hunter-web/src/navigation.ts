@@ -6,6 +6,10 @@ export const NAVIGATION: INavigationLink[] = [
   {
     name: 'Sprawdź zlecenia',
     url: 'contract/list'
+  },
+  {
+    name: 'Zarządzaj zasobami',
+    url: 'resources'
   }
 ];
 
