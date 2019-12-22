@@ -1,5 +1,7 @@
 <dx-data-grid
   id="resource-users"
+  [dataSource]="state"
+  [columnAutoWidth]="true"
 >
   <dxi-column
     dataField="id"
@@ -24,6 +26,7 @@
   <dxi-column
     dataField="birthDate"
     caption="Data urodzin"
+    dataType="datetime"
   ></dxi-column>
 
   <dxi-column

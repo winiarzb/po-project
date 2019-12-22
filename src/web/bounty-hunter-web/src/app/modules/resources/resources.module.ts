@@ -80,42 +80,42 @@ const resourceStateServiceFactoryProvider = <TModel>(apiService: ResourcesApiSer
     },
     {
       provide: 'ResDictionaryStateService',
-      useFactory: () => resourceStateServiceFactoryProvider,
+      useFactory: resourceStateServiceFactoryProvider,
       deps: ['ResDictionaryApiService', ResDictionaryRequestFactoryService]
     },
     {
       provide: 'ResDistrictStateService',
-      useFactory: () => resourceStateServiceFactoryProvider,
+      useFactory: resourceStateServiceFactoryProvider,
       deps: ['ResDistrictApiService', ResDistrictRequestFactoryService]
     },
     {
       provide: 'ResGalaxyStateService',
-      useFactory: () => resourceStateServiceFactoryProvider,
+      useFactory: resourceStateServiceFactoryProvider,
       deps: ['ResGalaxyApiService', ResGalaxyRequestFactoryService]
     },
     {
       provide: 'ResPlanetStateService',
-      useFactory: () => resourceStateServiceFactoryProvider,
+      useFactory: resourceStateServiceFactoryProvider,
       deps: ['ResPlanetApiService', ResPlanetRequestFactoryService]
     },
     {
       provide: 'ResReviewStateService',
-      useFactory: () => resourceStateServiceFactoryProvider,
+      useFactory: resourceStateServiceFactoryProvider,
       deps: ['ResReviewApiService', ResReviewRequestFactoryService]
     },
     {
       provide: 'ResUserAccountStateService',
-      useFactory: () => resourceStateServiceFactoryProvider,
+      useFactory: resourceStateServiceFactoryProvider,
       deps: ['ResUserAccountApiService', ResUserAccountRequestFactoryService]
     },
     {
       provide: 'ResVictimStateService',
-      useFactory: () => resourceStateServiceFactoryProvider,
+      useFactory: resourceStateServiceFactoryProvider,
       deps: ['ResVictimApiService', ResVictimRequestFactoryService]
     },
     {
       provide: 'ResContractStateService',
-      useFactory: () => resourceStateServiceFactoryProvider,
+      useFactory: resourceStateServiceFactoryProvider,
       deps: ['ResContractApiService', ResContractRequestFactoryService]
     },
   ]

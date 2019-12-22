@@ -16,7 +16,7 @@ export class ResourcesApiService extends ApiServiceBase {
     return super.get(id);
   }
 
-  public getAll<TRequest, TResponse>(): Observable<TResponse> {
+  public getAll<TResponse>(): Observable<TResponse> {
     return super.get('all');
   }
 

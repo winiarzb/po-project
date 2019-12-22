@@ -14,4 +14,12 @@ export class ResourceStateService<TState> extends StateServiceBase<TState> {
   ) {
     super(apiService, requestFactoryService);
   }
+
+  public initStateFromResponse(): void {
+    const apiService = this.apiService as ResourcesApiService;
+    apiService.getAll<TState>().subscribe(res => {
+      this.initState(res);
+      console.log(res);
+    });
+  }
 }
