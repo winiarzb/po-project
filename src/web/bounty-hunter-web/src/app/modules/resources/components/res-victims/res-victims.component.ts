@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {ResourceStateService} from '../../services/resource-state.service';
+import {Victim} from '../../../../shared/models/victim.model';
 
 @Component({
   selector: 'bh-res-victims',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResVictimsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    @Inject('ResVictimStateService') private _state: ResourceStateService<Victim[]>
+  ) { }
 
   ngOnInit() {
   }

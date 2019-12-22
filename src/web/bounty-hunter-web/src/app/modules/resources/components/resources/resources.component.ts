@@ -18,11 +18,10 @@ export class ResourcesComponent implements OnInit {
     new ResourceTab('Galaktyki', 'galaxies'),
     new ResourceTab('Planety', 'planets'),
     new ResourceTab('Recenzje', 'reviews'),
+    new ResourceTab('Użytkownicy', 'users'),
     new ResourceTab('Ofiary', 'victims')
   ]);
   public selectedTab: ResourceTab;
-
-  private readonly subscriptions: Subscription = new Subscription();
 
   constructor(
     private readonly _navigator: ResourceNavigationService,

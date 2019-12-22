@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {ResourceStateService} from '../../services/resource-state.service';
+import {Review} from '../../../../shared/models/review.model';
 
 @Component({
   selector: 'bh-res-reviews',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResReviewsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    @Inject('ResReviewStateService') private _state: ResourceStateService<Review[]>
+  ) { }
 
   ngOnInit() {
   }

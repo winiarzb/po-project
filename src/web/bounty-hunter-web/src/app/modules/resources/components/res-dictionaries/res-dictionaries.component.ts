@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {ResourceStateService} from '../../services/resource-state.service';
+import {DictionaryModel} from '../../../../shared/models/dictionary.model';
 
 @Component({
   selector: 'bh-res-dictionaries',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResDictionariesComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    @Inject('ResDictionaryStateService') private _state: ResourceStateService<DictionaryModel[]>
+  ) { }
 
   ngOnInit() {
   }

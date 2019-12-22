@@ -1,17 +1,17 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 export abstract class ApiServiceBase {
 
-  protected baseUrl: string;
+  private readonly baseUrl: string;
 
   protected constructor(
-    private _httpClient: HttpClient
+    private readonly _httpClient: HttpClient,
+    private readonly _controller: string
   ) {}
 
-  // TODO params
-  public get<TRequest, TResponse>(url: string, request?: TRequest): Observable<TResponse> {
-    return this._httpClient.get<TResponse>(this._buildUrl(url));
+  public get<TResponse>(url: string, params?: HttpParams): Observable<TResponse> {
+    return this._httpClient.get<TResponse>(this._buildUrl(url), {params});
   }
 
   public post<TRequest, TResponse>(url: string, request: TRequest): Observable<TResponse> {
@@ -22,12 +22,11 @@ export abstract class ApiServiceBase {
     return this._httpClient.put<TResponse>(this._buildUrl(url), JSON.stringify(request));
   }
 
-  // TODO params
-  public delete<TRequest, TResponse>(url: string, request: TRequest): Observable<TResponse> {
-    return this._httpClient.delete<TResponse>(this._buildUrl(url));
+  public delete<TResponse>(url: string, params?: HttpParams): Observable<TResponse> {
+    return this._httpClient.delete<TResponse>(this._buildUrl(url), {params});
   }
 
   private _buildUrl(url: string): string {
-    return `${this.baseUrl}/${url}`;
+    return `${this.baseUrl}/${this._controller}/${url}`;
   }
 }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ResourceStateService} from '../../services/resource-state.service';
+import {Galaxy} from '../../../../shared/models/galaxy.model';
 
 @Component({
   selector: 'bh-res-galaxies',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResGalaxiesComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    @Input('ResGalaxyStateService') private _state: ResourceStateService<Galaxy[]>
+  ) { }
 
   ngOnInit() {
   }
