@@ -27,11 +27,7 @@ const routes: Routes = [
           {
             path: 'resources',
             loadChildren: () => import('./modules/resources/resources.module').then(m => m.ResourcesModule)
-          },
-          {
-            path: 'login',
-            component: LoginComponent
-          },
+          }
         ]
       },
       {
@@ -39,8 +35,12 @@ const routes: Routes = [
         component: SimplifiedLayoutComponent,
         children: [
           {
-            path: 'registration',
+            path: 'sign-up',
             component: RegistrationComponent
+          },
+          {
+            path: 'login',
+            component: LoginComponent
           }
         ]
       }
