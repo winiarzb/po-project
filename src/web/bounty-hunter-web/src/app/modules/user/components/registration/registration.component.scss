@@ -1,0 +1,11 @@
+@import "./variables";
+
+.registration {
+  &-header {
+    margin-bottom: 1rem;
+  }
+}
+
+.registration-container {
+  background-color: $background-alt;
+}

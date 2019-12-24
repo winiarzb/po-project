@@ -10,6 +10,10 @@ export const NAVIGATION: INavigationLink[] = [
   {
     name: 'Zarządzaj zasobami',
     url: 'resources'
+  },
+  {
+    name: 'Rejestracja',
+    url: 'sign-up'
   }
 ];
 

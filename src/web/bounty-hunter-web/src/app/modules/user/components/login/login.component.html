@@ -1,29 +1,32 @@
-<div class="login-container row">
-  <div class="login-form col-xl-4 col-lg-6 col-md-8 col-sm-10">
+<header class="login-header">
+  <h2>Logowanie</h2>
+</header>
 
-    <form class="form" [formGroup]="form" (ngSubmit)="onLogin()">
+<dx-form id="login-form" [colCount]="1">
 
-      <div class="input-group">
-        <input
-          bhInput
-          formControlName="login"
-          type="text"
-          placeholder="Nazwa użytkownika">
-      </div>
+  <dxi-item itemType="group">
+    <dxi-item
+      dataField="login"
+      [label]="{text: 'Nazwa użytkownika'}"
+    >
+      <dxi-validation-rule
+        type="required"
+        message="wymagane"
+      ></dxi-validation-rule>
+    </dxi-item>
 
-      <div class="input-group">
-        <input
-          bhInput
-          formControlName="password"
-          type="password"
-          placeholder="Hasło">
-      </div>
+    <dxi-item
+      dataField="password"
+      [label]="{text: 'Hasło'}"
+    >
+      <dxi-validation-rule
+        type="required"
+        message="wymagane"
+      ></dxi-validation-rule>
+    </dxi-item>
 
-      <button
-        bhButton
-        class="login-button">ZALOGUJ SIĘ</button>
+    <dxi-item itemType="button" [buttonOptions]="{text: 'Zaloguj się', useSubmitBehavior: true}">
+    </dxi-item>
 
-    </form>
-
-  </div>
-</div>
+  </dxi-item>
+</dx-form>
