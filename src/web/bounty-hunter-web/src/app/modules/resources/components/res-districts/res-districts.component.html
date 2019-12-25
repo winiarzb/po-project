@@ -1,1 +1,21 @@
-<p>res-districts works!</p>
+<dx-data-grid
+  id="resource-users"
+  [dataSource]="state"
+  [columnAutoWidth]="true"
+>
+  <dxi-column
+    dataField="id"
+    caption="ID"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="version"
+    caption="Wersja"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="name"
+    caption="Nazwa"
+  ></dxi-column>
+
+</dx-data-grid>

@@ -1,1 +1,26 @@
-<p>res-dictionaries works!</p>
+<dx-data-grid
+  id="resource-users"
+  [dataSource]="state"
+  [columnAutoWidth]="true"
+>
+  <dxi-column
+    dataField="id"
+    caption="ID"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="version"
+    caption="Wersja"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="value"
+    caption="Nazwa"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="type"
+    caption="Typ"
+  ></dxi-column>
+
+</dx-data-grid>
