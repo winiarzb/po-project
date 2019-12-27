@@ -1,8 +1,13 @@
 package com.developers.bountyhunter.resource.world;
 
 import com.developers.bountyhunter.dto.world.PlanetDTO;
+import com.developers.bountyhunter.dto.world.PlanetFormDTO;
 import com.developers.bountyhunter.mapper.world.PlanetMapper;
+import com.developers.bountyhunter.model.world.District;
+import com.developers.bountyhunter.model.world.Galaxy;
 import com.developers.bountyhunter.model.world.Planet;
+import com.developers.bountyhunter.service.world.DistrictService;
+import com.developers.bountyhunter.service.world.GalaxyService;
 import com.developers.bountyhunter.service.world.PlanetService;
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
@@ -19,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +34,8 @@ import java.util.Optional;
 public class PlanetResource {
 
 	private final PlanetService planetService;
+	private final GalaxyService galaxyService;
+	private final DistrictService districtService;
 
 	private PlanetMapper planetMapper = Mappers.getMapper(PlanetMapper.class);
 
@@ -50,15 +58,29 @@ public class PlanetResource {
 	}
 
 	@PostMapping()
-	private ResponseEntity<PlanetDTO> createPlanet(@Valid @RequestBody PlanetDTO planetDTO, BindingResult bindingResult) {
+	private ResponseEntity<PlanetDTO> createPlanet(@Valid @RequestBody PlanetFormDTO planetFormDTO, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
-			return new ResponseEntity<>(planetDTO, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 
-		Planet planet = planetMapper.planetDTOtoPlanet(planetDTO);
+		Planet planet = planetMapper.planetFormDTOToPlanet(planetFormDTO);
+
+		Optional<Galaxy> galaxy = galaxyService.findById(planetFormDTO.getGalaxyId());
+
+		if (galaxy.isPresent()) {
+			planet.setGalaxy(galaxy.get());
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+
+		List<District> districts = new ArrayList<>();
+
+		planetFormDTO.getDistrictsIds().forEach((id) -> districtService.findById(id).ifPresent(districts::add));
+
+		planet.setDistricts(districts);
 		planet = planetService.save(planet);
-		planetDTO = planetMapper.planetToPlanetDTO(planet);
+		PlanetDTO planetDTO = planetMapper.planetToPlanetDTO(planet);
 
 		return new ResponseEntity<>(planetDTO, HttpStatus.CREATED);
 	}

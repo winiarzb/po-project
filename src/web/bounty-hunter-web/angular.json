@@ -47,6 +47,8 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/devextreme/dist/css/dx.common.css",
+              "src/styles/devextreme/dx.generic.custom-scheme.css",
               "src/styles.scss"
             ],
             "stylePreprocessorOptions": {

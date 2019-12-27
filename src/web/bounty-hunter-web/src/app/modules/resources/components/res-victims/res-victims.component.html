@@ -1,0 +1,47 @@
+<dx-data-grid
+  id="resource-users"
+  [dataSource]="state"
+  [columnAutoWidth]="true"
+>
+  <dxi-column
+    dataField="id"
+    caption="ID"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="version"
+    caption="Wersja"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="name"
+    caption="Nazwa"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="alias"
+    caption="Alias"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="birthDate"
+    caption="Data urodzin"
+    dataType="datetime"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="age"
+    caption="Wiek"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="forceSensitive"
+    caption="Podatność na siły"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="threatLevel"
+    caption="Stopień niebezpieczeństwa"
+  ></dxi-column>
+
+</dx-data-grid>

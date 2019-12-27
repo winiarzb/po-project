@@ -1,1 +1,52 @@
-<p>create-contract works!</p>
+<header class="createContract-header">
+    <h2>Dodawanie zlecenia</h2>
+</header>
+
+<dx-form id="createContract-form" [colCount]="1">
+
+    <dxi-item itemType="group" caption="Informacje o celu">
+
+        <dxi-item dataField="userName" editorType="dxTextBox" [label]="{text: 'Nazwa celu'}">
+            <dxi-validation-rule type="required" message="wymagane"></dxi-validation-rule>
+        </dxi-item>
+
+        <dxi-item dataField="galaxy" editorType="dxSelectBox" [label]="{text: 'Galaktyka'}">
+            <dxi-validation-rule type="required" message="wymagane"></dxi-validation-rule>
+        </dxi-item>
+
+        <dxi-item dataField="planet" editorType="dxSelectBox" [label]="{text: 'Planeta'}">
+            <dxi-validation-rule type="required" message="wymagane"></dxi-validation-rule>
+        </dxi-item>
+
+        <dxi-item dataField="district" editorType="dxSelectBox" [label]="{text: 'Dystrykt'}">
+            <dxi-validation-rule type="required" message="wymagane"></dxi-validation-rule>
+        </dxi-item>
+
+    </dxi-item>
+
+    <dxi-item itemType="group" caption="Parametry zlecenia">
+
+        <dxi-item dataField="fromDate" editorType="dxDateBox" [label]="{text: 'Data rozpoczęcia zlecenia'}">
+            <dxi-validation-rule type="required" message="wymagane"></dxi-validation-rule>
+        </dxi-item>
+
+        <dxi-item dataField="thruDate" editorType="dxDateBox" [label]="{text: 'Data zakończenia zlecenia'}">
+                <dxi-validation-rule type="required" message="wymagane"></dxi-validation-rule>
+            </dxi-item>
+
+        <dxi-item dataField="priority" editorType="dxSelectBox" [label]="{text: 'Priorytet'}">
+            <dxi-validation-rule type="required" message="wymagane"></dxi-validation-rule>
+        </dxi-item>
+
+        <dxi-item dataField="payment" editorType="dxTextBox" [label]="{text: 'Max. wynagrodzenie'}">
+                <dxi-validation-rule type="required" message="wymagane"></dxi-validation-rule>
+            </dxi-item>
+
+        <dxi-item dataField="buyout" editorType="dxTextBox" [label]="{text: 'Kwota wykupu'}">
+            <dxi-validation-rule type="required" message="wymagane"></dxi-validation-rule>
+        </dxi-item>
+
+    </dxi-item>
+
+    <dxi-item itemType="button" [buttonOptions]="{text: 'Utwórz zlecenie', useSubmitBehavior: true}"></dxi-item>
+</dx-form>
