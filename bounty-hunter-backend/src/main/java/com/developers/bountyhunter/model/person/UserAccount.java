@@ -1,11 +1,9 @@
 package com.developers.bountyhunter.model.person;
 
+import com.developers.bountyhunter.model.person.role.Role;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -13,11 +11,12 @@ import java.util.Date;
 @PrimaryKeyJoinColumn(name = "person_id")
 public class UserAccount extends Person {
 
-	private String username;
-	private String password;
-	private Date registeredDate;
-	private boolean enabled;
+    private String username;
+    private String password;
+    private Date registeredDate;
+    private boolean enabled;
 
-	@Enumerated(EnumType.STRING)
-	private UserRole userRole;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id")
+    private Role role;
 }

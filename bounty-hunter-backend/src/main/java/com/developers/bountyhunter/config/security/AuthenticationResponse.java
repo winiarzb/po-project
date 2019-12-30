@@ -1,4 +1,4 @@
-package com.developers.bountyhunter.dto.authentication;
+package com.developers.bountyhunter.config.security;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

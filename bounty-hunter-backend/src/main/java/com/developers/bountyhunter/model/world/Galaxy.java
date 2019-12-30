@@ -4,6 +4,8 @@ import com.developers.bountyhunter.model.base.IdentifiableEntity;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
 import java.util.List;
 
@@ -11,7 +13,8 @@ import java.util.List;
 @Data
 public class Galaxy extends IdentifiableEntity {
 
-	private String name;
+	@Enumerated(EnumType.STRING)
+	private GalaxyName galaxyName;
 
 	@OneToMany(mappedBy = "galaxy")
 	private List<Planet> planets;
