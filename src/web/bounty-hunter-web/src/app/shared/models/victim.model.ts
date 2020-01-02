@@ -1,6 +1,7 @@
 import {ThreatLevel} from '../enums/threat-level.enum';
+import {IIdentifiable} from '../interfaces/identifiable.interface';
 
-export class Victim {
+export class Victim implements IIdentifiable {
   public id: number;
   public version: number;
   public name: string;

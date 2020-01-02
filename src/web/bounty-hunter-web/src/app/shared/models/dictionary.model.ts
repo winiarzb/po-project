@@ -1,5 +1,7 @@
 // TODO required consultation
-export class DictionaryModel {
+import {IIdentifiable} from '../interfaces/identifiable.interface';
+
+export class DictionaryModel implements IIdentifiable {
   public id: number;
   public version: number;
   public value: string;

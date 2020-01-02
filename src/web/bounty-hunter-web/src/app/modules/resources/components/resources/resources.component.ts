@@ -3,6 +3,9 @@ import {ResourceTab} from './models/resource-tab.model';
 import {ResourceNavigationService} from '../../services/resource-navigation.service';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
+import {ResourceListComponentBase} from '../resource-list-component.abstract';
+import {IIdentifiable} from '../../../../shared/interfaces/identifiable.interface';
+import {isDefined} from '../../../../shared/utils/is-defined';
 
 @Component({
   selector: 'bh-resources',
@@ -28,12 +31,27 @@ export class ResourcesComponent implements OnInit {
     private readonly _route: ActivatedRoute
   ) { }
 
+  private _activatedList: ResourceListComponentBase<IIdentifiable>;
+
   ngOnInit() {
     this._setInitialTab();
   }
 
   public navigateToResource(tab: ResourceTab): void {
     this._navigator.navigate(tab.url);
+  }
+
+  public onListActivation(list: ResourceListComponentBase<IIdentifiable>): void {
+    this._activatedList = list;
+  }
+
+  public isEditActive(): boolean {
+    return !(isDefined(this._activatedList) && isDefined(this._activatedList.selectedElement));
+  }
+
+  public edit(): void {
+    console.log(this._activatedList.selectedElement);
+    this._navigator.navigate(`../edit/${this.selectedTab.url}/${this._activatedList.selectedElement.id}`);
   }
 
   private _setInitialTab(): void {
