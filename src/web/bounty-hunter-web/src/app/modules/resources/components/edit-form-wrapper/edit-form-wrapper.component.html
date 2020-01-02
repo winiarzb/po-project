@@ -1,0 +1,8 @@
+<h2>Edycja: </h2>
+
+<dx-button
+  text="Zapisz"
+  (click)="save()"
+  [disabled]="!isSaveActive()"
+></dx-button>
+<router-outlet (activate)="onFormActivation($event)"></router-outlet>
