@@ -15,6 +15,7 @@ import { PriorityFormEditorDirective } from './directives/editors/priority-form-
 import { DictionaryTypeEditorDirective } from './directives/editors/dictionary-type-editor.directive';
 import { PlanetTypeEditorDirective } from './directives/editors/planet-type-editor.directive';
 import { UserRoleEditorDirective } from './directives/editors/user-role-editor.directive';
+import { ThreatLevelEditorDirective } from './directives/editors/threat-level-editor.directive';
 
 
 
@@ -33,7 +34,8 @@ import { UserRoleEditorDirective } from './directives/editors/user-role-editor.d
     PriorityFormEditorDirective,
     DictionaryTypeEditorDirective,
     PlanetTypeEditorDirective,
-    UserRoleEditorDirective
+    UserRoleEditorDirective,
+    ThreatLevelEditorDirective
   ],
   exports: [
     HeaderComponent,
@@ -44,7 +46,8 @@ import { UserRoleEditorDirective } from './directives/editors/user-role-editor.d
     PriorityFormEditorDirective,
     DictionaryTypeEditorDirective,
     PlanetTypeEditorDirective,
-    UserRoleEditorDirective
+    UserRoleEditorDirective,
+    ThreatLevelEditorDirective
   ],
   imports: [
     CommonModule,
