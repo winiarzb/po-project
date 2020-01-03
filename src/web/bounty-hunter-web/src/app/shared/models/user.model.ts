@@ -1,6 +1,7 @@
 import {UserRole} from '../enums/user-role.enum';
+import {IIdentifiable} from '../interfaces/identifiable.interface';
 
-export class User {
+export class User implements IIdentifiable {
   public id: number;
   public version: number;
   public name: string;

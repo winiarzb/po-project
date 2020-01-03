@@ -1,0 +1,50 @@
+<dx-data-grid
+  id="resource-users"
+  selection="single"
+  [dataSource]="state"
+  [columnAutoWidth]="true"
+  (onSelectionChanged)="onSelect($event)"
+>
+  <dxi-column
+    dataField="id"
+    caption="ID"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="version"
+    caption="Wersja"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="name"
+    caption="Temat"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="contractStatus"
+    caption="Status zlecenia"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="payment"
+    caption="Wynagrodzenie"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="priority"
+    caption="Priorytet"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="fromDate"
+    caption="Data rozpoczęcia"
+    dataType="datetime"
+  ></dxi-column>
+
+  <dxi-column
+  dataField="fromDate"
+  caption="Data zakończenia"
+  dataType="datetime"
+></dxi-column>
+
+</dx-data-grid>

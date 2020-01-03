@@ -1,0 +1,34 @@
+<header>
+  <h2>Planety</h2>
+</header>
+
+<dx-form id="res-edit-planet" [colCount]="2" [formData]="state">
+  <dxi-item itemType="group" caption="Informacje">
+    <dxi-item
+      dataField="id"
+      editorType="dxTextBox"
+      [label]="{text: 'Id'}"
+      [editorOptions]="{readOnly: true}"
+    ></dxi-item>
+
+    <dxi-item
+      dataField="version"
+      editorType="dxTextBox"
+      [label]="{text: 'Wersja'}"
+      [editorOptions]="{readOnly: true}"
+    ></dxi-item>
+
+  </dxi-item>
+
+  <dxi-item itemType="group" caption="Edycja">
+    <dxi-item
+      dataField="name"
+      editorType="dxTextBox"
+      [label]="{text: 'Nazwa'}"
+    ></dxi-item>
+
+    <dxi-item
+      bhPlanetTypeEditor
+    ></dxi-item>
+  </dxi-item>
+</dx-form>
