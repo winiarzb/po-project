@@ -1,18 +1,21 @@
 import {Directive, Inject, OnInit} from '@angular/core';
 import {DxiItemComponent} from 'devextreme-angular/ui/nested';
-import {ResourcesApiService} from '../services/resources-api.service';
-import {DictionaryModel} from '../models/dictionary.model';
-import {DictionaryType} from '../enums/dictionary-type.enum';
+import {ResourcesApiService} from '../../services/resources-api.service';
+import {DictionaryModel} from '../../models/dictionary.model';
+import {DictionaryType} from '../../enums/dictionary-type.enum';
+import {EditorDirectiveBase} from './editor-directive.abstract';
 
 @Directive({
   selector: 'dxi-item [bhPriorityFormEditor]'
 })
-export class PriorityFormEditorDirective implements OnInit {
+export class PriorityFormEditorDirective extends EditorDirectiveBase implements OnInit {
 
   constructor(
-    private _item: DxiItemComponent,
+    _dxiItem: DxiItemComponent,
   @Inject('DictionaryApiService') private _dictionaryApiService: ResourcesApiService
-  ) { }
+  ) {
+    super(_dxiItem);
+  }
 
   ngOnInit(): void {
     this._configureDxItem();
@@ -20,9 +23,9 @@ export class PriorityFormEditorDirective implements OnInit {
   }
 
   private _configureDxItem(): void {
-    this._item.dataField = 'priority';
-    this._item.editorType = 'dxSelectBox';
-    this._item.label = {
+    this.dxItem.dataField = 'priority';
+    this.dxItem.editorType = 'dxSelectBox';
+    this.dxItem.label = {
       text: 'Priorytet'
     };
   }
@@ -32,7 +35,7 @@ export class PriorityFormEditorDirective implements OnInit {
       const priorities = res.filter(dict => dict.type === DictionaryType.Priority)
         .map(priority => priority.value);
 
-      this._item.editorOptions = {
+      this.dxItem.editorOptions = {
         items: priorities
       }
     })

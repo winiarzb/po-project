@@ -1,1 +1,33 @@
-<p>res-dictionaries-edit works!</p>
+<header>
+  <h2>Słownik</h2>
+</header>
+
+<dx-form id="res-edit-dictionary" colCount="2" [formData]="state">
+  <dxi-item itemType="group" caption="Informacje">
+    <dxi-item
+      dataField="id"
+      editorType="dxTextBox"
+      [label]="{text: 'Id'}"
+      [editorOptions]="{readOnly: true}"
+    ></dxi-item>
+
+    <dxi-item
+      dataField="version"
+      editorType="dxTextBox"
+      [label]="{text: 'Wersja'}"
+      [editorOptions]="{readOnly: true}"
+    ></dxi-item>
+  </dxi-item>
+
+  <dxi-item itemType="group" caption="Edycja">
+    <dxi-item
+      dataField="value"
+      editorType="dxTextBox"
+      [label]="{text: 'Wartość'}"
+    ></dxi-item>
+
+    <dxi-item
+      bhDictionaryTypeEditor
+    ></dxi-item>
+  </dxi-item>
+</dx-form>

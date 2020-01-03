@@ -11,7 +11,8 @@ import { ButtonDirective } from './directives/button.directive';
 import { UserComponent } from './layout/components/user/user.component';
 import { LogoComponent } from './layout/components/logo/logo.component';
 import { InputDirective } from './directives/input.directive';
-import { PriorityFormEditorDirective } from './directives/priority-form-editor.directive';
+import { PriorityFormEditorDirective } from './directives/editors/priority-form-editor.directive';
+import { DictionaryTypeEditorDirective } from './directives/editors/dictionary-type-editor.directive';
 
 
 
@@ -27,7 +28,8 @@ import { PriorityFormEditorDirective } from './directives/priority-form-editor.d
     UserComponent,
     LogoComponent,
     InputDirective,
-    PriorityFormEditorDirective
+    PriorityFormEditorDirective,
+    DictionaryTypeEditorDirective
   ],
   exports: [
     HeaderComponent,
@@ -35,7 +37,8 @@ import { PriorityFormEditorDirective } from './directives/priority-form-editor.d
     CardComponent,
     ButtonDirective,
     InputDirective,
-    PriorityFormEditorDirective
+    PriorityFormEditorDirective,
+    DictionaryTypeEditorDirective
   ],
   imports: [
     CommonModule,
