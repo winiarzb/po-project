@@ -19,10 +19,6 @@ export class PriorityFormEditorDirective implements OnInit {
     this._addItems();
   }
 
-  ngAfterViewInit() {
-    console.log(this._item);
-  }
-
   private _configureDxItem(): void {
     this._item.dataField = 'priority';
     this._item.editorType = 'dxSelectBox';
@@ -32,15 +28,14 @@ export class PriorityFormEditorDirective implements OnInit {
   }
 
   private _addItems(): void {
-    console.log(this._item.editorOptions);
     this._dictionaryApiService.getAll<DictionaryModel[]>().subscribe(res => {
-      res
-        .filter(dict => dict.type === DictionaryType.Priority)
+      const priorities = res.filter(dict => dict.type === DictionaryType.Priority)
         .map(priority => priority.value);
+
+      this._item.editorOptions = {
+        items: priorities
+      }
     })
   }
 }
 
-// dataField="priority"
-// editorType="dxTextBox"
-//   [label]="{text: 'Priorytet'}"
