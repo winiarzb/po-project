@@ -12,7 +12,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ResUsersEditComponent extends ResourceEditComponentBase<User> {
   constructor(
-    @Optional() @Inject('ResUserStateService') stateService: ResourceStateService<User>,
+    @Optional() @Inject('ResUserAccountStateService') stateService: ResourceStateService<User>,
     activatedRoute: ActivatedRoute
   ) {
     super(stateService, activatedRoute);

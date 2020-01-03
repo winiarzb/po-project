@@ -50,7 +50,6 @@ export class ResourcesComponent implements OnInit {
   }
 
   public edit(): void {
-    console.log(this._activatedList.selectedElement);
     this._navigator.navigate(`../edit/${this.selectedTab.url}/${this._activatedList.selectedElement.id}`);
   }
 

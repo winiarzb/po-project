@@ -18,11 +18,11 @@ export class PriorityFormEditorDirective extends EditorDirectiveBase implements 
   }
 
   ngOnInit(): void {
-    this._configureDxItem();
+    super.ngOnInit();
     this._addItems();
   }
 
-  private _configureDxItem(): void {
+  public configureDxiItem(): void {
     this.dxItem.dataField = 'priority';
     this.dxItem.editorType = 'dxSelectBox';
     this.dxItem.label = {

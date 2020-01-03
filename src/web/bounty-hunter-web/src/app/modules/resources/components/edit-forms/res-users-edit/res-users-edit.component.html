@@ -1,1 +1,70 @@
-<p>res-users-edit works!</p>
+<header>
+  <h2>Użytkownik</h2>
+</header>
+
+<dx-form id="res-edit-district" [colCount]="2" [formData]="state">
+  <dxi-item itemType="group" caption="Informacje">
+    <dxi-item
+      dataField="id"
+      editorType="dxTextBox"
+      [label]="{text: 'Id'}"
+      [editorOptions]="{readOnly: true}"
+    ></dxi-item>
+
+    <dxi-item
+      dataField="version"
+      editorType="dxTextBox"
+      [label]="{text: 'Wersja'}"
+      [editorOptions]="{readOnly: true}"
+    ></dxi-item>
+
+  </dxi-item>
+
+  <dxi-item itemType="group" caption="Edycja">
+    <dxi-item
+      dataField="name"
+      editorType="dxTextBox"
+      [label]="{text: 'Nazwa'}"
+    ></dxi-item>
+
+    <dxi-item
+      dataField="alias"
+      editorType="dxTextBox"
+      [label]="{text: 'Alias'}"
+    ></dxi-item>
+
+    <dxi-item
+      dataField="birthDate"
+      editorType="dxDateBox"
+      [label]="{text: 'Data urodzin'}"
+    ></dxi-item>
+
+    <dxi-item
+    dataField="username"
+    editorType="dxTextBox"
+    [label]="{text: 'Nazwa użytkownika'}"
+  ></dxi-item>
+
+    <dxi-item
+      dataField="password"
+      editorType="dxTextBox"
+      [label]="{text: 'Hasło'}"
+    ></dxi-item>
+
+    <dxi-item
+      dataField="registeredDate"
+      editorType="dxDateBox"
+      [label]="{text: 'Data rejestracji'}"
+    ></dxi-item>
+
+    <dxi-item
+    dataField="enabled"
+    editorType="dxCheckBox"
+    [label]="{text: 'Aktywny'}"
+  ></dxi-item>
+
+    <dxi-item
+      bhUserRoleEditor
+    ></dxi-item>
+  </dxi-item>
+</dx-form>

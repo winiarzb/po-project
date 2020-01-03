@@ -3,17 +3,18 @@ import {EditorDirectiveBase} from './editor-directive.abstract';
 import {DxiItemComponent} from 'devextreme-angular/ui/nested';
 import {ResourcesApiService} from '../../services/resources-api.service';
 import {DictionaryModel} from '../../models/dictionary.model';
+import {DictionaryType} from '../../enums/dictionary-type.enum';
 
 @Directive({
-  selector: 'dxi-item [bhDictionaryTypeEditor]'
+  selector: 'dxi-item [bhPlanetTypeEditor]'
 })
-export class DictionaryTypeEditorDirective extends EditorDirectiveBase implements OnInit {
+export class PlanetTypeEditorDirective extends EditorDirectiveBase implements OnInit {
 
   constructor(
-    _dxiItem: DxiItemComponent,
+    item: DxiItemComponent,
     @Inject('DictionaryApiService') private _dictionaryApiService: ResourcesApiService
   ) {
-    super(_dxiItem)
+    super(item);
   }
 
   ngOnInit() {
@@ -22,19 +23,21 @@ export class DictionaryTypeEditorDirective extends EditorDirectiveBase implement
   }
 
   public configureDxiItem(): void {
-    this.dxItem.dataField = 'type';
-    this.dxItem.editorType = 'dxSelectBox';
     this.dxItem.label = {
-      text: 'Typ'
-    }
+      text: 'Typ planety'
+    };
+    this.dxItem.editorType = 'dxSelectBox';
+    this.dxItem.dataField = 'planetType';
   }
 
   private _addItems(): void {
     this._dictionaryApiService.getAll<DictionaryModel[]>().subscribe(dictionaries => {
-      const dictionaryTypes = new Set<string>();
-      dictionaries.forEach(dictionary => dictionaryTypes.add(dictionary.type));
+      const planetsType = dictionaries
+        .filter(dictionary => dictionary.type === DictionaryType.PlanetType)
+        .map(dictionary => dictionary.value);
+
       this.dxItem.editorOptions = {
-        items: Array.from(dictionaryTypes.values())
+        items: planetsType
       };
     });
   }

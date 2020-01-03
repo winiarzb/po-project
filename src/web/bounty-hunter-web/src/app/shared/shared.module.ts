@@ -13,6 +13,8 @@ import { LogoComponent } from './layout/components/logo/logo.component';
 import { InputDirective } from './directives/input.directive';
 import { PriorityFormEditorDirective } from './directives/editors/priority-form-editor.directive';
 import { DictionaryTypeEditorDirective } from './directives/editors/dictionary-type-editor.directive';
+import { PlanetTypeEditorDirective } from './directives/editors/planet-type-editor.directive';
+import { UserRoleEditorDirective } from './directives/editors/user-role-editor.directive';
 
 
 
@@ -29,7 +31,9 @@ import { DictionaryTypeEditorDirective } from './directives/editors/dictionary-t
     LogoComponent,
     InputDirective,
     PriorityFormEditorDirective,
-    DictionaryTypeEditorDirective
+    DictionaryTypeEditorDirective,
+    PlanetTypeEditorDirective,
+    UserRoleEditorDirective
   ],
   exports: [
     HeaderComponent,
@@ -38,7 +42,9 @@ import { DictionaryTypeEditorDirective } from './directives/editors/dictionary-t
     ButtonDirective,
     InputDirective,
     PriorityFormEditorDirective,
-    DictionaryTypeEditorDirective
+    DictionaryTypeEditorDirective,
+    PlanetTypeEditorDirective,
+    UserRoleEditorDirective
   ],
   imports: [
     CommonModule,

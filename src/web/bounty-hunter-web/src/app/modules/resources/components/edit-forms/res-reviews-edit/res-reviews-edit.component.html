@@ -1,1 +1,43 @@
-<p>res-reviews-edit works!</p>
+<header>
+  <h2>Recenzja</h2>
+</header>
+
+<dx-form id="res-edit-review" [colCount]="2" [formData]="state">
+  <dxi-item itemType="group" caption="Informacje">
+    <dxi-item
+      dataField="id"
+      editorType="dxTextBox"
+      [label]="{text: 'Id'}"
+      [editorOptions]="{readOnly: true}"
+    ></dxi-item>
+
+    <dxi-item
+      dataField="version"
+      editorType="dxTextBox"
+      [label]="{text: 'Wersja'}"
+      [editorOptions]="{readOnly: true}"
+    ></dxi-item>
+
+  </dxi-item>
+
+  <dxi-item itemType="group" caption="Edycja">
+    <dxi-item
+      dataField="comment"
+      editorType="dxTextBox"
+      [label]="{text: 'Nazwa'}"
+    ></dxi-item>
+
+    <dxi-item
+      dataField="wouldRecommend"
+      editorType="dxCheckBox"
+      [label]="{text: 'Czy poleca'}"
+    ></dxi-item>
+
+    <dxi-item
+      dataField="rating"
+      editorType="dxNumberBox"
+      [label]="{text: 'Ocena'}"
+      [editorOptions]="{min: 1, max: 10, showSpinButtons: true}"
+    ></dxi-item>
+  </dxi-item>
+</dx-form>
