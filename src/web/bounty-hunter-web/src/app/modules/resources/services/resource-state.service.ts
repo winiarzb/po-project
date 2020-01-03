@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {StateServiceBase} from '../../../shared/services/state-service.abstract';
 import {RequestFactoryServiceBase} from '../../../shared/services/request-factory-service.abstract';
-import {ResourcesApiService} from './resources-api.service';
+import {ResourcesApiService} from '../../../shared/services/resources-api.service';
 import {Observable} from 'rxjs';
 
 @Injectable({

@@ -1,4 +1,4 @@
-import {ApiServiceBase} from '../../../shared/services/api-service.abstract';
+import {ApiServiceBase} from './api-service.abstract';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Injectable} from '@angular/core';

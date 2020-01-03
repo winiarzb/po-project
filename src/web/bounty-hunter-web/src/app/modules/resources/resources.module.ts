@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ResourcesComponent} from './components/resources/resources.component';
-import {DxButtonModule, DxDataGridModule, DxTabsModule} from 'devextreme-angular';
+import {DxButtonModule, DxDataGridModule, DxFormModule, DxTabsModule, DxValidationGroupModule} from 'devextreme-angular';
 import {ResourcesRoutingModule} from './resources-routing.module';
 import {ResourceStateService} from './services/resource-state.service';
-import {ResourcesApiService} from './services/resources-api.service';
+import {ResourcesApiService} from '../../shared/services/resources-api.service';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {ResDictionaryRequestFactoryService} from './services/request-services/res-dictionary-request-factory.service';
 import {ResDistrictRequestFactoryService} from './services/request-services/res-district-request-factory.service';
@@ -32,6 +32,7 @@ import {ResGalaxiesComponent} from './components/lists/res-galaxies/res-galaxies
 import {ResDistrictsComponent} from './components/lists/res-districts/res-districts.component';
 import {ResVictimsComponent} from './components/lists/res-victims/res-victims.component';
 import { EditFormWrapperComponent } from './components/edit-form-wrapper/edit-form-wrapper.component';
+import {SharedModule} from '../../shared/shared.module';
 
 const resourceStateServiceFactoryProvider = <TModel>(apiService: ResourcesApiService, requestFactory: RequestFactoryServiceBase) => {
   return new ResourceStateService<TModel>(apiService, requestFactory);
@@ -64,88 +65,51 @@ const resourceStateServiceFactoryProvider = <TModel>(apiService: ResourcesApiSer
     HttpClientModule,
     DxTabsModule,
     DxDataGridModule,
-    DxButtonModule
+    DxButtonModule,
+    DxValidationGroupModule,
+    DxFormModule,
+    SharedModule
   ],
   providers: [
     {
-      provide: 'ResDictionaryApiService',
-      useFactory: (httpClient: HttpClient) => new ResourcesApiService(httpClient, 'dict'),
-      deps: [HttpClient]
-    },
-    {
-      provide: 'ResDistrictApiService',
-      useFactory: (httpClient: HttpClient) => new ResourcesApiService(httpClient, 'district'),
-      deps: [HttpClient]
-    },
-    {
-      provide: 'ResGalaxyApiService',
-      useFactory: (httpClient: HttpClient) => new ResourcesApiService(httpClient, 'galaxy'),
-      deps: [HttpClient]
-    },
-    {
-      provide: 'ResPlanetApiService',
-      useFactory: (httpClient: HttpClient) => new ResourcesApiService(httpClient, 'planet'),
-      deps: [HttpClient]
-    },
-    {
-      provide: 'ResReviewApiService',
-      useFactory: (httpClient: HttpClient) => new ResourcesApiService(httpClient, 'review'),
-      deps: [HttpClient]
-    },
-    {
-      provide: 'ResUserAccountApiService',
-      useFactory: (httpClient: HttpClient) => new ResourcesApiService(httpClient, 'user'),
-      deps: [HttpClient]
-    },
-    {
-      provide: 'ResVictimApiService',
-      useFactory: (httpClient: HttpClient) => new ResourcesApiService(httpClient, 'victim'),
-      deps: [HttpClient]
-    },
-    {
-      provide: 'ResContractApiService',
-      useFactory: (httpClient: HttpClient) => new ResourcesApiService(httpClient, 'contract'),
-      deps: [HttpClient]
-    },
-    {
       provide: 'ResDictionaryStateService',
       useFactory: resourceStateServiceFactoryProvider,
-      deps: ['ResDictionaryApiService', ResDictionaryRequestFactoryService]
+      deps: ['DictionaryApiService', ResDictionaryRequestFactoryService]
     },
     {
       provide: 'ResDistrictStateService',
       useFactory: resourceStateServiceFactoryProvider,
-      deps: ['ResDistrictApiService', ResDistrictRequestFactoryService]
+      deps: ['DistrictApiService', ResDistrictRequestFactoryService]
     },
     {
       provide: 'ResGalaxyStateService',
       useFactory: resourceStateServiceFactoryProvider,
-      deps: ['ResGalaxyApiService', ResGalaxyRequestFactoryService]
+      deps: ['GalaxyApiService', ResGalaxyRequestFactoryService]
     },
     {
       provide: 'ResPlanetStateService',
       useFactory: resourceStateServiceFactoryProvider,
-      deps: ['ResPlanetApiService', ResPlanetRequestFactoryService]
+      deps: ['PlanetApiService', ResPlanetRequestFactoryService]
     },
     {
       provide: 'ResReviewStateService',
       useFactory: resourceStateServiceFactoryProvider,
-      deps: ['ResReviewApiService', ResReviewRequestFactoryService]
+      deps: ['ReviewApiService', ResReviewRequestFactoryService]
     },
     {
       provide: 'ResUserAccountStateService',
       useFactory: resourceStateServiceFactoryProvider,
-      deps: ['ResUserAccountApiService', ResUserAccountRequestFactoryService]
+      deps: ['UserAccountApiService', ResUserAccountRequestFactoryService]
     },
     {
       provide: 'ResVictimStateService',
       useFactory: resourceStateServiceFactoryProvider,
-      deps: ['ResVictimApiService', ResVictimRequestFactoryService]
+      deps: ['VictimApiService', ResVictimRequestFactoryService]
     },
     {
       provide: 'ResContractStateService',
       useFactory: resourceStateServiceFactoryProvider,
-      deps: ['ResContractApiService', ResContractRequestFactoryService]
+      deps: ['ContractApiService', ResContractRequestFactoryService]
     },
   ]
 })

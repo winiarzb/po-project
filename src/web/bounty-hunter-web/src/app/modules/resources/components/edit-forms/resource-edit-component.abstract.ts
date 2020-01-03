@@ -1,6 +1,7 @@
 import {ResourceStateService} from '../../services/resource-state.service';
 import {ActivatedRoute} from '@angular/router';
 import {OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
 
 export abstract class ResourceEditComponentBase<TModel> implements OnInit {
 
@@ -24,9 +25,7 @@ export abstract class ResourceEditComponentBase<TModel> implements OnInit {
     });
   }
 
-  public saveChanges(): void {
-    this.serviceState.update().subscribe(res => {
-      console.log(res);
-    })
+  public saveChanges(): Observable<TModel> {
+    return this.serviceState.update();
   }
 }

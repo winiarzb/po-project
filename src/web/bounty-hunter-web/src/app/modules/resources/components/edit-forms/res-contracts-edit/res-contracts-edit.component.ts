@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {ResourceEditComponentBase} from '../resource-edit-component.abstract';
 import {Contract} from '../../../../../shared/models/contract.model';
 import {ResourceStateService} from '../../../services/resource-state.service';
@@ -17,8 +17,4 @@ export class ResContractsEditComponent extends ResourceEditComponentBase<Contrac
   ) {
     super(stateService, activatedRoute);
   }
-
-  ngOnInit() {
-  }
-
 }

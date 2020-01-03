@@ -11,6 +11,7 @@ import { ButtonDirective } from './directives/button.directive';
 import { UserComponent } from './layout/components/user/user.component';
 import { LogoComponent } from './layout/components/logo/logo.component';
 import { InputDirective } from './directives/input.directive';
+import { PriorityFormEditorDirective } from './directives/priority-form-editor.directive';
 
 
 
@@ -25,14 +26,16 @@ import { InputDirective } from './directives/input.directive';
     ButtonDirective,
     UserComponent,
     LogoComponent,
-    InputDirective
+    InputDirective,
+    PriorityFormEditorDirective
   ],
   exports: [
     HeaderComponent,
     MainComponent,
     CardComponent,
     ButtonDirective,
-    InputDirective
+    InputDirective,
+    PriorityFormEditorDirective
   ],
   imports: [
     CommonModule,
