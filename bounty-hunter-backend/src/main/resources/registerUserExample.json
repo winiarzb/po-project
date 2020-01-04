@@ -1,0 +1,22 @@
+{
+  "username": "test",
+  "password": "testtest",
+  "role": {
+    "userRole": "HUNTER"
+  },
+  "galaxy": {
+    "galaxyName": "Galaxy Far, Far Away"
+  },
+  "planets": [{
+    "name": "Tatooine",
+    "planetType": "ICY"
+  }, {
+    "name": "Bespin",
+    "planetType": "COLD"
+  }],
+  "districts": [{
+    "districtName": "Federal District"
+  }, {
+    "districtName": "Orowood"
+  }]
+}
