@@ -1,7 +1,6 @@
 package com.developers.bountyhunter.service.world;
 
 import com.developers.bountyhunter.model.world.Galaxy;
-import com.developers.bountyhunter.model.world.GalaxyName;
 import com.developers.bountyhunter.repository.world.GalaxyRepository;
 import com.developers.bountyhunter.service.base.BaseServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +15,7 @@ public class GalaxyServiceImpl extends BaseServiceImpl<Galaxy, Long> implements 
 	private final GalaxyRepository galaxyRepository;
 
 	@Override
-	public Optional<Galaxy> findGalaxyByGalaxyName(GalaxyName galaxyName) {
-		return galaxyRepository.findGalaxyByGalaxyName(galaxyName);
+	public Optional<Galaxy> findGalaxyByGalaxyName(String galaxyName) {
+		return galaxyRepository.findGalaxyByName(galaxyName);
 	}
 }

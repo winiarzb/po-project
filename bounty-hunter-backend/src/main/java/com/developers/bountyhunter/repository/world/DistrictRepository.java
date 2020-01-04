@@ -9,4 +9,6 @@ import java.util.Optional;
 @Repository
 public interface DistrictRepository extends BaseRepository<District, Long> {
 
+    Optional<District> findDistrictByName(String districtName);
+
 }

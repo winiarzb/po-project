@@ -17,6 +17,16 @@ public class PlanetServiceImpl extends BaseServiceImpl<Planet, Long> implements 
 	private final PlanetRepository planetRepository;
 
 	@Override
+	public Optional<Planet> findPlanetByPlanetName(String planetName) {
+		return planetRepository.findPlanetByName(planetName);
+	}
+
+	@Override
+	public Optional<Planet> findPlanetByPlanetType(PlanetType planetType) {
+		return planetRepository.findPlanetByPlanetType(planetType);
+	}
+
+	@Override
 	public Optional<Planet> findPlanetByGalaxyAndPlanetType(Galaxy galaxy, PlanetType planetType) {
 		return planetRepository.findPlanetByGalaxyAndPlanetType(galaxy, planetType);
 	}

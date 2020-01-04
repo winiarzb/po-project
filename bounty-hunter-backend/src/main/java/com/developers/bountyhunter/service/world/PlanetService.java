@@ -1,5 +1,6 @@
 package com.developers.bountyhunter.service.world;
 
+import com.developers.bountyhunter.dto.world.PlanetDTO;
 import com.developers.bountyhunter.model.world.Galaxy;
 import com.developers.bountyhunter.model.world.Planet;
 import com.developers.bountyhunter.model.world.PlanetType;
@@ -11,5 +12,7 @@ import java.util.Optional;
 @Service
 public interface PlanetService extends BaseService<Planet, Long> {
 
+    Optional<Planet> findPlanetByPlanetName (String planetName);
+    Optional<Planet> findPlanetByPlanetType (PlanetType planetType);
     Optional<Planet> findPlanetByGalaxyAndPlanetType (Galaxy galaxy, PlanetType planetType);
 }

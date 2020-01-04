@@ -8,4 +8,6 @@ import java.util.Optional;
 
 @Service
 public interface DistrictService extends BaseService<District, Long> {
+
+    Optional<District> findByDistrictName(String districtName);
 }
