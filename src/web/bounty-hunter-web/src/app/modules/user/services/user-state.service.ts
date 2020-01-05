@@ -15,10 +15,6 @@ export class UserStateService extends StateServiceBase<UserLogged> {
   private readonly jwtHelper: JwtHelperService = new JwtHelperService();
   private _isLogged: boolean;
 
-  public get loggedUser(): UserLogged {
-    return this.state;
-  }
-
   public get isLogged(): boolean {
     return this._isLogged;
   }
