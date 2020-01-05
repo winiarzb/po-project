@@ -1,0 +1,12 @@
+@import "variables";
+
+.logo a {
+  color: $logo;
+  font-family: 'Star Jedi';
+  font-size: 1.75rem;
+  letter-spacing: 1px;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
