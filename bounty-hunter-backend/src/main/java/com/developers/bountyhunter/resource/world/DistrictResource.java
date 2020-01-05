@@ -2,6 +2,7 @@ package com.developers.bountyhunter.resource.world;
 
 import com.developers.bountyhunter.dto.world.DistrictDTO;
 import com.developers.bountyhunter.dto.world.DistrictFormDTO;
+import com.developers.bountyhunter.exception.AppException;
 import com.developers.bountyhunter.mapper.world.DistrictMapper;
 import com.developers.bountyhunter.model.world.District;
 import com.developers.bountyhunter.model.world.Planet;
@@ -51,6 +52,16 @@ public class DistrictResource {
 		List<DistrictDTO> districtDTOS = districtMapper.districtsToDistrictsDTO(districtService.findAll());
 		return new ResponseEntity<>(districtDTOS, HttpStatus.OK);
 
+	}
+
+	@GetMapping("/planet/{id}")
+	private ResponseEntity<List<DistrictDTO>> findDistrictsByPlanetId(@PathVariable("id") Long id) {
+
+		Planet planet = planetService.findById(id)
+				.orElseThrow(() -> new AppException("Planet not exists"));
+		List<District> districts = districtService.findDistrictsByPlanet(planet);
+		List<DistrictDTO> districtDTOS = districtMapper.districtsToDistrictsDTO(districts);
+		return new ResponseEntity<>(districtDTOS, HttpStatus.OK);
 	}
 
 	@PostMapping()

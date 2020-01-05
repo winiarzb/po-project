@@ -2,6 +2,7 @@ package com.developers.bountyhunter.resource.world;
 
 import com.developers.bountyhunter.dto.world.PlanetDTO;
 import com.developers.bountyhunter.dto.world.PlanetFormDTO;
+import com.developers.bountyhunter.exception.AppException;
 import com.developers.bountyhunter.mapper.world.PlanetMapper;
 import com.developers.bountyhunter.model.world.District;
 import com.developers.bountyhunter.model.world.Galaxy;
@@ -33,87 +34,97 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PlanetResource {
 
-	private final PlanetService planetService;
-	private final GalaxyService galaxyService;
-	private final DistrictService districtService;
+    private final PlanetService planetService;
+    private final GalaxyService galaxyService;
+    private final DistrictService districtService;
 
-	private PlanetMapper planetMapper = Mappers.getMapper(PlanetMapper.class);
+    private PlanetMapper planetMapper = Mappers.getMapper(PlanetMapper.class);
 
-	@GetMapping("/{id}")
-	private ResponseEntity<PlanetDTO> getById(@PathVariable("id") Long id) {
+    @GetMapping("/{id}")
+    private ResponseEntity<PlanetDTO> getById(@PathVariable("id") Long id) {
 
-		Optional<Planet> planet = planetService.findById(id);
+        Optional<Planet> planet = planetService.findById(id);
 
-		return planet.map(value -> new ResponseEntity<>(planetMapper.planetToPlanetDTO(value), HttpStatus.OK)).
-				orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
+        return planet.map(value -> new ResponseEntity<>(planetMapper.planetToPlanetDTO(value), HttpStatus.OK)).
+                orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
 
-	}
+    }
 
-	@GetMapping("/all")
-	private ResponseEntity<List<PlanetDTO>> getAll() {
+    @GetMapping("/all")
+    private ResponseEntity<List<PlanetDTO>> getAll() {
 
-		List<PlanetDTO> planetDTOS = planetMapper.planetsToPlanetsDTO(planetService.findAll());
-		return new ResponseEntity<>(planetDTOS, HttpStatus.OK);
+        List<PlanetDTO> planetDTOS = planetMapper.planetsToPlanetsDTO(planetService.findAll());
+        return new ResponseEntity<>(planetDTOS, HttpStatus.OK);
 
-	}
+    }
 
-	@PostMapping()
-	private ResponseEntity<PlanetDTO> createPlanet(@Valid @RequestBody PlanetFormDTO planetFormDTO, BindingResult bindingResult) {
+    @GetMapping("/galaxy/{id}")
+    private ResponseEntity<List<PlanetDTO>> findPlanetsByGalaxyId(@PathVariable("id") Long id) {
 
-		if (bindingResult.hasErrors()) {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
+        Galaxy galaxy = galaxyService.findById(id)
+                .orElseThrow(() -> new AppException("Galaxy not exists"));
+        List<Planet> planets = planetService.findPlanetsByGalaxy(galaxy);
+        List<PlanetDTO> planetDTOS = planetMapper.planetsToPlanetsDTO(planets);
+        return new ResponseEntity<>(planetDTOS, HttpStatus.OK);
+    }
 
-		Planet planet = planetMapper.planetFormDTOToPlanet(planetFormDTO);
+    @PostMapping()
+    private ResponseEntity<PlanetDTO> createPlanet(@Valid @RequestBody PlanetFormDTO planetFormDTO, BindingResult bindingResult) {
 
-		Optional<Galaxy> galaxy = galaxyService.findById(planetFormDTO.getGalaxyId());
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
-		if (galaxy.isPresent()) {
-			planet.setGalaxy(galaxy.get());
-		} else {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
+        Planet planet = planetMapper.planetFormDTOToPlanet(planetFormDTO);
 
-		List<District> districts = new ArrayList<>();
+        Optional<Galaxy> galaxy = galaxyService.findById(planetFormDTO.getGalaxyId());
 
-		planetFormDTO.getDistrictsIds().forEach((id) -> districtService.findById(id).ifPresent(districts::add));
+        if (galaxy.isPresent()) {
+            planet.setGalaxy(galaxy.get());
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
-		planet.setDistricts(districts);
-		planet = planetService.save(planet);
-		PlanetDTO planetDTO = planetMapper.planetToPlanetDTO(planet);
+        List<District> districts = new ArrayList<>();
 
-		return new ResponseEntity<>(planetDTO, HttpStatus.CREATED);
-	}
+        planetFormDTO.getDistrictsIds().forEach((id) -> districtService.findById(id).ifPresent(districts::add));
 
-	@PutMapping()
-	private ResponseEntity<PlanetDTO> updatePlanet(@Valid @RequestBody PlanetDTO planetDTO, BindingResult bindingResult) {
+        planet.setDistricts(districts);
+        planet = planetService.save(planet);
+        PlanetDTO planetDTO = planetMapper.planetToPlanetDTO(planet);
 
-		if (bindingResult.hasErrors()) {
-			return new ResponseEntity<>(planetDTO, HttpStatus.BAD_REQUEST);
-		}
+        return new ResponseEntity<>(planetDTO, HttpStatus.CREATED);
+    }
 
-		Optional<Planet> planet = planetService.findById(planetDTO.getId());
+    @PutMapping()
+    private ResponseEntity<PlanetDTO> updatePlanet(@Valid @RequestBody PlanetDTO planetDTO, BindingResult bindingResult) {
 
-		if (planet.isPresent()) {
-			planetService.save(planetMapper.planetDTOtoPlanet(planetDTO));
-			return new ResponseEntity<>(planetDTO, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(planetDTO, HttpStatus.NOT_FOUND);
-		}
-	}
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(planetDTO, HttpStatus.BAD_REQUEST);
+        }
 
-	@DeleteMapping("/{id}")
-	private ResponseEntity<PlanetDTO> deletePlanet(@PathVariable Long id) {
+        Optional<Planet> planet = planetService.findById(planetDTO.getId());
 
-		Optional<Planet> planet = planetService.findById(id);
+        if (planet.isPresent()) {
+            planetService.save(planetMapper.planetDTOtoPlanet(planetDTO));
+            return new ResponseEntity<>(planetDTO, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(planetDTO, HttpStatus.NOT_FOUND);
+        }
+    }
 
-		if (planet.isPresent()) {
-			planetService.deleteById(id);
-			return new ResponseEntity<>(null, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    @DeleteMapping("/{id}")
+    private ResponseEntity<PlanetDTO> deletePlanet(@PathVariable Long id) {
 
-		}
-	}
+        Optional<Planet> planet = planetService.findById(id);
+
+        if (planet.isPresent()) {
+            planetService.deleteById(id);
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+
+        }
+    }
 
 }

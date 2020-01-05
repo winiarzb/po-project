@@ -125,8 +125,8 @@ public class AuthenticationResource {
     }
 
     private void checkAndSetRole(@RequestBody @Valid UserRegisterFormDTO userRegisterFormDTO, UserAccount newUser) {
-        if (userRegisterFormDTO.getRole().getUserRole() != null) {
-            Role role = roleService.findRoleByName(userRegisterFormDTO.getRole().getUserRole())
+        if (userRegisterFormDTO.getRole().getRoleName() != null) {
+            Role role = roleService.findRoleByName(userRegisterFormDTO.getRole().getRoleName())
                     .orElseThrow(() -> new AppException("User role not exists"));
             newUser.setRole(role);
         }
@@ -136,7 +136,7 @@ public class AuthenticationResource {
         if (!userRegisterFormDTO.getDistricts().isEmpty()) {
             newUser.setDistricts(new ArrayList<>());
             userRegisterFormDTO.getDistricts().forEach(districtDTO -> {
-                District district = districtService.findByDistrictName(districtDTO.getDistrictName())
+                District district = districtService.findByDistrictName(districtDTO.getName())
                         .orElseThrow(() -> new AppException("District not exists"));
                 newUser.getDistricts().add(district);
             });
@@ -155,8 +155,8 @@ public class AuthenticationResource {
     }
 
     private void checkAndSetGalaxy(@RequestBody @Valid UserRegisterFormDTO userRegisterFormDTO, UserAccount newUser) {
-        if (userRegisterFormDTO.getGalaxy().getGalaxyName() != null) {
-            Galaxy galaxy = galaxyService.findGalaxyByGalaxyName(userRegisterFormDTO.getGalaxy().getGalaxyName())
+        if (userRegisterFormDTO.getGalaxy().getName() != null) {
+            Galaxy galaxy = galaxyService.findGalaxyByGalaxyName(userRegisterFormDTO.getGalaxy().getName())
                     .orElseThrow(() -> new AppException("Galaxy not exists"));
             newUser.setGalaxy(galaxy);
         }
