@@ -16,7 +16,8 @@ import { DictionaryTypeEditorDirective } from './directives/editors/dictionary-t
 import { PlanetTypeEditorDirective } from './directives/editors/planet-type-editor.directive';
 import { UserRoleEditorDirective } from './directives/editors/user-role-editor.directive';
 import { ThreatLevelEditorDirective } from './directives/editors/threat-level-editor.directive';
-import {DxButtonModule} from 'devextreme-angular';
+import {DxButtonModule, DxMenuModule} from 'devextreme-angular';
+import { LinkAccessorDirective } from './directives/link-accessor.directive';
 
 
 
@@ -36,7 +37,8 @@ import {DxButtonModule} from 'devextreme-angular';
     DictionaryTypeEditorDirective,
     PlanetTypeEditorDirective,
     UserRoleEditorDirective,
-    ThreatLevelEditorDirective
+    ThreatLevelEditorDirective,
+    LinkAccessorDirective,
   ],
   exports: [
     HeaderComponent,
@@ -53,7 +55,8 @@ import {DxButtonModule} from 'devextreme-angular';
   imports: [
     CommonModule,
     RouterModule,
-    DxButtonModule
+    DxButtonModule,
+    DxMenuModule
   ]
 })
 export class SharedModule { }

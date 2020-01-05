@@ -5,6 +5,7 @@ import {AuthRequestFactoryService} from './auth-request-factory.service';
 import {UserSignInModel} from '../models/user-sign-in.model';
 import {Observable} from 'rxjs';
 import {IUserSignInResponse} from '../interfaces/user-sign-in-response.interface';
+import {UserStateService} from './user-state.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class UserLoginStateService extends StateServiceBase<UserSignInModel> {
 
   constructor(
     authService: AuthApiService,
-    requestService: AuthRequestFactoryService
+    requestService: AuthRequestFactoryService,
+    private _userService: UserStateService
   ) {
     super(authService, requestService);
   }

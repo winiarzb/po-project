@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {SharedModule} from "./shared/shared.module";
 import {UserModule} from "./modules/user/user.module";
-import {UserService} from "./shared/services/user.service";
+import {UserStateService} from "./modules/user/services/user-state.service";
 import {NavigatorService} from "./shared/services/navigator.service";
 import {ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
@@ -25,7 +25,7 @@ import {AuthInterceptorService} from './shared/interceptors/auth-interceptor.ser
     HttpClientModule
   ],
   providers: [
-    UserService,
+    UserStateService,
     NavigatorService,
     {
       provide: 'DictionaryApiService',
@@ -71,7 +71,20 @@ import {AuthInterceptorService} from './shared/interceptors/auth-interceptor.ser
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
-    }
+    },
+    {
+      provide: APP_INITIALIZER,
+      multi: true,
+      useFactory: (userService: UserStateService) => {
+        return () => {
+          return new Promise<void>(resolve => {
+            userService.initStateFromLocalStorage();
+            resolve();
+          });
+        }
+      },
+      deps: [UserStateService]
+    },
   ],
   bootstrap: [AppComponent]
 })

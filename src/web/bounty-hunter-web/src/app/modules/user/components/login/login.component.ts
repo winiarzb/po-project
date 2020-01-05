@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserLoginStateService} from '../../services/user-login-state.service';
 import {UserSignInModel} from '../../models/user-sign-in.model';
 import notify from 'devextreme/ui/notify';
-import {UserService} from '../../../../shared/services/user.service';
+import {UserStateService} from '../../services/user-state.service';
 import {NavigatorService} from '../../../../shared/services/navigator.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private _loginState: UserLoginStateService,
-    private _userService: UserService,
+    private _userService: UserStateService,
     private _navigator: NavigatorService
   ) { }
 
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   public onSignIn(): void {
     this._loginState.signUp().subscribe(res => {
       notify('Zalogowano', 'success');
-      this._userService.signIn(res);
+      this._userService.initStateFromResponse(res);
       this._navigator.dashboard();
     }, err => this._handleLoginError(err));
   }

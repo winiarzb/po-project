@@ -21,15 +21,15 @@ export abstract class StateServiceBase<TState> {
   private _isLoading: boolean = false;
 
   protected constructor(
-    protected apiService: ApiServiceBase,
-    protected requestService: RequestFactoryServiceBase
+    protected apiService?: ApiServiceBase,
+    protected requestService?: RequestFactoryServiceBase
   ) {}
 
   public initState(state: TState): void {
     this._state = state;
   }
 
-  public clearState(state: TState): void {
+  public clearState(): void {
     this._state = null;
   }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "../../../services/user.service";
+import {UserStateService} from "../../../../modules/user/services/user-state.service";
 import {NavigatorService} from "../../../services/navigator.service";
 
 @Component({
@@ -14,7 +14,7 @@ export class UserComponent {
   }
 
   constructor(
-    private _userService: UserService,
+    private _userService: UserStateService,
     private _navigator: NavigatorService
   ) { }
 
