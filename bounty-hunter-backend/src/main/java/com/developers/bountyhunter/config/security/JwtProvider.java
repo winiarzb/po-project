@@ -25,9 +25,10 @@ public class JwtProvider {
 
         return Jwts.builder()
                 .setSubject(Long.toString(userPrincipal.getId()))
+                .claim("username", userPrincipal.getUsername())
+                .claim("role", userPrincipal.getAuthorities())
                 .setIssuedAt(new Date())
                 .setExpiration(expiryDate)
-                .claim("role", userPrincipal.getAuthorities())
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
                 .compact();
     }

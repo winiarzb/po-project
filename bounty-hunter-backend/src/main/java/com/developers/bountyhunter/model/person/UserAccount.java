@@ -22,19 +22,19 @@ public class UserAccount extends Person {
     private Date registeredDate;
     private boolean enabled;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne()
     @JoinColumn(name = "role_id")
     private Role role;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "galaxy_id", referencedColumnName = "id")
     private Galaxy galaxy;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_planet",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -43,7 +43,7 @@ public class UserAccount extends Person {
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_district",
             joinColumns = @JoinColumn(name = "user_id"),
