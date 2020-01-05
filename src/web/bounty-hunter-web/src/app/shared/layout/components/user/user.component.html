@@ -1,18 +1,9 @@
+<a routerLink="/user" class="nav-link header-user-button">
+  <div class="header-user-button-text">
+    Example user
+  </div>
+</a>
 
-
-<div class="header-user" *ngIf="isLogged; else loginButton">
-  <a routerLink="/user" class="nav-link header-user-button">
-    <div class="header-user-button-icon">
-      <img src="/assets/profile-1.jpg" alt="user">
-    </div>
-    <div class="header-user-button-text">
-      Example user
-    </div>
-  </a>
-</div>
-
-<ng-template #loginButton>
-  <button bhButton [outline]="true" (click)="navigator.login()">LOGIN</button>
-</ng-template>
+<dx-button (click)="logout()" text="Wyloguj"></dx-button>
 
 

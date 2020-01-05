@@ -15,10 +15,14 @@ export class UserComponent implements OnInit {
 
   constructor(
     private _userService: UserService,
-    public navigator: NavigatorService
+    private _navigator: NavigatorService
   ) { }
 
   ngOnInit() {
   }
 
+  public logout(): void {
+    this._userService.logout();
+    this._navigator.login();
+  }
 }

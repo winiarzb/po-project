@@ -8,8 +8,9 @@ import {UserModule} from "./modules/user/user.module";
 import {UserService} from "./shared/services/user.service";
 import {NavigatorService} from "./shared/services/navigator.service";
 import {ReactiveFormsModule} from "@angular/forms";
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {ResourcesApiService} from './shared/services/resources-api.service';
+import {AuthInterceptorService} from './shared/interceptors/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,11 @@ import {ResourcesApiService} from './shared/services/resources-api.service';
       provide: 'ContractApiService',
       useFactory: (httpClient: HttpClient) => new ResourcesApiService(httpClient, 'contract'),
       deps: [HttpClient]
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]

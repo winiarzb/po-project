@@ -17,4 +17,8 @@ export class NavigatorService {
   public login(): Promise<boolean> {
     return this._router.navigate(['login']);
   }
+
+  public dashboard(): Promise<boolean> {
+    return this._router.navigate(['/']);
+  }
 }
