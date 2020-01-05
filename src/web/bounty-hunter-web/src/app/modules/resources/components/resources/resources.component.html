@@ -6,6 +6,17 @@
   ></dx-tabs>
 </header>
 
+<div class="my-3">
+  <dx-button
+    text="Dodaj"
+  ></dx-button>
+  <dx-button
+    text="Edytuj"
+    [disabled]="isEditActive()"
+    (click)="edit()"
+  ></dx-button>
+</div>
+
 <article class="resource-list">
-  <router-outlet></router-outlet>
+  <router-outlet (activate)="onListActivation($event)"></router-outlet>
 </article>

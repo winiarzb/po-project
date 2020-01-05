@@ -4,8 +4,9 @@ import {User} from './user.model';
 import {Victim} from './victim.model';
 import {District} from './district.model';
 import {Review} from './review.model';
+import {IIdentifiable} from '../interfaces/identifiable.interface';
 
-export class Contract {
+export class Contract implements IIdentifiable {
   public id: number;
   public version: number;
   public name: string;

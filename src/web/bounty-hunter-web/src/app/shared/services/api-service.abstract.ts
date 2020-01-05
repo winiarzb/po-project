@@ -41,8 +41,9 @@ export abstract class ApiServiceBase {
   }
 
   private _buildHeaders(): HttpHeaders {
-    const headers = new HttpHeaders()
-    headers.set('Accept', 'application/json');
-    return headers;
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
   }
 }

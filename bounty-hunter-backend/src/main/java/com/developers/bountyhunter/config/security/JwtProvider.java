@@ -27,6 +27,7 @@ public class JwtProvider {
                 .setSubject(Long.toString(userPrincipal.getId()))
                 .setIssuedAt(new Date())
                 .setExpiration(expiryDate)
+                .claim("role", userPrincipal.getAuthorities())
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
                 .compact();
     }

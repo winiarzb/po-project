@@ -84,6 +84,7 @@ INSERT INTO user_account (enabled, password, registered_date, username, person_i
 INSERT INTO victim(age, force_sensitive, threat_level, person_id) VALUES ('19','true','IMPOSSIBLE','4')
 INSERT INTO victim(age, force_sensitive, threat_level, person_id) VALUES ('19','true','EXTREME','5')
 INSERT INTO victim(age, force_sensitive, threat_level, person_id) VALUES ('19','true','MEDIUM','6')
+INSERT INTO user_account (enabled, password, registered_date, username, person_id, galaxy_id, role_id) VALUES (true, '$2a$10$pilifDD0MEujLZfMz0cDkeX1NOyBZtQThnDYr.nRiI7rf5eSYNKwq', CURRENT_TIMESTAMP(), 'test', 4, 1, 1)
 -- --REVIEW--
 INSERT INTO review(comment, rating, would_recommend, version) VALUES ('Wszystko ok polecam huntera','8', 'true', '0')
 -- --CONTRACT--

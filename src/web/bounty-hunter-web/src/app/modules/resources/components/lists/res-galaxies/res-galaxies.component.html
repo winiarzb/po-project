@@ -1,0 +1,23 @@
+<dx-data-grid
+  id="resource-users"
+  selection="single"
+  [dataSource]="state"
+  [columnAutoWidth]="true"
+  (onSelectionChanged)="onSelect($event)"
+>
+  <dxi-column
+    dataField="id"
+    caption="ID"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="version"
+    caption="Wersja"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="name"
+    caption="Nazwa"
+  ></dxi-column>
+
+</dx-data-grid>

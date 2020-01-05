@@ -11,6 +11,11 @@ import { ButtonDirective } from './directives/button.directive';
 import { UserComponent } from './layout/components/user/user.component';
 import { LogoComponent } from './layout/components/logo/logo.component';
 import { InputDirective } from './directives/input.directive';
+import { PriorityFormEditorDirective } from './directives/editors/priority-form-editor.directive';
+import { DictionaryTypeEditorDirective } from './directives/editors/dictionary-type-editor.directive';
+import { PlanetTypeEditorDirective } from './directives/editors/planet-type-editor.directive';
+import { UserRoleEditorDirective } from './directives/editors/user-role-editor.directive';
+import { ThreatLevelEditorDirective } from './directives/editors/threat-level-editor.directive';
 
 
 
@@ -25,14 +30,24 @@ import { InputDirective } from './directives/input.directive';
     ButtonDirective,
     UserComponent,
     LogoComponent,
-    InputDirective
+    InputDirective,
+    PriorityFormEditorDirective,
+    DictionaryTypeEditorDirective,
+    PlanetTypeEditorDirective,
+    UserRoleEditorDirective,
+    ThreatLevelEditorDirective
   ],
   exports: [
     HeaderComponent,
     MainComponent,
     CardComponent,
     ButtonDirective,
-    InputDirective
+    InputDirective,
+    PriorityFormEditorDirective,
+    DictionaryTypeEditorDirective,
+    PlanetTypeEditorDirective,
+    UserRoleEditorDirective,
+    ThreatLevelEditorDirective
   ],
   imports: [
     CommonModule,
