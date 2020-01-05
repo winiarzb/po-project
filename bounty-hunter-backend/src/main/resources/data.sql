@@ -80,6 +80,7 @@ INSERT INTO role (record_creation_date, version, role_name) VALUES (CURRENT_TIME
 INSERT INTO user_account (enabled, password, registered_date, username, person_id, galaxy_id, role_id) VALUES (true, 'admin', CURRENT_TIMESTAMP(), 'admin', 1, 1, 1)
 INSERT INTO user_account (enabled, password, registered_date, username, person_id, galaxy_id, role_id) VALUES (true, 'hunter', CURRENT_TIMESTAMP(), 'hunter', 2, 1, 2)
 INSERT INTO user_account (enabled, password, registered_date, username, person_id, galaxy_id, role_id) VALUES (true, 'client', CURRENT_TIMESTAMP(), 'client', 3, 2, 3)
+INSERT INTO user_account (enabled, password, registered_date, username, person_id, galaxy_id, role_id) VALUES (true, '$2a$10$pilifDD0MEujLZfMz0cDkeX1NOyBZtQThnDYr.nRiI7rf5eSYNKwq', CURRENT_TIMESTAMP(), 'test', 4, 1, 1)
 -- --VICTIM--
 -- INSERT INTO victim(age, force_sensitive, threat_level, person_id) VALUES ('19','true','IMPOSSIBLE','4')
 -- INSERT INTO victim(age, force_sensitive, threat_level, person_id) VALUES ('19','true','EXTREME','5')
