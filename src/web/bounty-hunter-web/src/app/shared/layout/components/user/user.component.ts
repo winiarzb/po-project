@@ -7,7 +7,7 @@ import {NavigatorService} from "../../../services/navigator.service";
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent implements OnInit {
+export class UserComponent {
 
   public get isLogged(): boolean {
     return this._userService.isLogged;
@@ -18,11 +18,16 @@ export class UserComponent implements OnInit {
     private _navigator: NavigatorService
   ) { }
 
-  ngOnInit() {
-  }
-
   public logout(): void {
     this._userService.logout();
     this._navigator.login();
+  }
+
+  public goToLogin(): void {
+    this._navigator.login();
+  }
+
+  public goToRegistration(): void {
+    this._navigator.registration();
   }
 }

@@ -8,6 +8,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class UserService {
 
+  private readonly jwtHelper: JwtHelperService = new JwtHelperService();
+  private readonly tokenStorage = 'token';
   private _token: string;
   private _isLogged: boolean;
 
@@ -19,8 +21,7 @@ export class UserService {
     return this._token;
   }
 
-  constructor(
-  ) {
+  constructor() {
     this.getTokenFromStorage();
   }
 
@@ -28,26 +29,21 @@ export class UserService {
     this._token = model.jwt;
     this._isLogged = true;
 
-    const helper = new JwtHelperService();
-    const decodedToken = helper.decodeToken(this._token);
-    const expirationDate = helper.getTokenExpirationDate(this._token);
-    const isExpired = helper.isTokenExpired(this._token);
-
-    console.log(decodedToken);
-    console.log(expirationDate);
-    console.log(isExpired);
-
-    localStorage.setItem('token', this._token);
+    localStorage.setItem(this.tokenStorage, this._token);
   }
 
   public logout(): void {
     this._token = null;
     this._isLogged = false;
-    localStorage.removeItem('token');
+    localStorage.removeItem(this.tokenStorage);
   }
 
   public getTokenFromStorage(): void {
-    this._token = localStorage.getItem('token');
-    this._isLogged = isDefined(this._token);
+    const token = localStorage.getItem(this.tokenStorage);
+
+    if (isDefined(token) && !this.jwtHelper.isTokenExpired(token)) {
+      this._token = token;
+      this._isLogged = true;
+    }
   }
 }

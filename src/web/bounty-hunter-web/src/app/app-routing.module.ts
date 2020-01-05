@@ -6,6 +6,7 @@ import {RegistrationComponent} from './modules/user/components/registration/regi
 import {AppComponent} from './app.component';
 import {SimplifiedLayoutComponent} from './shared/layout/components/simplified-layout/simplified-layout.component';
 import {AdminAuthGuard} from './shared/guards/admin-auth.guard';
+import {UserAuthGuard} from './shared/guards/user-auth.guard';
 
 
 const routes: Routes = [
@@ -20,17 +21,17 @@ const routes: Routes = [
           {
             path: 'contract',
             loadChildren: () => import('./modules/contract/contract.module').then(m => m.ContractModule),
-            canActivate: []
+            canActivate: [UserAuthGuard]
           },
           {
             path: 'user',
             loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule),
-            canActivate: []
+            canActivate: [UserAuthGuard]
           },
           {
             path: 'resources',
             loadChildren: () => import('./modules/resources/resources.module').then(m => m.ResourcesModule),
-            canActivate: [AdminAuthGuard]
+            canActivate: [UserAuthGuard, AdminAuthGuard]
           }
         ]
       },

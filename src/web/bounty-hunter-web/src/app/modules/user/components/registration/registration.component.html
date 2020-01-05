@@ -1,95 +1,99 @@
 <header class="registration-header">
   <h2>Rejestracja użytkownika</h2>
 </header>
-<dx-form id="registration-form" [colCount]="2">
-  <dxi-item itemType="group" caption="Informacje personalne">
 
-    <dxi-item
-      dataField="userName"
-      editorType="dxTextBox"
-      [label]="{text: 'Nazwa użytkownika'}"
-    >
-      <dxi-validation-rule
-        type="required"
-        message="wymagane"
-      ></dxi-validation-rule>
+<form (ngSubmit)="onSignUp()">
+  <dx-form id="registration-form" [colCount]="2">
+    <dxi-item itemType="group" caption="Informacje personalne">
+
+      <dxi-item
+        dataField="userName"
+        editorType="dxTextBox"
+        [label]="{text: 'Nazwa użytkownika'}"
+      >
+        <dxi-validation-rule
+          type="required"
+          message="wymagane"
+        ></dxi-validation-rule>
+      </dxi-item>
+
+      <dxi-item
+        dataField="password"
+        editorType="dxTextBox"
+        [editorOptions]="{mode: 'password'}"
+        [label]="{text: 'Hasło'}"
+      >
+        <dxi-validation-rule
+          type="required"
+          message="wymagane"
+        ></dxi-validation-rule>
+      </dxi-item>
+
+      <dxi-item
+        dataField="confirmPassword"
+        editorType="dxTextBox"
+        [editorOptions]="{mode: 'password'}"
+        [label]="{text: 'Powtórz hasło'}"
+      >
+        <dxi-validation-rule
+          type="required"
+          message="wymagane"
+        ></dxi-validation-rule>
+      </dxi-item>
+
+      <dxi-item
+        bhUserRoleEditor
+      >
+        <dxi-validation-rule
+          type="required"
+          message="wymagane"
+        ></dxi-validation-rule>
+      </dxi-item>
+    </dxi-item>
+
+    <dxi-item itemType="group" caption="Lokalizacja">
+
+      <dxi-item
+        dataField="galaxy"
+        editorType="dxSelectBox"
+        [label]="{text: 'Galaktyka'}"
+      >
+        <dxi-validation-rule
+          type="required"
+          message="wymagane"
+        ></dxi-validation-rule>
+      </dxi-item>
+
+      <dxi-item
+        dataField="planet"
+        editorType="dxSelectBox"
+        [label]="{text: 'Planeta'}"
+      >
+        <dxi-validation-rule
+          type="required"
+          message="wymagane"
+        ></dxi-validation-rule>
+      </dxi-item>
+
+      <dxi-item
+        dataField="district"
+        editorType="dxSelectBox"
+        [label]="{text: 'Dystrykt'}"
+      >
+        <dxi-validation-rule
+          type="required"
+          message="wymagane"
+        ></dxi-validation-rule>
+      </dxi-item>
     </dxi-item>
 
     <dxi-item
-      dataField="password"
-      editorType="dxTextBox"
-      [editorOptions]="{mode: 'password'}"
-      [label]="{text: 'Hasło'}"
-    >
-      <dxi-validation-rule
-        type="required"
-        message="wymagane"
-      ></dxi-validation-rule>
-    </dxi-item>
+      itemType="button"
+      [buttonOptions]="{text: 'Zarejestruj się', useSubmitBehavior: true}"
+    ></dxi-item>
+  </dx-form>
+</form>
 
-    <dxi-item
-      dataField="confirmPassword"
-      editorType="dxTextBox"
-      [editorOptions]="{mode: 'password'}"
-      [label]="{text: 'Powtórz hasło'}"
-    >
-      <dxi-validation-rule
-        type="required"
-        message="wymagane"
-      ></dxi-validation-rule>
-    </dxi-item>
-
-    <dxi-item
-      dataField="role"
-      editorType="dxRadio"
-      [editorOptions]="{items: ['łowca głów', 'zleceniodawca']}"
-      [label]="{text: 'Rola'}"
-    >
-      <dxi-validation-rule
-        type="required"
-        message="wymagane"
-      ></dxi-validation-rule>
-    </dxi-item>
-  </dxi-item>
-
-  <dxi-item itemType="group" caption="Lokalizacja">
-
-    <dxi-item
-      dataField="galaxy"
-      editorType="dxSelectBox"
-      [label]="{text: 'Galaktyka'}"
-    >
-      <dxi-validation-rule
-        type="required"
-        message="wymagane"
-      ></dxi-validation-rule>
-    </dxi-item>
-
-    <dxi-item
-      dataField="planet"
-      editorType="dxSelectBox"
-      [label]="{text: 'Planeta'}"
-    >
-      <dxi-validation-rule
-        type="required"
-        message="wymagane"
-      ></dxi-validation-rule>
-    </dxi-item>
-
-    <dxi-item
-      dataField="district"
-      editorType="dxSelectBox"
-      [label]="{text: 'Dystrykt'}"
-    >
-      <dxi-validation-rule
-        type="required"
-        message="wymagane"
-      ></dxi-validation-rule>
-    </dxi-item>
-  </dxi-item>
-
-  <dxi-item
-    itemType="button"
-    [buttonOptions]="{text: 'Zarejestruj się', useSubmitBehavior: true}"
-  ></dxi-item>
-</dx-form>
+<div class="mt-3">
+  <a routerLink="/login">Mam już konto. Chcę się zalogować</a>
+</div>

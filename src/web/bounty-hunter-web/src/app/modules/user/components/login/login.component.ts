@@ -28,9 +28,14 @@ export class LoginComponent implements OnInit {
 
   public onSignIn(): void {
     this._loginState.signUp().subscribe(res => {
-      notify('Zalogowane', 'success');
+      notify('Zalogowano', 'success');
       this._userService.signIn(res);
       this._navigator.dashboard();
-    }, err => notify('Nieprawidłowa nazwa użytkownika lub hasło', 'error'));
+    }, err => this._handleLoginError(err));
+  }
+
+  private _handleLoginError(err: {status: number}): void {
+    const message = err.status === 401 ? 'Nieprawidłowa nazwa użytkownika lub hasło' : 'Sprawdź czy jesteś online';
+    notify(message, 'error');
   }
 }

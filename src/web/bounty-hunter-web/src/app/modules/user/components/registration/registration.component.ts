@@ -12,4 +12,5 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() {
   }
 
+  public onSignUp(): void {}
 }

@@ -1,9 +1,32 @@
-<a routerLink="/user" class="nav-link header-user-button">
-  <div class="header-user-button-text">
-    Example user
-  </div>
-</a>
-
-<dx-button (click)="logout()" text="Wyloguj"></dx-button>
 
 
+<ng-container *ngIf="isLogged; else loginTemplate">
+  <a routerLink="/user" class="nav-link header-user-button" *ngIf="isLogged">
+    <div class="header-user-button-text">
+      Example user
+    </div>
+  </a>
+  <dx-button (click)="logout()" text="Wyloguj"></dx-button>
+</ng-container>
+
+<ng-template #loginTemplate>
+  <button
+    bhButton
+    [outline]="true"
+    color="primary"
+    class="mt-3 h-50 mr-1"
+    (click)="goToLogin()"
+  >
+    Zaloguj
+  </button>
+
+  <button
+    bhButton
+    [outline]="true"
+    color="primary"
+    class="mt-3 h-50"
+    (click)="goToRegistration()"
+  >
+    Zarejestruj
+  </button>
+</ng-template>
