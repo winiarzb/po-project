@@ -4,8 +4,8 @@ import {AuthApiService} from './auth-api.service';
 import {AuthRequestFactoryService} from './auth-request-factory.service';
 import {UserSignInModel} from '../models/user-sign-in.model';
 import {Observable} from 'rxjs';
-import {IUserSignInResponse} from '../interfaces/user-sign-in-response.interface';
 import {UserStateService} from './user-state.service';
+import {flatMap, map, tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +20,13 @@ export class UserLoginStateService extends StateServiceBase<UserSignInModel> {
     super(authService, requestService);
   }
 
-  public signUp(): Observable<IUserSignInResponse> {
+  public signUp(): Observable<void> {
     const request = (this.requestService as AuthRequestFactoryService).getSignInRequest(this.state);
-    const observable = (this.apiService as AuthApiService).signIn(request);
+    const observable = (this.apiService as AuthApiService).signIn(request)
+      .pipe(
+        tap(res => this._userService.initStateFromResponse(res)),
+        map(res => null)
+      );
     return this.asyncTask(observable);
   }
 }

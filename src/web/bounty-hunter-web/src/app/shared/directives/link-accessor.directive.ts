@@ -15,7 +15,7 @@ export class LinkAccessorDirective implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this._userService.isLogged && this.roles.includes(this._userService.state.userRole)) {
+    if (this._userService.isLogged && this.roles.includes(this._userService.state.role.roleName)) {
       this._containerRef.createEmbeddedView(this._templateRef);
     }
   }

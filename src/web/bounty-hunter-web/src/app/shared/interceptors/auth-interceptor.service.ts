@@ -16,10 +16,14 @@ export class AuthInterceptorService implements HttpInterceptor {
 
     if (this._userService.isLogged) {
       const authReq = req.clone({
-        headers: req.headers.set('Authorization', `Bearer ${this._userService.state.token}`)
+        headers: req.headers.set('Authorization', this.buildJwtHeader(this._userService.state.token))
       });
       return next.handle(authReq);
     }
     return next.handle(req);
+  }
+
+  public buildJwtHeader(jwt: string): string {
+    return `Bearer ${jwt}`
   }
 }

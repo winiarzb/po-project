@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {IUserSignInResponse} from '../interfaces/user-sign-in-response.interface';
 import {isDefined} from '../../../shared/utils/is-defined';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -23,10 +23,8 @@ export class UserStateService extends StateServiceBase<UserLogged> {
     super();
   }
 
-  // should get more data from backend
   public initStateFromResponse(model: IUserSignInResponse): void {
-    const user = new UserLogged();
-    user.token = model.jwt;
+    this.initState(new UserLogged(model.jwt, model.user));
     this._isLogged = true;
     this._saveToLocalStorage();
   }

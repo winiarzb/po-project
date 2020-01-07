@@ -15,7 +15,7 @@ export class AdminAuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this._userService.isLogged && this._userService.state.userRole === 'ADMIN';
+    return this._userService.isLogged && this._userService.state.role.roleName === 'ADMIN';
   }
 
 }

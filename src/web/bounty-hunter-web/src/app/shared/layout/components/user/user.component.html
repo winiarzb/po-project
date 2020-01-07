@@ -3,7 +3,7 @@
 <ng-container *ngIf="isLogged; else loginTemplate">
   <a routerLink="/user" class="nav-link header-user-button" *ngIf="isLogged">
     <div class="header-user-button-text">
-      Example user
+      {{ state.username }}
     </div>
   </a>
   <dx-button (click)="logout()" text="Wyloguj"></dx-button>

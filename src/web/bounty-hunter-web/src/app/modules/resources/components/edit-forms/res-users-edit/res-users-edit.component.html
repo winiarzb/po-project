@@ -25,6 +25,13 @@
       [editorOptions]="{readOnly: true}"
     ></dxi-item>
 
+    <dxi-item
+      dataField="role.roleName"
+      editorType="dxTextBox"
+      [label]="{text: 'Rola'}"
+      [editorOptions]="{readOnly: true}"
+    ></dxi-item>
+
   </dxi-item>
 
   <dxi-item itemType="group" caption="Edycja">
@@ -63,9 +70,5 @@
     editorType="dxCheckBox"
     [label]="{text: 'Aktywny'}"
   ></dxi-item>
-
-    <dxi-item
-      bhUserRoleEditor
-    ></dxi-item>
   </dxi-item>
 </dx-form>

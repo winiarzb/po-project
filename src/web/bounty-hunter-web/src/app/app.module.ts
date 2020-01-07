@@ -11,6 +11,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {ResourcesApiService} from './shared/services/resources-api.service';
 import {AuthInterceptorService} from './shared/interceptors/auth-interceptor.service';
+import {UserResourceApiService} from './modules/user/services/user-resource-api.service';
 
 @NgModule({
   declarations: [
@@ -54,8 +55,7 @@ import {AuthInterceptorService} from './shared/interceptors/auth-interceptor.ser
     },
     {
       provide: 'UserAccountApiService',
-      useFactory: (httpClient: HttpClient) => new ResourcesApiService(httpClient, 'user'),
-      deps: [HttpClient]
+      useClass: UserResourceApiService
     },
     {
       provide: 'VictimApiService',
