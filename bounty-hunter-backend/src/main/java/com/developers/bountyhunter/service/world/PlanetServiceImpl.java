@@ -8,6 +8,7 @@ import com.developers.bountyhunter.service.base.BaseServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -22,12 +23,8 @@ public class PlanetServiceImpl extends BaseServiceImpl<Planet, Long> implements 
 	}
 
 	@Override
-	public Optional<Planet> findPlanetByPlanetType(PlanetType planetType) {
-		return planetRepository.findPlanetByPlanetType(planetType);
-	}
+	public List<Planet> findPlanetsByGalaxy(Galaxy galaxy) {
 
-	@Override
-	public Optional<Planet> findPlanetByGalaxyAndPlanetType(Galaxy galaxy, PlanetType planetType) {
-		return planetRepository.findPlanetByGalaxyAndPlanetType(galaxy, planetType);
+		return planetRepository.findPlanetsByGalaxy(galaxy);
 	}
 }

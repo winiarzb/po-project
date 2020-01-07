@@ -1,15 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {SharedModule} from "./shared/shared.module";
 import {UserModule} from "./modules/user/user.module";
-import {UserService} from "./shared/services/user.service";
+import {UserStateService} from "./modules/user/services/user-state.service";
 import {NavigatorService} from "./shared/services/navigator.service";
 import {ReactiveFormsModule} from "@angular/forms";
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {ResourcesApiService} from './shared/services/resources-api.service';
+import {AuthInterceptorService} from './shared/interceptors/auth-interceptor.service';
+import {UserResourceApiService} from './modules/user/services/user-resource-api.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,7 @@ import {ResourcesApiService} from './shared/services/resources-api.service';
     HttpClientModule
   ],
   providers: [
-    UserService,
+    UserStateService,
     NavigatorService,
     {
       provide: 'DictionaryApiService',
@@ -53,8 +55,7 @@ import {ResourcesApiService} from './shared/services/resources-api.service';
     },
     {
       provide: 'UserAccountApiService',
-      useFactory: (httpClient: HttpClient) => new ResourcesApiService(httpClient, 'user'),
-      deps: [HttpClient]
+      useClass: UserResourceApiService
     },
     {
       provide: 'VictimApiService',
@@ -65,7 +66,25 @@ import {ResourcesApiService} from './shared/services/resources-api.service';
       provide: 'ContractApiService',
       useFactory: (httpClient: HttpClient) => new ResourcesApiService(httpClient, 'contract'),
       deps: [HttpClient]
-    }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    },
+    {
+      provide: APP_INITIALIZER,
+      multi: true,
+      useFactory: (userService: UserStateService) => {
+        return () => {
+          return new Promise<void>(resolve => {
+            userService.initStateFromLocalStorage();
+            resolve();
+          });
+        }
+      },
+      deps: [UserStateService]
+    },
   ],
   bootstrap: [AppComponent]
 })

@@ -1,15 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import {UserStateService} from '../../services/user-state.service';
+import {UserLogged} from '../../models/user-logged.model';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'bh-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent implements OnInit {
+export class UserComponent {
 
-  constructor() { }
-
-  ngOnInit() {
+  public get state(): UserLogged {
+    return this._userState.state;
   }
 
+  constructor(
+    private _userState: UserStateService,
+    private _location: Location
+  ) { }
+
+  public goBack(): void {
+    this._location.back();
+  }
+
+  public updateUser(): void {
+    console.log('in future should be updated');
+  }
 }

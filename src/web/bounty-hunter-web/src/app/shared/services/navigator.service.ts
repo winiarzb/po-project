@@ -17,4 +17,11 @@ export class NavigatorService {
   public login(): Promise<boolean> {
     return this._router.navigate(['login']);
   }
+
+  public dashboard(): Promise<boolean> {
+    return this._router.navigate(['/']);
+  }
+  public registration(): Promise<boolean> {
+    return this._router.navigate(['sign-up']);
+  }
 }

@@ -1,23 +1,23 @@
 export const NAVIGATION: INavigationLink[] = [
   {
     name: 'Utwórz zlecenie',
-    url: 'contract/create'
+    url: 'contract/create',
+    roles: ['ADMIN', 'CLIENT']
   },
   {
     name: 'Sprawdź zlecenia',
-    url: 'contract/list'
+    url: 'contract/list',
+    roles: ['ADMIN', 'CLIENT', 'HUNTER']
   },
   {
     name: 'Zarządzaj zasobami',
-    url: 'resources'
+    url: 'resources',
+    roles: ['ADMIN']
   },
-  {
-    name: 'Rejestracja',
-    url: 'sign-up'
-  }
 ];
 
 export interface INavigationLink {
   name: string;
   url: string;
+  roles: string[];
 }

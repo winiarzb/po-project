@@ -44,6 +44,14 @@ public class UserAccountResource {
 
 	}
 
+	@GetMapping("/{username}")
+	private ResponseEntity<UserAccountDTO> getByUsername(@PathVariable("username") String username) {
+		Optional<UserAccount> userAccount = userAccountService.findByUsername(username);
+
+		return userAccount.map(value -> new ResponseEntity<>(userAccountMapper.userAccountToUserAccountDTO(value), HttpStatus.OK))
+				.orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
+	}
+
 	@GetMapping("/all")
 	private ResponseEntity<List<UserAccountDTO>> getAll() {
 

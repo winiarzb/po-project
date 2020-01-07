@@ -16,6 +16,20 @@
       editorType="dxTextBox"
       [label]="{text: 'Wersja'}"
       [editorOptions]="{readOnly: true}"
+    ></dxi-item>u
+
+    <dxi-item
+      dataField="password"
+      editorType="dxTextBox"
+      [label]="{text: 'Hasło'}"
+      [editorOptions]="{readOnly: true}"
+    ></dxi-item>
+
+    <dxi-item
+      dataField="role.roleName"
+      editorType="dxTextBox"
+      [label]="{text: 'Rola'}"
+      [editorOptions]="{readOnly: true}"
     ></dxi-item>
 
   </dxi-item>
@@ -46,12 +60,6 @@
   ></dxi-item>
 
     <dxi-item
-      dataField="password"
-      editorType="dxTextBox"
-      [label]="{text: 'Hasło'}"
-    ></dxi-item>
-
-    <dxi-item
       dataField="registeredDate"
       editorType="dxDateBox"
       [label]="{text: 'Data rejestracji'}"
@@ -62,9 +70,5 @@
     editorType="dxCheckBox"
     [label]="{text: 'Aktywny'}"
   ></dxi-item>
-
-    <dxi-item
-      bhUserRoleEditor
-    ></dxi-item>
   </dxi-item>
 </dx-form>

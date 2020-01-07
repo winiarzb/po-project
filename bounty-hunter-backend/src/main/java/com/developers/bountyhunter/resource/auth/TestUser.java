@@ -16,7 +16,7 @@ public class TestUser {
         userRegisterFormDTO.setPassword("test");
 
         RoleDTO roleDTO = new RoleDTO();
-        roleDTO.setUserRole(UserRole.HUNTER);
+        roleDTO.setRoleName(UserRole.HUNTER);
         userRegisterFormDTO.setRole(roleDTO);
 
         DistrictDTO federalDistrict = createDistrict("Federal District");
@@ -40,7 +40,7 @@ public class TestUser {
 
     private GalaxyDTO createGalaxy(String galaxyName) {
         GalaxyDTO galaxyDTO = new GalaxyDTO();
-        galaxyDTO.setGalaxyName(galaxyName);
+        galaxyDTO.setName(galaxyName);
         return galaxyDTO;
     }
 
@@ -53,7 +53,7 @@ public class TestUser {
 
     private DistrictDTO createDistrict(String districtName) {
         DistrictDTO districtDTO = new DistrictDTO();
-        districtDTO.setDistrictName(districtName);
+        districtDTO.setName(districtName);
         return districtDTO;
     }
 }

@@ -1,1 +1,63 @@
-<p>user works!</p>
+<header>
+  <h2>Użytkownik</h2>
+</header>
+
+<div class="my-3">
+  <dx-button
+    text="Anuluj"
+    (click)="goBack()"
+  ></dx-button>
+
+  <dx-button
+    text="Zapisz"
+    (click)="updateUser()"
+  ></dx-button>
+</div>
+
+
+<dx-form id="res-edit-district" [colCount]="2" [formData]="state">
+  <dxi-item itemType="group" caption="Informacje">
+    <dxi-item
+      dataField="id"
+      editorType="dxTextBox"
+      [label]="{text: 'Id'}"
+      [editorOptions]="{readOnly: true}"
+    ></dxi-item>
+
+    <dxi-item
+      dataField="username"
+      editorType="dxTextBox"
+      [label]="{text: 'Nazwa użytkownika'}"
+      [editorOptions]="{readOnly: true}"
+    ></dxi-item>
+
+    <dxi-item
+      editorType="dxTextBox"
+      [label]="{text: 'Rola'}"
+      dataField="role.roleName"
+      [editorOptions]="{readOnly: true}"
+    ></dxi-item>
+
+  </dxi-item>
+
+  <dxi-item itemType="group" caption="Edycja">
+
+    <dxi-item
+      dataField="alias"
+      editorType="dxTextBox"
+      [label]="{text: 'Alias'}"
+    ></dxi-item>
+
+    <dxi-item
+      dataField="birthDate"
+      editorType="dxDateBox"
+      [label]="{text: 'Data urodzin'}"
+    ></dxi-item>
+
+    <dxi-item
+      dataField="registeredDate"
+      editorType="dxDateBox"
+      [label]="{text: 'Data rejestracji'}"
+    ></dxi-item>
+  </dxi-item>
+</dx-form>

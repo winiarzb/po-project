@@ -1,4 +1,4 @@
-import {Directive, Inject} from '@angular/core';
+import {Directive, Inject, Input} from '@angular/core';
 import {EditorDirectiveBase} from './editor-directive.abstract';
 import {DxiItemComponent} from 'devextreme-angular/ui/nested';
 import {ResourcesApiService} from '../../services/resources-api.service';
@@ -9,6 +9,8 @@ import {DictionaryType} from '../../enums/dictionary-type.enum';
   selector: 'dxi-item [bhUserRoleEditor]'
 })
 export class UserRoleEditorDirective extends EditorDirectiveBase {
+
+  @Input() customDataField: string;
 
   constructor(
     item: DxiItemComponent,
@@ -27,7 +29,7 @@ export class UserRoleEditorDirective extends EditorDirectiveBase {
       text: 'Rola'
     };
     this.dxItem.editorType = 'dxSelectBox';
-    this.dxItem.dataField = 'userRole';
+    this.dxItem.dataField = this.customDataField ? this.customDataField : 'userRole';
   }
 
   private _addItems(): void {

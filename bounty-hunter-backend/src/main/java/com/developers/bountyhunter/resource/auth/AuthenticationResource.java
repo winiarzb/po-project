@@ -4,8 +4,10 @@ import com.developers.bountyhunter.config.security.ApiResponse;
 import com.developers.bountyhunter.config.security.AuthenticationResponse;
 import com.developers.bountyhunter.config.security.JwtProvider;
 import com.developers.bountyhunter.config.security.SignInRequest;
+import com.developers.bountyhunter.dto.person.UserAccountDTO;
 import com.developers.bountyhunter.dto.person.auth.UserRegisterFormDTO;
 import com.developers.bountyhunter.exception.AppException;
+import com.developers.bountyhunter.mapper.person.UserAccountMapper;
 import com.developers.bountyhunter.model.person.UserAccount;
 import com.developers.bountyhunter.model.person.role.Role;
 import com.developers.bountyhunter.model.world.District;
@@ -16,6 +18,7 @@ import com.developers.bountyhunter.service.person.role.RoleService;
 import com.developers.bountyhunter.service.world.DistrictService;
 import com.developers.bountyhunter.service.world.GalaxyService;
 import com.developers.bountyhunter.service.world.PlanetService;
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +37,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/auth")
@@ -65,6 +69,7 @@ public class AuthenticationResource {
 
     @PostMapping("/signin")
     public ResponseEntity<?> authUser(@Valid @RequestBody SignInRequest request) throws Exception {
+        UserAccountMapper userAccountMapper = Mappers.getMapper(UserAccountMapper.class);
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getUsername(),
@@ -73,7 +78,9 @@ public class AuthenticationResource {
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtProvider.generateToken(authentication);
-        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+        Optional<UserAccountDTO> userAccount = userAccountService
+                .findByUsername(request.getUsername()).map(value -> userAccountMapper.userAccountToUserAccountDTO(value));
+        return ResponseEntity.ok(new AuthenticationResponse(jwt, userAccount));
     }
 
     @PostMapping("/signup")
@@ -125,8 +132,8 @@ public class AuthenticationResource {
     }
 
     private void checkAndSetRole(@RequestBody @Valid UserRegisterFormDTO userRegisterFormDTO, UserAccount newUser) {
-        if (userRegisterFormDTO.getRole().getUserRole() != null) {
-            Role role = roleService.findRoleByName(userRegisterFormDTO.getRole().getUserRole())
+        if (userRegisterFormDTO.getRole().getRoleName() != null) {
+            Role role = roleService.findRoleByName(userRegisterFormDTO.getRole().getRoleName())
                     .orElseThrow(() -> new AppException("User role not exists"));
             newUser.setRole(role);
         }
@@ -136,7 +143,7 @@ public class AuthenticationResource {
         if (!userRegisterFormDTO.getDistricts().isEmpty()) {
             newUser.setDistricts(new ArrayList<>());
             userRegisterFormDTO.getDistricts().forEach(districtDTO -> {
-                District district = districtService.findByDistrictName(districtDTO.getDistrictName())
+                District district = districtService.findByDistrictName(districtDTO.getName())
                         .orElseThrow(() -> new AppException("District not exists"));
                 newUser.getDistricts().add(district);
             });
@@ -155,8 +162,8 @@ public class AuthenticationResource {
     }
 
     private void checkAndSetGalaxy(@RequestBody @Valid UserRegisterFormDTO userRegisterFormDTO, UserAccount newUser) {
-        if (userRegisterFormDTO.getGalaxy().getGalaxyName() != null) {
-            Galaxy galaxy = galaxyService.findGalaxyByGalaxyName(userRegisterFormDTO.getGalaxy().getGalaxyName())
+        if (userRegisterFormDTO.getGalaxy().getName() != null) {
+            Galaxy galaxy = galaxyService.findGalaxyByGalaxyName(userRegisterFormDTO.getGalaxy().getName())
                     .orElseThrow(() -> new AppException("Galaxy not exists"));
             newUser.setGalaxy(galaxy);
         }

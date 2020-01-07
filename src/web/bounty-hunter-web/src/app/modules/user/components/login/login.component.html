@@ -2,31 +2,43 @@
   <h2>Logowanie</h2>
 </header>
 
-<dx-form id="login-form" [colCount]="1">
+<form (ngSubmit)="onSignIn()">
+  <dx-form
+    id="login-form"
+    [colCount]="1"
+    [formData]="state"
+  >
+    <dxi-item itemType="group">
+      <dxi-item
+        dataField="username"
+        [label]="{text: 'Nazwa użytkownika'}"
+      >
+        <dxi-validation-rule
+          type="required"
+          message="wymagane"
+        ></dxi-validation-rule>
+      </dxi-item>
 
-  <dxi-item itemType="group">
-    <dxi-item
-      dataField="login"
-      [label]="{text: 'Nazwa użytkownika'}"
-    >
-      <dxi-validation-rule
-        type="required"
-        message="wymagane"
-      ></dxi-validation-rule>
+      <dxi-item
+        dataField="password"
+        [label]="{text: 'Hasło'}"
+        [editorOptions]="{mode: 'password'}"
+      >
+        <dxi-validation-rule
+          type="required"
+          message="wymagane"
+        ></dxi-validation-rule>
+      </dxi-item>
+
+      <dxi-item itemType="button" [buttonOptions]="{text: 'Zaloguj się', useSubmitBehavior: true}">
+      </dxi-item>
     </dxi-item>
+  </dx-form>
 
-    <dxi-item
-      dataField="password"
-      [label]="{text: 'Hasło'}"
-    >
-      <dxi-validation-rule
-        type="required"
-        message="wymagane"
-      ></dxi-validation-rule>
-    </dxi-item>
+</form>
 
-    <dxi-item itemType="button" [buttonOptions]="{text: 'Zaloguj się', useSubmitBehavior: true}">
-    </dxi-item>
+<div class="mt-3">
+  <a routerLink="/sign-up">Nie mam konta. Chcę się zarejestrować.</a>
+</div>
 
-  </dxi-item>
-</dx-form>
+
