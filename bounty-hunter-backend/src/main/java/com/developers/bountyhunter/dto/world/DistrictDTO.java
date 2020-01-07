@@ -11,6 +11,6 @@ public class DistrictDTO extends IdentifiableDTO {
 
 	@NotEmpty
 	@ApiModelProperty(notes = "District name cannot be empty")
-	private String districtName;
+	private String name;
 
 }

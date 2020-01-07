@@ -14,7 +14,7 @@ public class GalaxyDTO extends IdentifiableDTO {
 
 	@NotEmpty
 	@ApiModelProperty(notes = "Galaxy name cannot be empty")
-	private String galaxyName;
+	private String name;
 
 	private List<PlanetDTO> planets;
 

@@ -1,5 +1,6 @@
 package com.developers.bountyhunter.config.security;
 
+import com.developers.bountyhunter.model.person.UserAccount;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
