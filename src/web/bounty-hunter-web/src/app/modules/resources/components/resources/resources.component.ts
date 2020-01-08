@@ -53,6 +53,10 @@ export class ResourcesComponent implements OnInit {
     this._navigator.navigate(`../edit/${this.selectedTab.url}/${this._activatedList.selectedElement.id}`);
   }
 
+  public create(): void {
+    this._navigator.navigate(`../create/${this.selectedTab.url}`);
+  }
+
   private _setInitialTab(): void {
     if (this._route.firstChild) {
       const url = this._route.firstChild.snapshot.url[0].path;

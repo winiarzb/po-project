@@ -18,6 +18,8 @@ import {ResReviewsEditComponent} from './components/edit-forms/res-reviews-edit/
 import {ResUsersEditComponent} from './components/edit-forms/res-users-edit/res-users-edit.component';
 import {ResVictimsEditComponent} from './components/edit-forms/res-victims-edit/res-victims-edit.component';
 import {EditFormWrapperComponent} from './components/edit-form-wrapper/edit-form-wrapper.component';
+import {CreateFormWrapperComponent} from './components/create-form-wrapper/create-form-wrapper.component';
+import {ResContractCreateComponent} from './components/create-forms/res-contract-create/res-contract-create.component';
 
 const routes: Routes = [
   {
@@ -93,6 +95,16 @@ const routes: Routes = [
       {
         path: 'victims/:id',
         component: ResVictimsEditComponent
+      }
+    ]
+  },
+  {
+    path: 'create',
+    component: CreateFormWrapperComponent,
+    children: [
+      {
+        path: 'contracts',
+        component: ResContractCreateComponent
       }
     ]
   }
