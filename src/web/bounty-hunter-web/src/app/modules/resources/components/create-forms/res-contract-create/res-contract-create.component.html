@@ -1,7 +1,7 @@
 <header>
     <h2>Kontrakt</h2>
   </header>
-  
+
   <dx-form id="res-edit-contract" [colCount]="2" [formData]="state">
     <dxi-item itemType="group" caption="Informacje">
       <!-- <dxi-item
@@ -10,14 +10,14 @@
         [label]="{text: 'Id'}"
         [editorOptions]="{readOnly: true}"
       ></dxi-item> -->
-  
+
       <!-- <dxi-item
         dataField="version"
         editorType="dxTextBox"
         [label]="{text: 'Wersja'}"
         [editorOptions]="{readOnly: true}"
       ></dxi-item> -->
-  
+
       <dxi-item
         dataField="contractStatus"
         editorType="dxTextBox"
@@ -26,49 +26,48 @@
 
       <dxi-item
       dataField="clientId"
-      editorType="dxTextBox"
+      editorType="dxNumberBox"
       [label]="{text: 'clientId'}"
     ></dxi-item>
     <dxi-item
-    dataField="districtId"
-    editorType="dxTextBox"
+      editorType="dxNumberBox"
+      dataField="districtId"
     [label]="{text: 'districtId'}"
   ></dxi-item>
   <dxi-item
-  dataField="victimId"
-  editorType="dxTextBox"
+    bhVictimEditor
+    dataField="victimId"
   [label]="{text: 'victimId'}"
 ></dxi-item>
-  
+
     </dxi-item>
-  
+
     <dxi-item itemType="group" caption="Edycja">
       <dxi-item
         dataField="name"
         editorType="dxTextBox"
         [label]="{text: 'Nazwa'}"
       ></dxi-item>
-  
+
       <dxi-item bhPriorityFormEditor></dxi-item>
-  
+
       <dxi-item
       dataField="payment"
-      editorType="dxTextBox"
+      editorType="dxNumberBox"
       [label]="{text: 'Zapłata'}"
     ></dxi-item>
-  
+
       <dxi-item
         dataField="fromDate"
         editorType="dxDateBox"
         [label]="{text: 'Data początkowa'}"
       ></dxi-item>
-  
+
       <dxi-item
         dataField="thruDate"
         editorType="dxDateBox"
         [label]="{text: 'Data końcowa'}"
       ></dxi-item>
-  
+
     </dxi-item>
   </dx-form>
-  

@@ -18,6 +18,7 @@ import { UserRoleEditorDirective } from './directives/editors/user-role-editor.d
 import { ThreatLevelEditorDirective } from './directives/editors/threat-level-editor.directive';
 import {DxButtonModule, DxMenuModule} from 'devextreme-angular';
 import { LinkAccessorDirective } from './directives/link-accessor.directive';
+import { VictimEditorDirective } from './directives/editors/victim-editor.directive';
 
 
 
@@ -39,6 +40,7 @@ import { LinkAccessorDirective } from './directives/link-accessor.directive';
     UserRoleEditorDirective,
     ThreatLevelEditorDirective,
     LinkAccessorDirective,
+    VictimEditorDirective,
   ],
   exports: [
     HeaderComponent,
@@ -50,7 +52,8 @@ import { LinkAccessorDirective } from './directives/link-accessor.directive';
     DictionaryTypeEditorDirective,
     PlanetTypeEditorDirective,
     UserRoleEditorDirective,
-    ThreatLevelEditorDirective
+    ThreatLevelEditorDirective,
+    VictimEditorDirective
   ],
   imports: [
     CommonModule,
