@@ -21,13 +21,13 @@ export class VictimEditorDirective extends EditorDirectiveBase {
   public configureDxiItem(): void {
     this.dxItem.editorType = 'dxSelectBox';
     this.dxItem.editorOptions = {
-      displayExpr: 'name',
-      valueExpr: 'id',
+      displayExpr: 'name', // jak z backendu przychodzi obiekt victim to to pole mówi który proper ma być wyświetlany w kontrolce, czyli nazwa np. Vader przychodzi w polu name
+      valueExpr: 'id', // tutaj mówi jakie pole ma zwarać, czyli jak wybierzesz Vader i jego obiekt to {name: 'Vader', id: 1} to wybierasz id. Usuniecie tego spowoduje ze bedzie zwracayn caly obiekt
       dataSource: new DataSource({
         store: new CustomStore({
-          load: (options) => this._victimApiResourceService.getAll().toPromise(),
-          key: 'id',
-          byKey: (key) => this._victimApiResourceService.getById(key).toPromise()
+          load: (options) => this._victimApiResourceService.getAll().toPromise(), // jak selectbox szukal danych to bedzie strzelal do tej metody
+          key: 'id', // tutaj trzeba podac klucz po ktorym bedzie wiadomo co jest czym  (zazwyczaj id)
+          byKey: (key) => this._victimApiResourceService.getById(key).toPromise() // to chyba nie jest potrzebne
         })
       })
     }
