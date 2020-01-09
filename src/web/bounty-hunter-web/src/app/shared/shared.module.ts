@@ -23,6 +23,8 @@ import { DistrictEditorDirective } from './directives/editors/district-editor.di
 import { ContractStatusEditorDirective } from './directives/editors/contract-status-editor.directive';
 import { PlanetEditorDirective } from './directives/editors/planet-editor.directive';
 import { GalaxyEditorDirective } from './directives/editors/galaxy-editor.directive';
+import { PlanetMultipleEditorDirective } from './directives/editors/planet-multiple-editor.directive';
+import { DistrictMultipleEditorDirective } from './directives/editors/district-multiple-editor.directive';
 
 
 
@@ -49,6 +51,8 @@ import { GalaxyEditorDirective } from './directives/editors/galaxy-editor.direct
     ContractStatusEditorDirective,
     PlanetEditorDirective,
     GalaxyEditorDirective,
+    PlanetMultipleEditorDirective,
+    DistrictMultipleEditorDirective,
   ],
   exports: [
     HeaderComponent,
@@ -65,7 +69,9 @@ import { GalaxyEditorDirective } from './directives/editors/galaxy-editor.direct
     DistrictEditorDirective,
     ContractStatusEditorDirective,
     PlanetEditorDirective,
-    GalaxyEditorDirective
+    GalaxyEditorDirective,
+    PlanetMultipleEditorDirective,
+    DistrictMultipleEditorDirective
   ],
   imports: [
     CommonModule,
