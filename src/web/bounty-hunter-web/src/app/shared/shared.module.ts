@@ -19,6 +19,10 @@ import { ThreatLevelEditorDirective } from './directives/editors/threat-level-ed
 import {DxButtonModule, DxMenuModule} from 'devextreme-angular';
 import { LinkAccessorDirective } from './directives/link-accessor.directive';
 import { VictimEditorDirective } from './directives/editors/victim-editor.directive';
+import { DistrictEditorDirective } from './directives/editors/district-editor.directive';
+import { ContractStatusEditorDirective } from './directives/editors/contract-status-editor.directive';
+import { PlanetEditorDirective } from './directives/editors/planet-editor.directive';
+import { GalaxyEditorDirective } from './directives/editors/galaxy-editor.directive';
 
 
 
@@ -41,6 +45,10 @@ import { VictimEditorDirective } from './directives/editors/victim-editor.direct
     ThreatLevelEditorDirective,
     LinkAccessorDirective,
     VictimEditorDirective,
+    DistrictEditorDirective,
+    ContractStatusEditorDirective,
+    PlanetEditorDirective,
+    GalaxyEditorDirective,
   ],
   exports: [
     HeaderComponent,
@@ -53,7 +61,11 @@ import { VictimEditorDirective } from './directives/editors/victim-editor.direct
     PlanetTypeEditorDirective,
     UserRoleEditorDirective,
     ThreatLevelEditorDirective,
-    VictimEditorDirective
+    VictimEditorDirective,
+    DistrictEditorDirective,
+    ContractStatusEditorDirective,
+    PlanetEditorDirective,
+    GalaxyEditorDirective
   ],
   imports: [
     CommonModule,

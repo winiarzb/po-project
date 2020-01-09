@@ -4,40 +4,27 @@
 
   <dx-form id="res-edit-contract" [colCount]="2" [formData]="state">
     <dxi-item itemType="group" caption="Informacje">
-      <!-- <dxi-item
-        dataField="id"
-        editorType="dxTextBox"
-        [label]="{text: 'Id'}"
-        [editorOptions]="{readOnly: true}"
-      ></dxi-item> -->
-
-      <!-- <dxi-item
-        dataField="version"
-        editorType="dxTextBox"
-        [label]="{text: 'Wersja'}"
-        [editorOptions]="{readOnly: true}"
-      ></dxi-item> -->
 
       <dxi-item
+        bhContractStatusEditor
         dataField="contractStatus"
-        editorType="dxTextBox"
         [label]="{text: 'Status'}"
       ></dxi-item>
 
       <dxi-item
       dataField="clientId"
       editorType="dxNumberBox"
-      [label]="{text: 'clientId'}"
+      [label]="{text: 'Klient Id'}"
     ></dxi-item>
     <dxi-item
-      editorType="dxNumberBox"
+      bhDistrictEditor
       dataField="districtId"
-    [label]="{text: 'districtId'}"
+    [label]="{text: 'Dystrykt'}"
   ></dxi-item>
   <dxi-item
     bhVictimEditor
     dataField="victimId"
-  [label]="{text: 'victimId'}"
+  [label]="{text: 'Ofiara'}"
 ></dxi-item>
 
     </dxi-item>

@@ -3,6 +3,8 @@ import {ResourceCreateComponentBase} from '../resource-create-component.abstract
 import {ContractCreateRequest} from '../../../models/contract/contract-create-request.model';
 import {ResourceStateService} from '../../../services/resource-state.service';
 import {ActivatedRoute} from '@angular/router';
+import {ContractStatus} from '../../../../../shared/enums/contract-status.enum';
+
 
 @Component({
   selector: 'bh-res-contract-create',

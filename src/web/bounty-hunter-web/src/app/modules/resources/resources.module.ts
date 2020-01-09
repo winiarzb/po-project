@@ -35,6 +35,13 @@ import { EditFormWrapperComponent } from './components/edit-form-wrapper/edit-fo
 import {SharedModule} from '../../shared/shared.module';
 import { CreateFormWrapperComponent } from './components/create-form-wrapper/create-form-wrapper.component';
 import { ResContractCreateComponent } from './components/create-forms/res-contract-create/res-contract-create.component';
+import { ResDictionaryCreateComponent } from './components/create-forms/res-dictionary-create/res-dictionary-create.component';
+import { ResDistrictCreateComponent } from './components/create-forms/res-district-create/res-district-create.component';
+import { ResGalaxieCreateComponent } from './components/create-forms/res-galaxie-create/res-galaxie-create.component';
+import { ResPlanetCreateComponent } from './components/create-forms/res-planet-create/res-planet-create.component';
+import { ResReviewCreateComponent } from './components/create-forms/res-review-create/res-review-create.component';
+import { ResUserCreateComponent } from './components/create-forms/res-user-create/res-user-create.component';
+import { ResVictimCreateComponent } from './components/create-forms/res-victim-create/res-victim-create.component';
 
 const resourceStateServiceFactoryProvider = <TModel>(apiService: ResourcesApiService, requestFactory: RequestFactoryServiceBase) => {
   return new ResourceStateService<TModel>(apiService, requestFactory);
@@ -61,7 +68,14 @@ const resourceStateServiceFactoryProvider = <TModel>(apiService: ResourcesApiSer
     ResVictimsEditComponent,
     EditFormWrapperComponent,
     CreateFormWrapperComponent,
-    ResContractCreateComponent
+    ResContractCreateComponent,
+    ResDictionaryCreateComponent,
+    ResDistrictCreateComponent,
+    ResGalaxieCreateComponent,
+    ResPlanetCreateComponent,
+    ResReviewCreateComponent,
+    ResUserCreateComponent,
+    ResVictimCreateComponent
   ],
   imports: [
     CommonModule,
