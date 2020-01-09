@@ -18,6 +18,13 @@ import { UserRoleEditorDirective } from './directives/editors/user-role-editor.d
 import { ThreatLevelEditorDirective } from './directives/editors/threat-level-editor.directive';
 import {DxButtonModule, DxMenuModule} from 'devextreme-angular';
 import { LinkAccessorDirective } from './directives/link-accessor.directive';
+import { VictimEditorDirective } from './directives/editors/victim-editor.directive';
+import { DistrictEditorDirective } from './directives/editors/district-editor.directive';
+import { ContractStatusEditorDirective } from './directives/editors/contract-status-editor.directive';
+import { PlanetEditorDirective } from './directives/editors/planet-editor.directive';
+import { GalaxyEditorDirective } from './directives/editors/galaxy-editor.directive';
+import { PlanetMultipleEditorDirective } from './directives/editors/planet-multiple-editor.directive';
+import { DistrictMultipleEditorDirective } from './directives/editors/district-multiple-editor.directive';
 
 
 
@@ -39,6 +46,13 @@ import { LinkAccessorDirective } from './directives/link-accessor.directive';
     UserRoleEditorDirective,
     ThreatLevelEditorDirective,
     LinkAccessorDirective,
+    VictimEditorDirective,
+    DistrictEditorDirective,
+    ContractStatusEditorDirective,
+    PlanetEditorDirective,
+    GalaxyEditorDirective,
+    PlanetMultipleEditorDirective,
+    DistrictMultipleEditorDirective,
   ],
   exports: [
     HeaderComponent,
@@ -50,7 +64,14 @@ import { LinkAccessorDirective } from './directives/link-accessor.directive';
     DictionaryTypeEditorDirective,
     PlanetTypeEditorDirective,
     UserRoleEditorDirective,
-    ThreatLevelEditorDirective
+    ThreatLevelEditorDirective,
+    VictimEditorDirective,
+    DistrictEditorDirective,
+    ContractStatusEditorDirective,
+    PlanetEditorDirective,
+    GalaxyEditorDirective,
+    PlanetMultipleEditorDirective,
+    DistrictMultipleEditorDirective
   ],
   imports: [
     CommonModule,

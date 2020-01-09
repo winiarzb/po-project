@@ -8,7 +8,8 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class ResourceStateService<TState> extends StateServiceBase<TState> {
-
+  
+  stateEmpty : TState 
   constructor(
     apiService: ResourcesApiService,
     requestFactoryService: RequestFactoryServiceBase
@@ -30,7 +31,16 @@ export class ResourceStateService<TState> extends StateServiceBase<TState> {
     })
   }
 
+  public initEmptyState(): void {
+    this.stateEmpty = {} as any;
+      this.initState(this.stateEmpty);
+  }
+
   public update(): Observable<TState> {
     return (this.apiService as ResourcesApiService).update(this.state);
+  }
+
+  public create(): Observable<TState> {
+    return (this.apiService as ResourcesApiService).create(this.state);
   }
 }

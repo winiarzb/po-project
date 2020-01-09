@@ -1,0 +1,37 @@
+<header>
+    <h2>Recenzja</h2>
+  </header>
+  
+  <dx-form id="res-edit-review" [colCount]="2" [formData]="state">
+    <dxi-item itemType="group" caption="Informacje">
+        <dxi-item
+        dataField="comment"
+        editorType="dxTextBox"
+        [label]="{text: 'Komentarz'}"
+      ></dxi-item>
+
+      <dxi-item
+      dataField="contractId"
+      editorType="dxNumberBox"
+      [label]="{text: 'Zlecenie Id'}"
+    ></dxi-item>
+  
+    </dxi-item>
+  
+    <dxi-item itemType="group" caption="Edycja">
+  
+      <dxi-item
+        dataField="wouldRecommend"
+        editorType="dxCheckBox"
+        [label]="{text: 'Czy poleca'}"
+      ></dxi-item>
+  
+      <dxi-item
+        dataField="rating"
+        editorType="dxNumberBox"
+        [label]="{text: 'Ocena'}"
+        [editorOptions]="{min: 1, max: 10, showSpinButtons: true}"
+      ></dxi-item>
+    </dxi-item>
+  </dx-form>
+  

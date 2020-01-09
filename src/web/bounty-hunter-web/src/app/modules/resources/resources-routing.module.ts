@@ -18,7 +18,15 @@ import {ResReviewsEditComponent} from './components/edit-forms/res-reviews-edit/
 import {ResUsersEditComponent} from './components/edit-forms/res-users-edit/res-users-edit.component';
 import {ResVictimsEditComponent} from './components/edit-forms/res-victims-edit/res-victims-edit.component';
 import {EditFormWrapperComponent} from './components/edit-form-wrapper/edit-form-wrapper.component';
-
+import {CreateFormWrapperComponent} from './components/create-form-wrapper/create-form-wrapper.component';
+import {ResContractCreateComponent} from './components/create-forms/res-contract-create/res-contract-create.component';
+import {ResDictionaryCreateComponent} from './components/create-forms/res-dictionary-create/res-dictionary-create.component';
+import {ResDistrictCreateComponent} from './components/create-forms/res-district-create/res-district-create.component';
+import {ResGalaxieCreateComponent} from './components/create-forms/res-galaxie-create/res-galaxie-create.component';
+import {ResPlanetCreateComponent} from './components/create-forms/res-planet-create/res-planet-create.component';
+import {ResReviewCreateComponent} from './components/create-forms/res-review-create/res-review-create.component';
+import {ResUserCreateComponent} from './components/create-forms/res-user-create/res-user-create.component';
+import {ResVictimCreateComponent} from './components/create-forms/res-victim-create/res-victim-create.component';
 const routes: Routes = [
   {
     path: '',
@@ -93,6 +101,44 @@ const routes: Routes = [
       {
         path: 'victims/:id',
         component: ResVictimsEditComponent
+      }
+    ]
+  },
+  {
+    path: 'create',
+    component: CreateFormWrapperComponent,
+    children: [
+      {
+        path: 'contracts',
+        component: ResContractCreateComponent
+      },
+      {
+        path: 'dictionaries',
+        component: ResDictionaryCreateComponent
+      },
+      {
+        path: 'districts',
+        component: ResDistrictCreateComponent
+      },
+      {
+        path: 'galaxies',
+        component: ResGalaxieCreateComponent
+      },
+      {
+        path: 'planets',
+        component: ResPlanetCreateComponent
+      },
+      {
+        path: 'reviews',
+        component: ResReviewCreateComponent
+      },
+      {
+        path: 'users',
+        component: ResUserCreateComponent
+      },
+      {
+        path: 'victims',
+        component: ResVictimCreateComponent
       }
     ]
   }
