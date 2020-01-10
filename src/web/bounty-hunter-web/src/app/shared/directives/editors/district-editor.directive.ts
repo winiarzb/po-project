@@ -25,8 +25,8 @@ export class DistrictEditorDirective extends EditorDirectiveBase {
       dataSource: new DataSource({
         store: new CustomStore({
           load: (options) => this._districtApiResourceService.getAll().toPromise(),
-          key: 'id',
-          byKey: (key) => this._districtApiResourceService.getById(key).toPromise() 
+          byKey: (key) => this._districtApiResourceService.getById(key).toPromise(),
+          key: 'id'
         })
       })
     }

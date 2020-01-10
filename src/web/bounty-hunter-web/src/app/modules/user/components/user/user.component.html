@@ -4,13 +4,8 @@
 
 <div class="my-3">
   <dx-button
-    text="Anuluj"
+    text="Wróć"
     (click)="goBack()"
-  ></dx-button>
-
-  <dx-button
-    text="Zapisz"
-    (click)="updateUser()"
   ></dx-button>
 </div>
 
@@ -40,24 +35,26 @@
 
   </dxi-item>
 
-  <dxi-item itemType="group" caption="Edycja">
-
+  <dxi-item itemType="group" caption="cd.">
     <dxi-item
       dataField="alias"
       editorType="dxTextBox"
       [label]="{text: 'Alias'}"
+      [editorOptions]="{readOnly: true}"
     ></dxi-item>
 
     <dxi-item
       dataField="birthDate"
       editorType="dxDateBox"
       [label]="{text: 'Data urodzin'}"
+      [editorOptions]="{readOnly: true}"
     ></dxi-item>
 
     <dxi-item
       dataField="registeredDate"
       editorType="dxDateBox"
       [label]="{text: 'Data rejestracji'}"
+      [editorOptions]="{readOnly: true}"
     ></dxi-item>
   </dxi-item>
 </dx-form>
