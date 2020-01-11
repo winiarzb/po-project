@@ -10,7 +10,7 @@
   <dx-button
     text="Dodaj"
     (click)="create()"
-
+    [disabled]="!this.selectedTab"
   ></dx-button>
   <dx-button
     text="Edytuj"
