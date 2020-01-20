@@ -6,4 +6,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface ContractService extends BaseService<Contract, Long> {
+    boolean changeContractStatusWhenAuctionIsFinished();
 }
