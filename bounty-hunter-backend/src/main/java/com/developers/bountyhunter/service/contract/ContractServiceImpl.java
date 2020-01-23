@@ -2,6 +2,9 @@ package com.developers.bountyhunter.service.contract;
 
 import com.developers.bountyhunter.model.contract.Contract;
 import com.developers.bountyhunter.model.contract.ContractStatus;
+import com.developers.bountyhunter.model.person.UserAccount;
+import com.developers.bountyhunter.model.person.role.Role;
+import com.developers.bountyhunter.model.person.role.UserRole;
 import com.developers.bountyhunter.repository.contract.ContractRepository;
 import com.developers.bountyhunter.service.base.BaseServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -16,13 +19,29 @@ public class ContractServiceImpl extends BaseServiceImpl<Contract, Long> impleme
 	private final ContractRepository contractRepository;
 
 	@Override
-	public boolean changeContractStatusWhenAuctionIsFinished() {
+	public void changeContractStatusWhenAuctionIsFinished() {
 		List<Contract> contracts = contractRepository.contractAuctionOver();
 		contracts.forEach(contract -> {
-			contract.setContractStatus(ContractStatus.CANCELED);
+			ContractStatus contractStatus = contract.getHunter() != null ? ContractStatus.IN_PROGRESS : ContractStatus.CANCELED;
+			contract.setContractStatus(contractStatus);
 			contractRepository.save(contract);
 		});
-		return true;
+	}
+
+	@Override
+	public List<Contract> findAllByAccount(UserAccount userAccount) {
+
+		if (userAccount.getRole().getRoleName().equals(UserRole.HUNTER)) {
+			return contractRepository.findAllByHunter(userAccount);
+		} else {
+			return contractRepository.findAllByClient(userAccount);
+		}
+
+	}
+
+	@Override
+	public List<Contract> findAllByContractStatus(ContractStatus contractStatus) {
+		return contractRepository.findAllByContractStatus(contractStatus);
 	}
 }
 
