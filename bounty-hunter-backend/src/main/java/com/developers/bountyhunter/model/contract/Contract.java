@@ -13,6 +13,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -29,9 +30,9 @@ public class Contract extends IdentifiableEntity {
 	@Enumerated(EnumType.STRING)
 	private Priority priority;
 
-	private Date fromDate;
+	private LocalDateTime fromDate;
 
-	private Date thruDate;
+	private LocalDateTime thruDate;
 
 	@OneToOne()
 	@JoinColumn(name = "hunter_id")
