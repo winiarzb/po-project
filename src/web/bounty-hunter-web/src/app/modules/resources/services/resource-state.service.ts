@@ -8,24 +8,24 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class ResourceStateService<TState> extends StateServiceBase<TState> {
-  
-  stateEmpty : TState 
+
+  stateEmpty : TState;
   constructor(
-    apiService: ResourcesApiService,
+    apiService: ResourcesApiService<TState>,
     requestFactoryService: RequestFactoryServiceBase
   ) {
     super(apiService, requestFactoryService);
   }
 
   public initStateFromResponse(): void {
-    const apiService = this.apiService as ResourcesApiService;
+    const apiService = this.apiService as ResourcesApiService<TState>;
     apiService.getAll<TState>().subscribe(res => {
       this.initState(res);
     });
   }
 
   public initStateById(id: number): void {
-    const apiService = this.apiService as ResourcesApiService;
+    const apiService = this.apiService as ResourcesApiService<TState>;
     apiService.getById<TState>(id).subscribe(res => {
       this.initState(res);
     })
@@ -37,10 +37,10 @@ export class ResourceStateService<TState> extends StateServiceBase<TState> {
   }
 
   public update(): Observable<TState> {
-    return (this.apiService as ResourcesApiService).update(this.state);
+    return (this.apiService as ResourcesApiService<TState>).update(this.state);
   }
 
   public create(): Observable<TState> {
-    return (this.apiService as ResourcesApiService).create(this.state);
+    return (this.apiService as ResourcesApiService<TState>).create(this.state);
   }
 }

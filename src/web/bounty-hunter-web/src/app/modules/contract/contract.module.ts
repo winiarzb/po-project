@@ -6,7 +6,7 @@ import { ContractsListComponent } from './components/contracts-list/contracts-li
 import { CreateContractComponent } from './components/create-contract/create-contract.component';
 import {SharedModule} from "../../shared/shared.module";
 import {ReactiveFormsModule} from "@angular/forms";
-import {DxFormModule} from 'devextreme-angular';
+import {DxDataGridModule, DxFormModule} from 'devextreme-angular';
 
 @NgModule({
   declarations: [ContractsListComponent, CreateContractComponent],
@@ -15,7 +15,8 @@ import {DxFormModule} from 'devextreme-angular';
     ContractRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    DxFormModule
+    DxFormModule,
+    DxDataGridModule
   ],
   exports: [
     CreateContractComponent

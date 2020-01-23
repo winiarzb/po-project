@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, Input} from '@angular/core';
 import {ResourceListComponentBase} from '../../resource-list-component.abstract';
 import {ResourceStateService} from '../../../services/resource-state.service';
 import {Contract} from '../../../../../shared/models/contract.model';
@@ -9,7 +9,6 @@ import {Contract} from '../../../../../shared/models/contract.model';
   styleUrls: ['./res-contracts.component.scss']
 })
 export class ResContractsComponent extends ResourceListComponentBase<Contract[]> {
-
   constructor(
     @Inject('ResContractStateService') stateService: ResourceStateService<Contract[]>
   ) {

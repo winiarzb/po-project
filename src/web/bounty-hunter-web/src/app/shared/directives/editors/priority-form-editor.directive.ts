@@ -12,7 +12,7 @@ export class PriorityFormEditorDirective extends EditorDirectiveBase implements 
 
   constructor(
     _dxiItem: DxiItemComponent,
-  @Inject('DictionaryApiService') private _dictionaryApiService: ResourcesApiService
+  @Inject('DictionaryApiService') private _dictionaryApiService: ResourcesApiService<DictionaryModel>
   ) {
     super(_dxiItem);
   }

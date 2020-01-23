@@ -11,7 +11,7 @@ export class DictionaryTypeEditorDirective extends EditorDirectiveBase implement
 
   constructor(
     _dxiItem: DxiItemComponent,
-    @Inject('DictionaryApiService') private _dictionaryApiService: ResourcesApiService
+    @Inject('DictionaryApiService') private _dictionaryApiService: ResourcesApiService<DictionaryModel>
   ) {
     super(_dxiItem)
   }

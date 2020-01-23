@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
 
 @Injectable()
-export class ResourcesApiService extends ApiServiceBase {
+export class ResourcesApiService<TData> extends ApiServiceBase {
   constructor(
     httpClient: HttpClient,
     controller: string
@@ -12,19 +12,19 @@ export class ResourcesApiService extends ApiServiceBase {
     super(httpClient, controller);
   }
 
-  public getById<TResponse>(id: number): Observable<TResponse> {
+  public getById<TResponse = TData>(id: number): Observable<TResponse> {
     return super.get(id.toString());
   }
 
-  public getAll<TResponse>(): Observable<TResponse> {
+  public getAll<TResponse = TData[]>(): Observable<TResponse> {
     return super.get('all');
   }
 
-  public create<TRequest, TResponse>(request: TRequest): Observable<TResponse> {
+  public create<TRequest, TResponse = TData>(request: TRequest): Observable<TResponse> {
     return super.post<TRequest, TResponse>('', request);
   }
 
-  public update<TRequest, TResponse>(request: TRequest): Observable<TResponse> {
+  public update<TRequest, TResponse = TData>(request: TRequest): Observable<TResponse> {
     return super.put<TRequest, TResponse>('', request);
   }
 

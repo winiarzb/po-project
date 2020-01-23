@@ -43,7 +43,7 @@ import { ResReviewCreateComponent } from './components/create-forms/res-review-c
 import { ResUserCreateComponent } from './components/create-forms/res-user-create/res-user-create.component';
 import { ResVictimCreateComponent } from './components/create-forms/res-victim-create/res-victim-create.component';
 
-const resourceStateServiceFactoryProvider = <TModel>(apiService: ResourcesApiService, requestFactory: RequestFactoryServiceBase) => {
+const resourceStateServiceFactoryProvider = <TModel>(apiService: ResourcesApiService<TModel>, requestFactory: RequestFactoryServiceBase) => {
   return new ResourceStateService<TModel>(apiService, requestFactory);
 };
 
@@ -87,6 +87,9 @@ const resourceStateServiceFactoryProvider = <TModel>(apiService: ResourcesApiSer
     DxValidationGroupModule,
     DxFormModule,
     SharedModule
+  ],
+  exports: [
+    ResContractsComponent
   ],
   providers: [
     {
