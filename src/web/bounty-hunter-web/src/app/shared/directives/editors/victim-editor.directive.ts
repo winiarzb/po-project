@@ -4,6 +4,7 @@ import {DxiItemComponent} from 'devextreme-angular/ui/nested';
 import {ResourcesApiService} from '../../services/resources-api.service';
 import DataSource from "devextreme/data/data_source";
 import CustomStore from "devextreme/data/custom_store";
+import {Victim} from '../../models/victim.model';
 
 @Directive({
   selector: 'dxi-item [bhVictimEditor]'
@@ -12,7 +13,7 @@ export class VictimEditorDirective extends EditorDirectiveBase {
 
   constructor(
     dxiItem: DxiItemComponent,
-    @Inject('VictimApiService') private _victimApiResourceService: ResourcesApiService
+    @Inject('VictimApiService') private _victimApiResourceService: ResourcesApiService<Victim>
   ) {
     super(dxiItem);
   }

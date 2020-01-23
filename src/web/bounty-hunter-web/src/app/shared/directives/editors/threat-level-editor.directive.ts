@@ -12,7 +12,7 @@ export class ThreatLevelEditorDirective extends EditorDirectiveBase {
 
   constructor(
     dxiItem: DxiItemComponent,
-    @Inject('DictionaryApiService') private _dictionaryApiService: ResourcesApiService
+    @Inject('DictionaryApiService') private _dictionaryApiService: ResourcesApiService<DictionaryModel>
   ) {
     super(dxiItem)
   }

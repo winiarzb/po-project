@@ -7,7 +7,7 @@ import {User} from '../../../shared/models/user.model';
 @Injectable({
   providedIn: 'root'
 })
-export class UserResourceApiService extends ResourcesApiService {
+export class UserResourceApiService extends ResourcesApiService<User[]> {
   constructor(
     httpClient: HttpClient,
   ) {

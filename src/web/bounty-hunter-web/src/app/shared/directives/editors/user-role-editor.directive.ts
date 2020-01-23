@@ -4,6 +4,7 @@ import {DxiItemComponent} from 'devextreme-angular/ui/nested';
 import {ResourcesApiService} from '../../services/resources-api.service';
 import DataSource from 'devextreme/data/data_source';
 import CustomStore from 'devextreme/data/custom_store';
+import {Role} from '../../models/role.model';
 
 @Directive({
   selector: 'dxi-item [bhUserRoleEditor]'
@@ -14,7 +15,7 @@ export class UserRoleEditorDirective extends EditorDirectiveBase {
 
   constructor(
     item: DxiItemComponent,
-    @Inject('RoleApiService') private _roleApiService: ResourcesApiService
+    @Inject('RoleApiService') private _roleApiService: ResourcesApiService<Role>
   ) {
     super(item);
   }

@@ -1,0 +1,62 @@
+<header>
+  <h2>Licytacja</h2>
+</header>
+
+<form (ngSubmit)="onBid()">
+  <dx-form id="res-edit-contract" [colCount]="2" [formData]="state">
+    <dxi-item itemType="group" caption="Informacje">
+
+      <dxi-item
+        dataField="contractStatus"
+        editorType="dxTextBox"
+        [label]="{text: 'Status'}"
+        [editorOptions]="{readOnly: true}"
+      ></dxi-item>
+
+      <dxi-item
+        dataField="name"
+        editorType="dxTextBox"
+        [label]="{text: 'Nazwa'}"
+        [editorOptions]="{readOnly: true}"
+      ></dxi-item>
+
+      <dxi-item
+        [readOnly]="true"
+        bhPriorityFormEditor
+      ></dxi-item>
+
+      <dxi-item
+        dataField="fromDate"
+        editorType="dxDateBox"
+        [label]="{text: 'Data początkowa'}"
+        [editorOptions]="{type: 'datetime', readOnly: true}"
+      ></dxi-item>
+
+      <dxi-item
+        dataField="thruDate"
+        editorType="dxDateBox"
+        [label]="{text: 'Data końcowa'}"
+        [editorOptions]="{readOnly: true, type: 'datetime'}"
+      ></dxi-item>
+
+      <dxi-item
+        dataField="Wygrywa"
+        editorType="dxTextBox"
+        [editorOptions]="{readOnly: true}"
+      ></dxi-item>
+    </dxi-item>
+
+    <dxi-item itemType="group" caption="Licytacja">
+
+      <dxi-item
+        dataField="payment"
+        editorType="dxTextBox"
+        [label]="{text: 'Zapłata'}"
+      ></dxi-item>
+
+      <dxi-item itemType="button" [buttonOptions]="{text: 'Licytuj', useSubmitBehavior: true}">
+      </dxi-item>
+    </dxi-item>
+
+  </dx-form>
+</form>

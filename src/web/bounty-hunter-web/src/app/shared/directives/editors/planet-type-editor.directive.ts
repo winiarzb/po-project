@@ -12,7 +12,7 @@ export class PlanetTypeEditorDirective extends EditorDirectiveBase implements On
 
   constructor(
     item: DxiItemComponent,
-    @Inject('DictionaryApiService') private _dictionaryApiService: ResourcesApiService
+    @Inject('DictionaryApiService') private _dictionaryApiService: ResourcesApiService<DictionaryModel>
   ) {
     super(item);
   }

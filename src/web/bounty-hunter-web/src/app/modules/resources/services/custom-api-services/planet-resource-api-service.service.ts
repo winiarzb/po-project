@@ -7,7 +7,7 @@ import {Planet} from '../../../../shared/models/planet.model';
 @Injectable({
   providedIn: 'root'
 })
-export class PlanetResourceApiServiceService extends ResourcesApiService {
+export class PlanetResourceApiServiceService extends ResourcesApiService<Planet> {
 
   constructor(
     httpClient: HttpClient
