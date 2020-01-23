@@ -2,13 +2,11 @@ import {Inject, Injectable} from '@angular/core';
 import {StateServiceBase} from '../../../shared/services/state-service.abstract';
 import {Contract} from '../../../shared/models/contract.model';
 import {ResourcesApiService} from '../../../shared/services/resources-api.service';
-import {map} from 'rxjs/operators';
-import {ContractStatus} from '../../../shared/enums/contract-status.enum';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ContractActiveContractsStateService extends StateServiceBase<Contract[]> {
+export class ContractAuctionStateService extends StateServiceBase<Contract> {
 
   constructor(
     @Inject('ContractApiService') _resourceApiService: ResourcesApiService<Contract>
@@ -16,11 +14,9 @@ export class ContractActiveContractsStateService extends StateServiceBase<Contra
     super(_resourceApiService);
   }
 
-  public initFromResponse(): void {
-    (this.apiService as ResourcesApiService<Contract>).getAll()
-      .pipe(map(res => res.filter(contract => contract.contractStatus === ContractStatus.Created)))
-      .subscribe(res => {
+  public initFromResponse(id: number): void {
+    (this.apiService as ResourcesApiService<Contract>).getById(id).subscribe(res => {
       this.initState(res);
-    });
+    })
   }
 }

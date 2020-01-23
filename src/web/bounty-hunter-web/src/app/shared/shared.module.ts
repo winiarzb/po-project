@@ -77,7 +77,8 @@ import { UserDistrictsChooserEditorDirective } from './directives/editors/user-d
     PlanetMultipleEditorDirective,
     DistrictMultipleEditorDirective,
     ClientEditorDirective,
-    UserDistrictsChooserEditorDirective
+    UserDistrictsChooserEditorDirective,
+    LinkAccessorDirective
   ],
   imports: [
     CommonModule,
