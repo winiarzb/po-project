@@ -3,11 +3,11 @@
 </header>
 
 <form (ngSubmit)="onSignUp()">
-  <dx-form id="registration-form" [colCount]="2">
+  <dx-form id="registration-form" [colCount]="1" [formData]="state">
     <dxi-item itemType="group" caption="Informacje personalne">
 
       <dxi-item
-        dataField="userName"
+        dataField="username"
         editorType="dxTextBox"
         [label]="{text: 'Nazwa użytkownika'}"
       >
@@ -24,17 +24,12 @@
         [label]="{text: 'Hasło'}"
       >
         <dxi-validation-rule
-          type="required"
-          message="wymagane"
+          type="stringLength"
+          [max]="20"
+          [min]="7"
+          message="Musi mieć od 7 do 20 znaków"
         ></dxi-validation-rule>
-      </dxi-item>
 
-      <dxi-item
-        dataField="confirmPassword"
-        editorType="dxTextBox"
-        [editorOptions]="{mode: 'password'}"
-        [label]="{text: 'Powtórz hasło'}"
-      >
         <dxi-validation-rule
           type="required"
           message="wymagane"
@@ -43,6 +38,7 @@
 
       <dxi-item
         bhUserRoleEditor
+        dataField="role"
       >
         <dxi-validation-rule
           type="required"
@@ -54,8 +50,9 @@
     <dxi-item itemType="group" caption="Lokalizacja">
 
       <dxi-item
+        bhGalaxyEditor
         dataField="galaxy"
-        editorType="dxSelectBox"
+        [valueExpr]="null"
         [label]="{text: 'Galaktyka'}"
       >
         <dxi-validation-rule
@@ -65,20 +62,9 @@
       </dxi-item>
 
       <dxi-item
-        dataField="planet"
-        editorType="dxSelectBox"
-        [label]="{text: 'Planeta'}"
-      >
-        <dxi-validation-rule
-          type="required"
-          message="wymagane"
-        ></dxi-validation-rule>
-      </dxi-item>
-
-      <dxi-item
-        dataField="district"
-        editorType="dxSelectBox"
-        [label]="{text: 'Dystrykt'}"
+        dataField="planets"
+        bhUserDistrictsChooserEditor
+        [galaxyId]="galaxyId"
       >
         <dxi-validation-rule
           type="required"

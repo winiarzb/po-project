@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   public onSignIn(): void {
-    this._loginState.signUp().subscribe(() => {
+    this._loginState.signIn().subscribe(() => {
       notify('Zalogowano', 'success');
       this._navigator.dashboard();
     }, err => this._handleLoginError(err));

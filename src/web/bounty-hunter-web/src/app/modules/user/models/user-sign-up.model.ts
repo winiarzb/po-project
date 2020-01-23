@@ -1,11 +1,11 @@
-import {District} from '../../../shared/models/district.model';
 import {Galaxy} from '../../../shared/models/galaxy.model';
+import {Role} from '../../../shared/models/role.model';
+import {Planet} from '../../../shared/models/planet.model';
 
 export class UserSignUpModel {
-  public districts: District[];
-  public galaxy: Galaxy;
   public password: string;
-  public planets: Galaxy;
-  public role: string; // ?
+  public galaxy: Galaxy;
+  public role: Role;
   public username: string;
+  public planets: Planet[];
 }

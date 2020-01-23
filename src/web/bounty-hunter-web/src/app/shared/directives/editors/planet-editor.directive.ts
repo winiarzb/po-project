@@ -4,6 +4,7 @@ import {DxiItemComponent} from 'devextreme-angular/ui/nested';
 import {ResourcesApiService} from '../../services/resources-api.service';
 import DataSource from "devextreme/data/data_source";
 import CustomStore from "devextreme/data/custom_store";
+import {PlanetResourceApiServiceService} from '../../../modules/resources/services/custom-api-services/planet-resource-api-service.service';
 
 
 @Directive({
@@ -13,7 +14,7 @@ export class PlanetEditorDirective extends EditorDirectiveBase {
 
   constructor(
     dxiItem: DxiItemComponent,
-    @Inject('PlanetApiService') private _planetApiResourceService: ResourcesApiService
+    @Inject('PlanetApiService') private _planetApiResourceService: PlanetResourceApiServiceService
   ) {
     super(dxiItem);
   }
@@ -27,7 +28,7 @@ export class PlanetEditorDirective extends EditorDirectiveBase {
         store: new CustomStore({
           load: (options) => this._planetApiResourceService.getAll().toPromise(),
           key: 'id',
-          byKey: (key) => this._planetApiResourceService.getById(key).toPromise() 
+          byKey: (key) => this._planetApiResourceService.getById(key).toPromise()
         })
       })
     }
