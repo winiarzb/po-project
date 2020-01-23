@@ -1,7 +1,9 @@
 -- DICT --
 INSERT INTO dict(record_creation_date, value, type, version) VALUES (CURRENT_TIMESTAMP(), 'CREATED', 'CONTRACT_STATUS', '0')
-INSERT INTO dict(record_creation_date, value, type, version) VALUES (CURRENT_TIMESTAMP(), 'ACCEPTED', 'CONTRACT_STATUS', '0')
-INSERT INTO dict(record_creation_date, value, type, version) VALUES (CURRENT_TIMESTAMP(), 'COMPLETED', 'CONTRACT_STATUS', '0')
+INSERT INTO dict(record_creation_date, value, type, version)
+VALUES (CURRENT_TIMESTAMP(), 'IN_PROGRESS', 'CONTRACT_STATUS', '0')
+INSERT INTO dict(record_creation_date, value, type, version)
+VALUES (CURRENT_TIMESTAMP(), 'DONE', 'CONTRACT_STATUS', '0')
 INSERT INTO dict(record_creation_date, value, type, version) VALUES (CURRENT_TIMESTAMP(), 'APPROVED', 'CONTRACT_STATUS', '0')
 INSERT INTO dict(record_creation_date, value, type, version) VALUES (CURRENT_TIMESTAMP(), 'CANCELED', 'CONTRACT_STATUS', '0')
 INSERT INTO dict(record_creation_date, value, type, version) VALUES (CURRENT_TIMESTAMP(), 'ICY', 'PLANET_TYPE', '0')
@@ -88,7 +90,10 @@ INSERT INTO user_account (enabled, password, registered_date, username, person_i
 -- --REVIEW--
 INSERT INTO review(comment, rating, would_recommend, version) VALUES ('Wszystko ok polecam huntera','8', 'true', '0')
 -- --CONTRACT--
-INSERT INTO contract(contract_status, from_date, name, payment, priority, thru_date, client_id, district_id, hunter_id, review_id, victim_id, version) VALUES ('COMPLETED', parsedatetime('01-10-2019', 'dd-MM-yyyy'), 'Quick job', '9000', 'HIGH', parsedatetime('30-10-2019', 'dd-MM-yyyy'), '3', '15', '2', '1', '6', '0')
+INSERT INTO contract(contract_status, from_date, name, payment, priority, thru_date, client_id, district_id, hunter_id,
+                     review_id, victim_id, version)
+VALUES ('APPROVED', parsedatetime('01-10-2019', 'dd-MM-yyyy'), 'Quick job', '9000', 'HIGH',
+        parsedatetime('30-10-2019', 'dd-MM-yyyy'), '3', '15', '2', '1', '6', '0')
 INSERT INTO contract(contract_status, from_date, name, payment, priority, thru_date, client_id, district_id, hunter_id, review_id, victim_id, version) VALUES ('CREATED', parsedatetime('01-11-2019', 'dd-MM-yyyy'), 'Training Day', '99999999', 'EXTREME', parsedatetime('30-10-2020', 'dd-MM-yyyy'), '3', '1', null, null, '4', '0')
 -- -- TEST CHANGE STATUS--
 INSERT INTO contract(contract_status, from_date, name, payment, priority, thru_date, client_id, district_id, hunter_id, review_id, victim_id, version) VALUES ('CREATED', parsedatetime('01-10-2019', 'dd-MM-yyyy'), 'Training Day', '99999999', 'EXTREME', NOW() + INTERVAL 60 SECOND, '3', '1', null, null, '4', '0')
