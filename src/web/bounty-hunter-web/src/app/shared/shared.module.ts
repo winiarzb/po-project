@@ -26,6 +26,7 @@ import { GalaxyEditorDirective } from './directives/editors/galaxy-editor.direct
 import { PlanetMultipleEditorDirective } from './directives/editors/planet-multiple-editor.directive';
 import { DistrictMultipleEditorDirective } from './directives/editors/district-multiple-editor.directive';
 import { ClientEditorDirective } from './directives/editors/client-editor.directive';
+import { UserDistrictsChooserEditorDirective } from './directives/editors/user-districts-chooser-editor.directive';
 
 
 
@@ -55,6 +56,7 @@ import { ClientEditorDirective } from './directives/editors/client-editor.direct
     PlanetMultipleEditorDirective,
     DistrictMultipleEditorDirective,
     ClientEditorDirective,
+    UserDistrictsChooserEditorDirective,
   ],
   exports: [
     HeaderComponent,
@@ -74,7 +76,8 @@ import { ClientEditorDirective } from './directives/editors/client-editor.direct
     GalaxyEditorDirective,
     PlanetMultipleEditorDirective,
     DistrictMultipleEditorDirective,
-    ClientEditorDirective
+    ClientEditorDirective,
+    UserDistrictsChooserEditorDirective
   ],
   imports: [
     CommonModule,

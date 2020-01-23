@@ -69,6 +69,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                 .authorizeRequests()
                     .antMatchers("/auth/**",
+                            "/role/all",
+                            "/galaxy/all",
+                            "/planet/galaxy/**",
                             "/h2-console/**",
                             "/v2/api-docs",
                             "/configuration/ui",

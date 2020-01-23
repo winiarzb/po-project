@@ -22,8 +22,4 @@ export class UserComponent {
   public goBack(): void {
     this._location.back();
   }
-
-  public updateUser(): void {
-    console.log('in future should be updated');
-  }
 }

@@ -20,7 +20,7 @@ export class UserLoginStateService extends StateServiceBase<UserSignInModel> {
     super(authService, requestService);
   }
 
-  public signUp(): Observable<void> {
+  public signIn(): Observable<void> {
     const request = (this.requestService as AuthRequestFactoryService).getSignInRequest(this.state);
     const observable = (this.apiService as AuthApiService).signIn(request)
       .pipe(

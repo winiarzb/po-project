@@ -7,8 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import {SharedModule} from "../../shared/shared.module";
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {DxButtonModule, DxFormModule} from 'devextreme-angular';
-
+import {DxButtonModule, DxFormModule, DxTreeViewModule} from 'devextreme-angular';
 
 @NgModule({
   declarations: [UserComponent, LoginComponent, RegistrationComponent],
@@ -19,7 +18,8 @@ import {DxButtonModule, DxFormModule} from 'devextreme-angular';
     ReactiveFormsModule,
     DxFormModule,
     FormsModule,
-    DxButtonModule
+    DxButtonModule,
+    DxTreeViewModule
   ],
   exports: [
     LoginComponent,

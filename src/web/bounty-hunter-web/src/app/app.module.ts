@@ -12,6 +12,8 @@ import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/h
 import {ResourcesApiService} from './shared/services/resources-api.service';
 import {AuthInterceptorService} from './shared/interceptors/auth-interceptor.service';
 import {UserResourceApiService} from './modules/user/services/user-resource-api.service';
+import {PlanetResourceApiServiceService} from './modules/resources/services/custom-api-services/planet-resource-api-service.service';
+import {ErrorInterceptorService} from './shared/interceptors/error-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -45,8 +47,7 @@ import {UserResourceApiService} from './modules/user/services/user-resource-api.
     },
     {
       provide: 'PlanetApiService',
-      useFactory: (httpClient: HttpClient) => new ResourcesApiService(httpClient, 'planet'),
-      deps: [HttpClient]
+      useClass: PlanetResourceApiServiceService
     },
     {
       provide: 'ReviewApiService',
@@ -66,6 +67,16 @@ import {UserResourceApiService} from './modules/user/services/user-resource-api.
       provide: 'ContractApiService',
       useFactory: (httpClient: HttpClient) => new ResourcesApiService(httpClient, 'contract'),
       deps: [HttpClient]
+    },
+    {
+      provide: 'RoleApiService',
+      useFactory: (httpClient: HttpClient) => new ResourcesApiService(httpClient, 'role'),
+      deps: [HttpClient]
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptorService,
+      multi: true
     },
     {
       provide: HTTP_INTERCEPTORS,
