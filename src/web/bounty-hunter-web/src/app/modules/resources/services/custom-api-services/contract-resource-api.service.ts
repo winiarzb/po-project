@@ -22,7 +22,7 @@ export class ContractResourceApiService extends ResourcesApiService<Contract> {
     return this.get(`all/status/${status}`);
   }
 
-  public getByUser(userId: string): Observable<Contract[]> {
+  public getByUser(userId: number): Observable<Contract[]> {
     return this.get(`all/user/${userId}`);
   }
 

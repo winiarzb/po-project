@@ -7,6 +7,7 @@ import {AppComponent} from './app.component';
 import {SimplifiedLayoutComponent} from './shared/layout/components/simplified-layout/simplified-layout.component';
 import {AdminAuthGuard} from './shared/guards/admin-auth.guard';
 import {UserAuthGuard} from './shared/guards/user-auth.guard';
+import {UnauthorizedComponent} from './shared/components/unauthorized/unauthorized.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,10 @@ const routes: Routes = [
             path: 'resources',
             loadChildren: () => import('./modules/resources/resources.module').then(m => m.ResourcesModule),
             canActivate: [UserAuthGuard, AdminAuthGuard]
+          },
+          {
+            path: '401',
+            component: UnauthorizedComponent
           }
         ]
       },

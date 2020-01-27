@@ -32,4 +32,8 @@ export class NavigatorService {
   public contractPreview(id: number): Promise<boolean> {
     return this._router.navigate([`/contract/preview/${id}`]);
   }
+
+  public unauthorized(): Promise<boolean> {
+    return this._router.navigate(['/401']);
+  }
 }
