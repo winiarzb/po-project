@@ -1,8 +1,26 @@
+<h2>Dostępne zlecenia</h2>
+
+<dx-button
+  text="Licytuj"
+  class="mb-3"
+  [disabled]="!selectedContract"
+  *bhLinkAccessor="let roles of ['ADMIN', 'HUNTER']"
+  (click)="navigateToAuction()"
+></dx-button>
+
+<dx-button
+  text="Podgląd"
+  class="mb-3"
+  [disabled]="!selectedContract"
+  (click)="navigateToContractPreview()"
+></dx-button>
+
 <dx-data-grid
   id="resource-users"
   selection="single"
   [dataSource]="state"
   [columnAutoWidth]="true"
+  (selectedRowKeysChange)="onSelect($event)"
 >
   <dxi-column
     dataField="name"

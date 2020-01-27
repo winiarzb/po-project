@@ -1,16 +1,19 @@
 package com.developers.bountyhunter.resource.contract;
 
+import com.developers.bountyhunter.dto.contract.ContractChangePaymentCommand;
+import com.developers.bountyhunter.dto.contract.ContractChangeStatusCommand;
 import com.developers.bountyhunter.dto.contract.ContractDTO;
 import com.developers.bountyhunter.dto.contract.ContractFormDTO;
+import com.developers.bountyhunter.exception.AppException;
 import com.developers.bountyhunter.mapper.contract.ContractMapper;
 import com.developers.bountyhunter.model.contract.Contract;
+import com.developers.bountyhunter.model.contract.ContractStatus;
 import com.developers.bountyhunter.model.person.UserAccount;
 import com.developers.bountyhunter.model.person.Victim;
 import com.developers.bountyhunter.model.world.District;
 import com.developers.bountyhunter.service.contract.ContractService;
 import com.developers.bountyhunter.service.person.UserAccountService;
 import com.developers.bountyhunter.service.person.VictimService;
-import com.developers.bountyhunter.service.review.ReviewService;
 import com.developers.bountyhunter.service.world.DistrictService;
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
@@ -56,6 +59,23 @@ public class ContractResource {
 	private ResponseEntity<List<ContractDTO>> getAll() {
 
 		List<ContractDTO> contractDTOS = contractMapper.contractsToContractsDTO(contractService.findAll());
+		return new ResponseEntity<>(contractDTOS, HttpStatus.OK);
+
+	}
+
+	@GetMapping("/all/user/{userId}")
+	private ResponseEntity<List<ContractDTO>> getAllUserContracts(@PathVariable Long userId) {
+
+		UserAccount userAccount = userAccountService.findById(userId).orElseThrow(() -> new AppException("Nie ma takiego usera"));
+
+		List<ContractDTO> contractDTOS = contractMapper.contractsToContractsDTO(contractService.findAllByAccount(userAccount));
+		return new ResponseEntity<>(contractDTOS, HttpStatus.OK);
+	}
+
+	@GetMapping("/all/status/{contractStatus}")
+	private ResponseEntity<List<ContractDTO>> getAllByStatus(@PathVariable ContractStatus contractStatus) {
+
+		List<ContractDTO> contractDTOS = contractMapper.contractsToContractsDTO(contractService.findAllByContractStatus(contractStatus));
 		return new ResponseEntity<>(contractDTOS, HttpStatus.OK);
 
 	}
@@ -131,4 +151,33 @@ public class ContractResource {
 	}
 
 
+	@PostMapping("/changePayment")
+	private ResponseEntity<ContractDTO> changeContractPaymentAndHunter(@Valid @RequestBody ContractChangePaymentCommand contractCommand) {
+
+		UserAccount hunterFromDatabase = userAccountService.findById(contractCommand.getHunterId()).orElseThrow(() -> new AppException("Nie ma takiego łowcy"));
+		Contract contractFromDatabase = contractService.findById(contractCommand.getContractId()).orElseThrow(() -> new AppException("Nie ma takiego kontraktu"));
+
+		if (contractFromDatabase.getPayment() < contractCommand.getPayment()) {
+			throw new AppException("Twoja oferta jest wyższa od aktualnej");
+		} else if (contractCommand.getPayment() < 1 ) {
+			throw new AppException("Twoja oferta musi być conjamniej większa od 1");
+		} else {
+			contractFromDatabase.setHunter(hunterFromDatabase);
+			contractFromDatabase.setPayment(contractCommand.getPayment());
+			contractFromDatabase = contractService.save(contractFromDatabase);
+		}
+		return new ResponseEntity<>(contractMapper.contractToContractDTO(contractFromDatabase), HttpStatus.OK);
+	}
+
+
+	@PostMapping("/changeStatus")
+	private ResponseEntity<ContractDTO> changeContractStatus(@Valid @RequestBody ContractChangeStatusCommand contractCommand) {
+
+		Contract contractFromDatabase = contractService.findById(contractCommand.getContractId()).orElseThrow(() -> new AppException("Nie ma takiego kontraktu"));
+
+		contractFromDatabase.setContractStatus(contractCommand.getContractStatus());
+		contractFromDatabase = contractService.save(contractFromDatabase);
+
+		return new ResponseEntity<>(contractMapper.contractToContractDTO(contractFromDatabase), HttpStatus.OK);
+	}
 }

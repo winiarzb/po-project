@@ -1,11 +1,13 @@
 package com.developers.bountyhunter.service.person;
 
 import com.developers.bountyhunter.model.person.UserAccount;
+import com.developers.bountyhunter.model.person.role.Role;
 import com.developers.bountyhunter.repository.person.UserAccountRepository;
 import com.developers.bountyhunter.service.base.BaseServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -22,5 +24,10 @@ public class UserAccountServiceImpl extends BaseServiceImpl<UserAccount, Long> i
 	@Override
 	public boolean existsByUsername(String username) {
 		return userAccountRepository.existsByUsername(username);
+	}
+
+	@Override
+	public List<UserAccount> findByRole(Role role) {
+		return userAccountRepository.findByRole(role);
 	}
 }

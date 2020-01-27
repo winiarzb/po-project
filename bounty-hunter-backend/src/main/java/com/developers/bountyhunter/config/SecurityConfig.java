@@ -56,6 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        //TODO wywalic stad te wszystkie antMatchery do api na koncu developmentu, narazie je wrzuce zeby sie nie kopac z swaggerem
         http
                 .cors()
                     .and()
@@ -69,9 +70,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                 .authorizeRequests()
                     .antMatchers("/auth/**",
-                            "/role/all",
-                            "/galaxy/all",
-                            "/planet/galaxy/**",
+                            "/role/**",
+                            "/galaxy/**",
+                            "/planet/**",
+                            "/contract/**",
+                            "/dict/**",
+                            "/role/**",
+                            "/user/**",
+                            "/victim/**",
+                            "/review/**",
+                            "/district/**",
                             "/h2-console/**",
                             "/v2/api-docs",
                             "/configuration/ui",

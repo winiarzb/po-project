@@ -1,4 +1,4 @@
-import {Directive, Inject, OnInit} from '@angular/core';
+import {Directive, Inject, Input, OnInit} from '@angular/core';
 import {DxiItemComponent} from 'devextreme-angular/ui/nested';
 import {ResourcesApiService} from '../../services/resources-api.service';
 import {DictionaryModel} from '../../models/dictionary.model';
@@ -9,6 +9,8 @@ import {EditorDirectiveBase} from './editor-directive.abstract';
   selector: 'dxi-item [bhPriorityFormEditor]'
 })
 export class PriorityFormEditorDirective extends EditorDirectiveBase implements OnInit {
+
+  @Input() readOnly: boolean = false;
 
   constructor(
     _dxiItem: DxiItemComponent,
@@ -28,6 +30,9 @@ export class PriorityFormEditorDirective extends EditorDirectiveBase implements 
     this.dxItem.label = {
       text: 'Priorytet'
     };
+    this.dxItem.editorOptions = {
+      readOnly: this.readOnly
+    }
   }
 
   private _addItems(): void {

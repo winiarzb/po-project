@@ -24,4 +24,12 @@ export class NavigatorService {
   public registration(): Promise<boolean> {
     return this._router.navigate(['sign-up']);
   }
+
+  public auction(id: number): Promise<boolean> {
+    return this._router.navigate([`/contract/auction/${id}`]);
+  }
+
+  public contractPreview(id: number): Promise<boolean> {
+    return this._router.navigate([`/contract/preview/${id}`]);
+  }
 }
