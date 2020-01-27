@@ -28,4 +28,8 @@ export class NavigatorService {
   public auction(id: number): Promise<boolean> {
     return this._router.navigate([`/contract/auction/${id}`]);
   }
+
+  public contractPreview(id: number): Promise<boolean> {
+    return this._router.navigate([`/contract/preview/${id}`]);
+  }
 }

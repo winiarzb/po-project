@@ -157,8 +157,10 @@ public class ContractResource {
 		UserAccount hunterFromDatabase = userAccountService.findById(contractCommand.getHunterId()).orElseThrow(() -> new AppException("Nie ma takiego łowcy"));
 		Contract contractFromDatabase = contractService.findById(contractCommand.getContractId()).orElseThrow(() -> new AppException("Nie ma takiego kontraktu"));
 
-		if (contractFromDatabase.getPayment() > contractCommand.getPayment()) {
-			throw new AppException("Nowa wartość payment mniejsza od poprzedniej");
+		if (contractFromDatabase.getPayment() < contractCommand.getPayment()) {
+			throw new AppException("Twoja oferta jest wyższa od aktualnej");
+		} else if (contractCommand.getPayment() < 1 ) {
+			throw new AppException("Twoja oferta musi być conjamniej większa od 1");
 		} else {
 			contractFromDatabase.setHunter(hunterFromDatabase);
 			contractFromDatabase.setPayment(contractCommand.getPayment());

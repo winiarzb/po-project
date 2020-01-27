@@ -14,6 +14,7 @@ import {AuthInterceptorService} from './shared/interceptors/auth-interceptor.ser
 import {UserResourceApiService} from './modules/user/services/user-resource-api.service';
 import {PlanetResourceApiServiceService} from './modules/resources/services/custom-api-services/planet-resource-api-service.service';
 import {ErrorInterceptorService} from './shared/interceptors/error-interceptor.service';
+import {ContractResourceApiService} from './modules/resources/services/custom-api-services/contract-resource-api.service';
 
 @NgModule({
   declarations: [
@@ -65,8 +66,7 @@ import {ErrorInterceptorService} from './shared/interceptors/error-interceptor.s
     },
     {
       provide: 'ContractApiService',
-      useFactory: (httpClient: HttpClient) => new ResourcesApiService(httpClient, 'contract'),
-      deps: [HttpClient]
+      useClass: ContractResourceApiService
     },
     {
       provide: 'RoleApiService',

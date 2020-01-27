@@ -8,6 +8,13 @@
   (click)="navigateToAuction()"
 ></dx-button>
 
+<dx-button
+  text="Podgląd"
+  class="mb-3"
+  [disabled]="!selectedContract"
+  (click)="navigateToContractPreview()"
+></dx-button>
+
 <dx-data-grid
   id="resource-users"
   selection="single"

@@ -20,7 +20,17 @@ const routes: Routes = [
   },
   {
     path: 'auction/:id',
-    component: ContractAuctionComponent
+    component: ContractAuctionComponent,
+    data: {
+      preview: false
+    }
+  },
+  {
+    path: 'preview/:id',
+    component: ContractAuctionComponent,
+    data: {
+      preview: true
+    }
   }
 ];
 

@@ -31,4 +31,8 @@ export class ContractsListComponent implements OnInit {
   public navigateToAuction(): void {
     this._navigator.auction(this.selectedContract.id);
   }
+
+  public navigateToContractPreview(): void {
+    this._navigator.contractPreview(this.selectedContract.id);
+  }
 }
