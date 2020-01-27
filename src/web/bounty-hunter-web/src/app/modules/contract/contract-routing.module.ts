@@ -3,6 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 import {ContractsListComponent} from "./components/contracts-list/contracts-list.component";
 import {CreateContractComponent} from "./components/create-contract/create-contract.component";
 import {ContractAuctionComponent} from './components/contract-auction/contract-auction.component';
+import {UserAuthGuard} from '../../shared/guards/user-auth.guard';
+import {ClientAuthGuard} from '../../shared/guards/client-auth.guard';
+import {AdminAuthGuard} from '../../shared/guards/admin-auth.guard';
+import {HunterAuthGuard} from '../../shared/guards/hunter-auth.guard';
 
 
 const routes: Routes = [
@@ -12,25 +16,40 @@ const routes: Routes = [
   },
   {
     path: 'list',
-    component: ContractsListComponent
+    component: ContractsListComponent,
+    data: {
+      onlyMine: false
+    },
+    canActivate: [UserAuthGuard]
   },
   {
     path: 'create',
-    component: CreateContractComponent
+    component: CreateContractComponent,
+    canActivate: [ClientAuthGuard]
   },
   {
     path: 'auction/:id',
     component: ContractAuctionComponent,
     data: {
       preview: false
-    }
+    },
+    canActivate: [HunterAuthGuard]
   },
   {
     path: 'preview/:id',
     component: ContractAuctionComponent,
     data: {
       preview: true
-    }
+    },
+    canActivate: [UserAuthGuard]
+  },
+  {
+    path: 'my',
+    component: ContractsListComponent,
+    data: {
+      onlyMine: true
+    },
+    canActivate: [ClientAuthGuard]
   }
 ];
 

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ContractActiveContractsStateService} from '../../services/contract-active-contracts-state.service';
 import {Contract} from '../../../../shared/models/contract.model';
 import {NavigatorService} from '../../../../shared/services/navigator.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'bh-contracts-list',
@@ -13,15 +14,21 @@ export class ContractsListComponent implements OnInit {
     return this._state.state;
   }
 
+  public get onlyMine(): boolean {
+    return this._activatedRoute.snapshot.data['onlyMine'];
+  }
+
   public selectedContract: Contract;
 
   constructor(
     private _state: ContractActiveContractsStateService,
-    private _navigator: NavigatorService
+    private _navigator: NavigatorService,
+    private _activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this._state.initFromResponse();
+    this.onlyMine ?
+      this._state.initClientContractsFromResponse() : this._state.initActiveContractsFromResponse();
   }
 
   public onSelect(selection: Contract[]): void {

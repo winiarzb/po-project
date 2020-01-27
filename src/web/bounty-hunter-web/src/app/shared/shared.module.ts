@@ -27,6 +27,7 @@ import { PlanetMultipleEditorDirective } from './directives/editors/planet-multi
 import { DistrictMultipleEditorDirective } from './directives/editors/district-multiple-editor.directive';
 import { ClientEditorDirective } from './directives/editors/client-editor.directive';
 import { UserDistrictsChooserEditorDirective } from './directives/editors/user-districts-chooser-editor.directive';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 
 
 
@@ -57,6 +58,7 @@ import { UserDistrictsChooserEditorDirective } from './directives/editors/user-d
     DistrictMultipleEditorDirective,
     ClientEditorDirective,
     UserDistrictsChooserEditorDirective,
+    UnauthorizedComponent,
   ],
   exports: [
     HeaderComponent,
