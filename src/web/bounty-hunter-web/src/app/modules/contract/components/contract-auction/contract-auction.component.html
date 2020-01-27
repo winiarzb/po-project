@@ -7,54 +7,80 @@
     <dxi-item itemType="group" caption="Informacje">
 
       <dxi-item
-        dataField="contractStatus"
+        dataField="contract.contractStatus"
         editorType="dxTextBox"
         [label]="{text: 'Status'}"
         [editorOptions]="{readOnly: true}"
       ></dxi-item>
 
       <dxi-item
-        dataField="name"
+        dataField="contract.name"
         editorType="dxTextBox"
         [label]="{text: 'Nazwa'}"
         [editorOptions]="{readOnly: true}"
       ></dxi-item>
 
       <dxi-item
-        [readOnly]="true"
-        bhPriorityFormEditor
+        dataField="contract.priority"
+        editorType="dxTextBox"
+        [label]="{text: 'Priorytet'}"
+        [editorOptions]="{readOnly: true}"
       ></dxi-item>
 
       <dxi-item
-        dataField="fromDate"
+        dataField="contract.fromDate"
         editorType="dxDateBox"
         [label]="{text: 'Data początkowa'}"
         [editorOptions]="{type: 'datetime', readOnly: true}"
       ></dxi-item>
 
       <dxi-item
-        dataField="thruDate"
+        dataField="contract.thruDate"
         editorType="dxDateBox"
         [label]="{text: 'Data końcowa'}"
         [editorOptions]="{readOnly: true, type: 'datetime'}"
       ></dxi-item>
 
       <dxi-item
-        dataField="Wygrywa"
+        dataField="contract.hunter.username"
+        [label]="{text: 'Aktualnie wygrywa'}"
         editorType="dxTextBox"
         [editorOptions]="{readOnly: true}"
       ></dxi-item>
-    </dxi-item>
-
-    <dxi-item itemType="group" caption="Licytacja">
 
       <dxi-item
-        dataField="payment"
+        dataField="contract.client.name"
         editorType="dxTextBox"
-        [label]="{text: 'Zapłata'}"
+        [label]="{text: 'Zleceniodawca'}"
+        [editorOptions]="{readOnly: true}"
       ></dxi-item>
 
-      <dxi-item itemType="button" [buttonOptions]="{text: 'Licytuj', useSubmitBehavior: true}">
+      <dxi-item
+        dataField="contract.district.name"
+        editorType="dxTextBox"
+        [label]="{text: 'Dystrykt'}"
+        [editorOptions]="{readOnly: true}"
+      ></dxi-item>
+
+      <dxi-item
+        dataField="contract.payment"
+        editorType="dxTextBox"
+        [label]="{text: 'Aktualna najniższa oferta'}"
+        [editorOptions]="{readOnly: true}"
+      ></dxi-item>
+
+    </dxi-item>
+
+    <dxi-item itemType="group" caption="Licytacja" *ngIf="!isPreview">
+      <dxi-item
+        dataField="bid"
+        editorType="dxTextBox"
+        [label]="{text: 'Twoja oferta'}"
+      ></dxi-item>
+
+      <dxi-item
+        itemType="button"
+        [buttonOptions]="{text: 'Licytuj', useSubmitBehavior: true}">
       </dxi-item>
     </dxi-item>
 
