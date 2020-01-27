@@ -4,19 +4,17 @@ import com.developers.bountyhunter.dto.contract.ContractChangePaymentCommand;
 import com.developers.bountyhunter.dto.contract.ContractChangeStatusCommand;
 import com.developers.bountyhunter.dto.contract.ContractDTO;
 import com.developers.bountyhunter.dto.contract.ContractFormDTO;
+import com.developers.bountyhunter.exception.AppException;
 import com.developers.bountyhunter.mapper.contract.ContractMapper;
 import com.developers.bountyhunter.model.contract.Contract;
 import com.developers.bountyhunter.model.contract.ContractStatus;
 import com.developers.bountyhunter.model.person.UserAccount;
 import com.developers.bountyhunter.model.person.Victim;
-import com.developers.bountyhunter.model.person.role.Role;
 import com.developers.bountyhunter.model.world.District;
 import com.developers.bountyhunter.service.contract.ContractService;
 import com.developers.bountyhunter.service.person.UserAccountService;
 import com.developers.bountyhunter.service.person.VictimService;
-import com.developers.bountyhunter.service.review.ReviewService;
 import com.developers.bountyhunter.service.world.DistrictService;
-import io.swagger.models.auth.In;
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
 import org.springframework.http.HttpStatus;
@@ -30,7 +28,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import sun.plugin.dom.exception.InvalidStateException;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -69,7 +66,7 @@ public class ContractResource {
 	@GetMapping("/all/user/{userId}")
 	private ResponseEntity<List<ContractDTO>> getAllUserContracts(@PathVariable Long userId) {
 
-		UserAccount userAccount = userAccountService.findById(userId).orElseThrow(() -> new InvalidStateException("Nie ma takiego usera"));
+		UserAccount userAccount = userAccountService.findById(userId).orElseThrow(() -> new AppException("Nie ma takiego usera"));
 
 		List<ContractDTO> contractDTOS = contractMapper.contractsToContractsDTO(contractService.findAllByAccount(userAccount));
 		return new ResponseEntity<>(contractDTOS, HttpStatus.OK);
@@ -157,11 +154,11 @@ public class ContractResource {
 	@PostMapping("/changePayment")
 	private ResponseEntity<ContractDTO> changeContractPaymentAndHunter(@Valid @RequestBody ContractChangePaymentCommand contractCommand) {
 
-		UserAccount hunterFromDatabase = userAccountService.findById(contractCommand.getHunterId()).orElseThrow(() -> new InvalidStateException("Nie ma takiego łowcy"));
-		Contract contractFromDatabase = contractService.findById(contractCommand.getContractId()).orElseThrow(() -> new InvalidStateException("Nie ma takiego kontraktu"));
+		UserAccount hunterFromDatabase = userAccountService.findById(contractCommand.getHunterId()).orElseThrow(() -> new AppException("Nie ma takiego łowcy"));
+		Contract contractFromDatabase = contractService.findById(contractCommand.getContractId()).orElseThrow(() -> new AppException("Nie ma takiego kontraktu"));
 
 		if (contractFromDatabase.getPayment() > contractCommand.getPayment()) {
-			throw new InvalidStateException("Nowa wartość payment mniejsza od poprzedniej");
+			throw new AppException("Nowa wartość payment mniejsza od poprzedniej");
 		} else {
 			contractFromDatabase.setHunter(hunterFromDatabase);
 			contractFromDatabase.setPayment(contractCommand.getPayment());
@@ -174,7 +171,7 @@ public class ContractResource {
 	@PostMapping("/changeStatus")
 	private ResponseEntity<ContractDTO> changeContractStatus(@Valid @RequestBody ContractChangeStatusCommand contractCommand) {
 
-		Contract contractFromDatabase = contractService.findById(contractCommand.getContractId()).orElseThrow(() -> new InvalidStateException("Nie ma takiego kontraktu"));
+		Contract contractFromDatabase = contractService.findById(contractCommand.getContractId()).orElseThrow(() -> new AppException("Nie ma takiego kontraktu"));
 
 		contractFromDatabase.setContractStatus(contractCommand.getContractStatus());
 		contractFromDatabase = contractService.save(contractFromDatabase);
