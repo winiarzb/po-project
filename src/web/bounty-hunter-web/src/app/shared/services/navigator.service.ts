@@ -21,6 +21,11 @@ export class NavigatorService {
   public dashboard(): Promise<boolean> {
     return this._router.navigate(['/']);
   }
+
+  public myContracts(): Promise<boolean> {
+    return this._router.navigate(['/contract/my']);
+  }
+
   public registration(): Promise<boolean> {
     return this._router.navigate(['sign-up']);
   }

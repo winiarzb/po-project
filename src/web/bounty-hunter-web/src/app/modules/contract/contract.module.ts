@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ContractRoutingModule } from './contract-routing.module';
 import { ContractsListComponent } from './components/contracts-list/contracts-list.component';
 import { CreateContractComponent } from './components/create-contract/create-contract.component';
-import {SharedModule} from "../../shared/shared.module";
+import {SharedModule} from '../../shared/shared.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DxButtonModule, DxDataGridModule, DxFormModule} from 'devextreme-angular';
 import { ContractAuctionComponent } from './components/contract-auction/contract-auction.component';
@@ -20,10 +20,6 @@ import {ResourcesApiService} from '../../shared/services/resources-api.service';
 import {RequestFactoryServiceBase} from '../../shared/services/request-factory-service.abstract';
 import {ResourceStateService} from '../resources/services/resource-state.service';
 
-const resourceStateServiceFactoryProvider = <TModel>(apiService: ResourcesApiService<TModel>, requestFactory: RequestFactoryServiceBase) => {
-  return new ResourceStateService<TModel>(apiService, requestFactory);
-};
-
 @NgModule({
   declarations: [ContractsListComponent, CreateContractComponent, ContractAuctionComponent],
   imports: [
@@ -38,13 +34,6 @@ const resourceStateServiceFactoryProvider = <TModel>(apiService: ResourcesApiSer
   ],
   exports: [
     CreateContractComponent
-  ],
-  providers: [
-    {
-      provide: 'ResContractStateService',
-      useFactory: resourceStateServiceFactoryProvider,
-      deps: ['ContractApiService', ResContractRequestFactoryService]
-    },
   ]
 })
 export class ContractModule { }
