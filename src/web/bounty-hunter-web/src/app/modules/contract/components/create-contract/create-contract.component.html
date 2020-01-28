@@ -60,5 +60,10 @@
 
     </dxi-item>
 
-    <dxi-item itemType="button" [buttonOptions]="{text: 'Utwórz zlecenie', useSubmitBehavior: true}"></dxi-item>
+    <!-- <dxi-item itemType="button" [buttonOptions]="{text: 'Utwórz zlecenie', useSubmitBehavior: true}"></dxi-item> -->
+    <dx-button
+    text="Zapisz"
+    (click)="save()"
+    [disabled]="!isSaveActive()"
+  ></dx-button>
 </dx-form>
