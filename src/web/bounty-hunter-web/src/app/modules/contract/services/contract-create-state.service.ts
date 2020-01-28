@@ -15,10 +15,10 @@ export class ContractCreateStateService extends StateServiceBase<ContractCreateR
 
   constructor(
     @Inject('ContractApiService') _resourceApiService: ContractResourceApiService,
-    private _requestFactory: ContractRequestFactoryService,
+    _requestFactory: ContractRequestFactoryService,
     private _userService: UserStateService
   ) {
-    super(_resourceApiService);
+    super(_resourceApiService, _requestFactory);
   }
 
   public create(): Observable<ContractCreateRequest> {

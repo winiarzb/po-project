@@ -72,6 +72,7 @@ INSERT INTO person(record_creation_date, alias, birth_date, name, version) VALUE
 INSERT INTO person(record_creation_date, alias, birth_date, name, version) VALUES (CURRENT_TIMESTAMP(), 'DarthVader', parsedatetime('01-01-2000', 'dd-MM-yyyy'), 'DarthVader', '0')
 INSERT INTO person(record_creation_date, alias, birth_date, name, version) VALUES (CURRENT_TIMESTAMP(), 'Thanos', parsedatetime('01-01-2000', 'dd-MM-yyyy'), 'Thanos', 0)
 INSERT INTO person(record_creation_date, alias, birth_date, name, version) VALUES (CURRENT_TIMESTAMP(), 'Stormtrooper', parsedatetime('01-01-2000', 'dd-MM-yyyy'), 'Stormtrooper', '0')
+INSERT INTO person(record_creation_date, alias, birth_date, name, version) VALUES (CURRENT_TIMESTAMP(), 'test', parsedatetime('01-01-2000', 'dd-MM-yyyy'), 'test', '0')
 -- --ROLE--
 INSERT INTO role (record_creation_date, version, role_name) VALUES (CURRENT_TIMESTAMP(), 0, 'ADMIN')
 INSERT INTO role (record_creation_date, version, role_name) VALUES (CURRENT_TIMESTAMP(), 0, 'HUNTER')
@@ -84,7 +85,7 @@ INSERT INTO user_account (enabled, password, registered_date, username, person_i
 INSERT INTO victim(age, force_sensitive, threat_level, person_id) VALUES ('19','true','IMPOSSIBLE','4')
 INSERT INTO victim(age, force_sensitive, threat_level, person_id) VALUES ('19','true','EXTREME','5')
 INSERT INTO victim(age, force_sensitive, threat_level, person_id) VALUES ('19','true','MEDIUM','6')
-INSERT INTO user_account (enabled, password, registered_date, username, person_id, galaxy_id, role_id) VALUES (true, '$2a$10$pilifDD0MEujLZfMz0cDkeX1NOyBZtQThnDYr.nRiI7rf5eSYNKwq', CURRENT_TIMESTAMP(), 'test', 4, 1, 1)
+INSERT INTO user_account (enabled, password, registered_date, username, person_id, galaxy_id, role_id) VALUES (true, '$2a$10$pilifDD0MEujLZfMz0cDkeX1NOyBZtQThnDYr.nRiI7rf5eSYNKwq', CURRENT_TIMESTAMP(), 'test', 7, 1, 1)
 -- --REVIEW--
 INSERT INTO review(comment, rating, would_recommend, version) VALUES ('Wszystko ok polecam huntera','8', 'true', '0')
 -- --CONTRACT--

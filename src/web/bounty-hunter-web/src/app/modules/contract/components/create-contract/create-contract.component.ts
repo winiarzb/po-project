@@ -17,15 +17,9 @@ export class CreateContractComponent implements OnInit {
 
   private model: ContractCreateRequest;
 
-  // public get isPreview(): boolean {
-  //   return this._activatedRoute.snapshot.data['preview'];
-  // }
-
   public get state(): ContractCreateRequest {
     return this._stateService.state;
   }
-
-  // private _auctionSubscription: Subscription;
 
   constructor(
     private _stateService: ContractCreateStateService,
@@ -39,7 +33,6 @@ export class CreateContractComponent implements OnInit {
     this.model.contractStatus = ContractStatus.Created;
     this._stateService.initState(this.model);
   }
-
 
   public save(): void {
     this._stateService.create().subscribe(res => {
