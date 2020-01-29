@@ -41,4 +41,12 @@ export class NavigatorService {
   public unauthorized(): Promise<boolean> {
     return this._router.navigate(['/401']);
   }
+
+  public addVictim(): Promise<boolean> {
+    return this._router.navigate(['contract/add-victim']);
+  }
+
+  public createContract(): Promise<boolean> {
+    return this._router.navigate(['contract/create']);
+  }
 }

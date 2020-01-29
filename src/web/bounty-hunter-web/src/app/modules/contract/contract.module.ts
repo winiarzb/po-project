@@ -8,9 +8,11 @@ import {SharedModule} from '../../shared/shared.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DxButtonModule, DxDataGridModule, DxFormModule} from 'devextreme-angular';
 import { ContractAuctionComponent } from './components/contract-auction/contract-auction.component';
+import {ResourcesModule} from '../resources/resources.module';
+import { ContractCreateVictimComponent } from './components/contract-create-victim/contract-create-victim.component';
 
 @NgModule({
-  declarations: [ContractsListComponent, CreateContractComponent, ContractAuctionComponent],
+  declarations: [ContractsListComponent, CreateContractComponent, ContractAuctionComponent, ContractCreateVictimComponent],
   imports: [
     CommonModule,
     ContractRoutingModule,
@@ -19,7 +21,8 @@ import { ContractAuctionComponent } from './components/contract-auction/contract
     DxFormModule,
     DxDataGridModule,
     DxButtonModule,
-    FormsModule
+    FormsModule,
+    ResourcesModule
   ],
   exports: [
     CreateContractComponent
