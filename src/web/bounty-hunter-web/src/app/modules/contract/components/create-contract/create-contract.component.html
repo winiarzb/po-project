@@ -2,6 +2,11 @@
   <h2>Dodawanie zlecenia</h2>
 </header>
 
+<dx-button
+  (click)="goToAddVictim()"
+  text="Dodaj ofiarę"
+></dx-button>
+
 <form (ngSubmit)="save()">
   <dx-form id="createContract-form" [colCount]="1" [formData]="state">
 
@@ -35,14 +40,18 @@
       <dxi-item
         dataField="fromDate"
         editorType="dxDateBox"
-        [label]="{text: 'Data rozpoczęcia zlecenia'}">
+        [label]="{text: 'Data rozpoczęcia zlecenia'}"
+        [editorOptions]="{type: 'datetime', min: minDate}"
+      >
         <dxi-validation-rule type="required" message="wymagane"></dxi-validation-rule>
       </dxi-item>
 
       <dxi-item
         dataField="thruDate"
         editorType="dxDateBox"
-        [label]="{text: 'Data zakończenia zlecenia'}">
+        [label]="{text: 'Data zakończenia zlecenia'}"
+        [editorOptions]="{type: 'datetime', min: minDate}"
+      >
         <dxi-validation-rule type="required" message="wymagane"></dxi-validation-rule>
       </dxi-item>
 

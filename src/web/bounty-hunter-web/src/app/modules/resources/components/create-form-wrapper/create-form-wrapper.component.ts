@@ -11,7 +11,7 @@ import {Location} from '@angular/common';
 })
 export class CreateFormWrapperComponent {
 
-  private _activatedForm: ResourceEditComponentBase<IIdentifiable>
+  private _activatedForm: ResourceEditComponentBase<IIdentifiable>;
 
   constructor(
     private _location: Location

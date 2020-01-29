@@ -2,6 +2,25 @@
   <h2>Licytacja</h2>
 </header>
 
+<dx-button
+  *ngIf="state && isClientAuction() && !isDone() && !isInProgress() && !isApproved()"
+  text="Anuluj zlecenie"
+  (click)="cancelContract()"
+>
+</dx-button>
+
+<dx-button
+  *ngIf="state && isClientAuction() && isDone()"
+  text="Zamknij i wystaw recenzje"
+  (click)="approveContract()"
+></dx-button>
+
+<dx-button
+  *ngIf="state && isHunterAuction() && isInProgress()"
+  text="Zatwierdź wykonanie"
+  (click)="doneContract()"
+></dx-button>
+
 <form (ngSubmit)="onBid()">
   <dx-form id="res-edit-contract" [colCount]="2" [formData]="state">
     <dxi-item itemType="group" caption="Informacje">
@@ -49,7 +68,7 @@
       ></dxi-item>
 
       <dxi-item
-        dataField="contract.client.name"
+        dataField="contract.client.username"
         editorType="dxTextBox"
         [label]="{text: 'Zleceniodawca'}"
         [editorOptions]="{readOnly: true}"

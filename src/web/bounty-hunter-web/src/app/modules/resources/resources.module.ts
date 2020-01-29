@@ -42,6 +42,7 @@ import { ResPlanetCreateComponent } from './components/create-forms/res-planet-c
 import { ResReviewCreateComponent } from './components/create-forms/res-review-create/res-review-create.component';
 import { ResUserCreateComponent } from './components/create-forms/res-user-create/res-user-create.component';
 import { ResVictimCreateComponent } from './components/create-forms/res-victim-create/res-victim-create.component';
+import {VictimCreateRequest} from './models/victim/victim-create-request.model';
 
 const resourceStateServiceFactoryProvider = <TModel>(apiService: ResourcesApiService<TModel>, requestFactory: RequestFactoryServiceBase) => {
   return new ResourceStateService<TModel>(apiService, requestFactory);
@@ -89,7 +90,8 @@ const resourceStateServiceFactoryProvider = <TModel>(apiService: ResourcesApiSer
     SharedModule
   ],
   exports: [
-    ResContractsComponent
+    ResContractsComponent,
+    ResVictimCreateComponent
   ],
   providers: [
     {

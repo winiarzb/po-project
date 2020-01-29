@@ -15,6 +15,7 @@ import {NavigatorService} from '../../../../shared/services/navigator.service';
 
 export class CreateContractComponent implements OnInit {
 
+  public readonly minDate = new Date();
   private model: ContractCreateRequest;
 
   public get state(): ContractCreateRequest {
@@ -35,9 +36,14 @@ export class CreateContractComponent implements OnInit {
   }
 
   public save(): void {
+    console.log(this.state);
     this._stateService.create().subscribe(res => {
       notify('Zlecenie zostało utworzone', 'success');
       this._navigator.myContracts();
     });
+  }
+
+  public goToAddVictim(): void {
+    this._navigator.addVictim();
   }
 }

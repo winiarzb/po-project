@@ -1,6 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {ResourceStateService} from '../../../services/resource-state.service';
-import {Contract} from '../../../../../shared/models/contract.model';
 import {ResourceCreateComponentBase} from '../resource-create-component.abstract';
 import {VictimCreateRequest} from '../../../models/victim/victim-create-request.model';
 import {ActivatedRoute} from '@angular/router';
@@ -12,6 +11,8 @@ import {ActivatedRoute} from '@angular/router';
 })
 
 export class ResVictimCreateComponent extends ResourceCreateComponentBase<VictimCreateRequest> {
+  public readonly max = new Date();
+
   constructor(
     @Inject('ResVictimStateService') stateService: ResourceStateService<VictimCreateRequest>,
     activatedRoute: ActivatedRoute
