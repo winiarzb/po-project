@@ -1,0 +1,32 @@
+<h2>Wystaw recenzje</h2>
+
+<form (ngSubmit)="addReview()">
+  <dx-form [formData]="state" id="contract-add-review">
+    <dxi-item itemType="group">
+
+      <dxi-item
+        editorType="dxTextBox"
+        dataField="comment"
+        [label]="{text: 'Komentarz'}"
+      ></dxi-item>
+
+      <dxi-item
+        editorType="dxNumberBox"
+        dataField="rating"
+        [label]="{text: 'Ocena 1-5'}"
+        [editorOptions]="{min: 1, max: 5}"
+      ></dxi-item>
+
+      <dxi-item
+        editorType="dxCheckBox"
+        dataField="wouldRecommend"
+        [label]="{text: 'Czy polecasz?'}"
+      ></dxi-item>
+
+      <dxi-item
+        itemType="button"
+        [buttonOptions]="{text: 'Wystaw recenzję', useSubmitBehavior: true}">
+      </dxi-item>
+    </dxi-item>
+  </dx-form>
+</form>

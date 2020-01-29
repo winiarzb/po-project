@@ -2,7 +2,7 @@ export const NAVIGATION: INavigationLink[] = [
   {
     name: 'Moje zlecenia',
     url: 'contract/my',
-    roles: ['ADMIN', 'CLIENT']
+    roles: ['ADMIN', 'CLIENT', 'HUNTER']
   },
   {
     name: 'Utwórz zlecenie',

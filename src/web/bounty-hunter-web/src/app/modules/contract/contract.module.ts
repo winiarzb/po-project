@@ -10,9 +10,10 @@ import {DxButtonModule, DxDataGridModule, DxFormModule} from 'devextreme-angular
 import { ContractAuctionComponent } from './components/contract-auction/contract-auction.component';
 import {ResourcesModule} from '../resources/resources.module';
 import { ContractCreateVictimComponent } from './components/contract-create-victim/contract-create-victim.component';
+import { ContractAddReviewComponent } from './components/contract-add-review/contract-add-review.component';
 
 @NgModule({
-  declarations: [ContractsListComponent, CreateContractComponent, ContractAuctionComponent, ContractCreateVictimComponent],
+  declarations: [ContractsListComponent, CreateContractComponent, ContractAuctionComponent, ContractCreateVictimComponent, ContractAddReviewComponent],
   imports: [
     CommonModule,
     ContractRoutingModule,

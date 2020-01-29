@@ -49,4 +49,8 @@ export class NavigatorService {
   public createContract(): Promise<boolean> {
     return this._router.navigate(['contract/create']);
   }
+
+  public addReview(id: number): Promise<boolean> {
+    return this._router.navigate([`contract/add-review/${id}`])
+  }
 }
