@@ -10,7 +10,8 @@ public class TaskToChangeContractStatus {
 
     @Autowired
     private ContractService contractService;
-    @Scheduled(fixedRate = 10000)
+
+    @Scheduled(fixedRate = 60000)
     public void printInfo() {
         contractService.changeContractStatusWhenAuctionIsFinished();
     }

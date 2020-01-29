@@ -10,6 +10,8 @@ import com.developers.bountyhunter.service.base.BaseServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
@@ -20,7 +22,7 @@ public class ContractServiceImpl extends BaseServiceImpl<Contract, Long> impleme
 
 	@Override
 	public void changeContractStatusWhenAuctionIsFinished() {
-		List<Contract> contracts = contractRepository.contractAuctionOver();
+		List<Contract> contracts = contractRepository.findAllByThruDateBeforeAndContractStatus(Timestamp.valueOf(LocalDateTime.now()), ContractStatus.CREATED);
 		contracts.forEach(contract -> {
 			ContractStatus contractStatus = contract.getHunter() != null ? ContractStatus.IN_PROGRESS : ContractStatus.CANCELED;
 			contract.setContractStatus(contractStatus);
