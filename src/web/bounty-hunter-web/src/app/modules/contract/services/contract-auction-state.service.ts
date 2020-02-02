@@ -7,6 +7,7 @@ import {UserStateService} from '../../user/services/user-state.service';
 import {interval, Observable} from 'rxjs';
 import {flatMap, map, tap} from 'rxjs/operators';
 import {Auction} from '../models/auction.model';
+import {ContractStatus} from '../../../shared/enums/contract-status.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -43,5 +44,20 @@ export class ContractAuctionStateService extends StateServiceBase<Auction> {
   public refreshState(contract: Contract): Auction {
     this.state.contract = contract;
     return this.state;
+  }
+
+  public cancel(): Observable<Contract> {
+    const request = this._requestFactory.getChangeStatus(this.state.contract.id, ContractStatus.Cancelled);
+    return (this.apiService as ContractResourceApiService).changeStatus(request);
+  }
+
+  public approve(): Observable<Contract> {
+    const request = this._requestFactory.getChangeStatus(this.state.contract.id, ContractStatus.Approved);
+    return (this.apiService as ContractResourceApiService).changeStatus(request);
+  }
+
+  public done(): Observable<Contract> {
+    const request = this._requestFactory.getChangeStatus(this.state.contract.id, ContractStatus.Done);
+    return (this.apiService as ContractResourceApiService).changeStatus(request);
   }
 }

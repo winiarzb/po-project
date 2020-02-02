@@ -18,13 +18,9 @@ export class ContractActiveContractsStateService extends StateServiceBase<Contra
   ) {
     super(_resourceApiService);
   }
-  
+
   public initActiveContractsFromResponse(): void {
-    (this.apiService as ContractResourceApiService).getAll()
-      .pipe(map(res => res.filter(contract => contract.contractStatus === ContractStatus.Created)))
-      .subscribe(res => {
-      this.initState(res);
-    });
+    (this.apiService as ContractResourceApiService).getAll().subscribe(res => this.initState(res));
   }
 
   public initClientContractsFromResponse(): void {

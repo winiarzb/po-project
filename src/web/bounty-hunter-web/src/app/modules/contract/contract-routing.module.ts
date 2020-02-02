@@ -5,8 +5,10 @@ import {CreateContractComponent} from "./components/create-contract/create-contr
 import {ContractAuctionComponent} from './components/contract-auction/contract-auction.component';
 import {UserAuthGuard} from '../../shared/guards/user-auth.guard';
 import {ClientAuthGuard} from '../../shared/guards/client-auth.guard';
-import {AdminAuthGuard} from '../../shared/guards/admin-auth.guard';
 import {HunterAuthGuard} from '../../shared/guards/hunter-auth.guard';
+import {ResVictimCreateComponent} from '../resources/components/create-forms/res-victim-create/res-victim-create.component';
+import {ContractCreateVictimComponent} from './components/contract-create-victim/contract-create-victim.component';
+import {ContractAddReviewComponent} from './components/contract-add-review/contract-add-review.component';
 
 
 const routes: Routes = [
@@ -49,6 +51,16 @@ const routes: Routes = [
     data: {
       onlyMine: true
     },
+    canActivate: [UserAuthGuard]
+  },
+  {
+    path: 'add-victim',
+    component: ContractCreateVictimComponent,
+    canActivate: [UserAuthGuard]
+  },
+  {
+    path: 'add-review/:id',
+    component: ContractAddReviewComponent,
     canActivate: [ClientAuthGuard]
   }
 ];
