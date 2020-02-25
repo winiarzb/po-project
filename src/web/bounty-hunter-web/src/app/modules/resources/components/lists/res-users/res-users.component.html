@@ -1,0 +1,58 @@
+<dx-data-grid
+  id="resource-users"
+  selection="single"
+  [dataSource]="state"
+  [columnAutoWidth]="true"
+  (onSelectionChanged)="onSelect($event)"
+>
+  <dxi-column
+    dataField="id"
+    caption="ID"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="version"
+    caption="Wersja"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="name"
+    caption="Nazwa"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="alias"
+    caption="Alias"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="birthDate"
+    caption="Data urodzin"
+    dataType="datetime"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="username"
+    caption="Nazwa użytkownika"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="password"
+    caption="Hasło"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="registeredDate"
+    caption="Data rejestracji"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="enabled"
+    caption="Aktywny"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="role.roleName"
+    caption="Rola"
+  ></dxi-column>
+</dx-data-grid>

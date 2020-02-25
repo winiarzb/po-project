@@ -1,0 +1,39 @@
+<header>
+    <h2>Ofiary</h2>
+  </header>
+
+  <dx-form id="res-edit-district" [colCount]="2" [formData]="state">
+    <dxi-item itemType="group" caption="Informacje">
+        <dxi-item
+        dataField="name"
+        editorType="dxTextBox"
+        [label]="{text: 'Nazwa'}"
+      ></dxi-item>
+
+      <dxi-item
+        dataField="alias"
+        editorType="dxTextBox"
+        [label]="{text: 'Alias'}"
+      ></dxi-item>
+
+    </dxi-item>
+
+    <dxi-item itemType="group" caption="Edycja">
+        <dxi-item
+        dataField="age"
+        editorType="dxNumberBox"
+        [label]="{text: 'Wiek'}"
+      ></dxi-item>
+
+      <dxi-item
+        dataField="forceSensitive"
+        editorType="dxCheckBox"
+        [label]="{text: 'Podatny na działanie mocy'}"
+      ></dxi-item>
+
+      <dxi-item
+        bhThreatLevelEditor
+      ></dxi-item>
+      <dxi-item></dxi-item>
+    </dxi-item>
+  </dx-form>

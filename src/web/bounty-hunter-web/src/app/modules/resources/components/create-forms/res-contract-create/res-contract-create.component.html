@@ -1,0 +1,59 @@
+<header>
+    <h2>Kontrakt</h2>
+  </header>
+
+  <dx-form id="res-edit-contract" [colCount]="2" [formData]="state">
+    <dxi-item itemType="group" caption="Informacje">
+
+      <dxi-item
+        bhContractStatusEditor
+        dataField="contractStatus"
+        [label]="{text: 'Status'}"
+      ></dxi-item>
+
+      <dxi-item
+      dataField="clientId"
+      bhClientEditor
+    ></dxi-item>
+    <dxi-item
+      bhDistrictEditor
+      dataField="districtId"
+    [label]="{text: 'Dystrykt'}"
+  ></dxi-item>
+  <dxi-item
+    bhVictimEditor
+    dataField="victimId"
+  [label]="{text: 'Ofiara'}"
+></dxi-item>
+
+    </dxi-item>
+
+    <dxi-item itemType="group" caption="Edycja">
+      <dxi-item
+        dataField="name"
+        editorType="dxTextBox"
+        [label]="{text: 'Nazwa'}"
+      ></dxi-item>
+
+      <dxi-item bhPriorityFormEditor></dxi-item>
+
+      <dxi-item
+      dataField="payment"
+      editorType="dxNumberBox"
+      [label]="{text: 'Zapłata'}"
+    ></dxi-item>
+
+      <dxi-item
+        dataField="fromDate"
+        editorType="dxDateBox"
+        [label]="{text: 'Data początkowa'}"
+      ></dxi-item>
+
+      <dxi-item
+        dataField="thruDate"
+        editorType="dxDateBox"
+        [label]="{text: 'Data końcowa'}"
+      ></dxi-item>
+
+    </dxi-item>
+  </dx-form>

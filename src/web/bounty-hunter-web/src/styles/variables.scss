@@ -1,0 +1,34 @@
+
+@import "utils";
+
+// Layout
+$background: url('~assets/images/stars.png');
+$text: #FCFCFC;
+$borders: #4d4d4d;
+$background-alt: #2c2c2c;
+$radius: 5px;
+$logo: #FFE81F;
+$headers-color: $logo;
+
+// Buttons
+$button-primary-border: #FFE81F;
+$button-primary-text: #FFE81F;
+$button-primary-bg: $transparent;
+
+$button-secondary-border: #FFF;
+$button-secondary-text: #FFF;
+$button-secondary-bg: $transparent;
+
+$button-outline-text: black;
+
+// Inputs
+$placeholder: #A6ADB4;
+
+// States
+$active-state: #1985A1;
+$danger-state: #C33C54;
+$warning-state: #F2DC5D;
+$success-state: #499F68;
+
+// z-index
+$layout: 1000;

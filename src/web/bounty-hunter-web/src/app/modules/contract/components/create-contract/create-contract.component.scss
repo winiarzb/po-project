@@ -1,0 +1,19 @@
+@import "./variables";
+
+.createContract {
+  &-header {
+    margin-bottom: 1rem;
+    margin-left: 20%;
+  }
+}
+
+#createContract-form {
+    width: 50%;
+    position: relative;
+    left: 27.5%;
+    top: 25%;
+}
+
+.registration-container {
+  background-color: $background-alt;
+}

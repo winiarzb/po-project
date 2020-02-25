@@ -1,0 +1,66 @@
+<h2>
+  {{ onlyMine ? 'Moje zlecenia' : 'Dostępne zlecenia'}}
+</h2>
+
+<dx-button
+  text="Licytuj"
+  class="mb-3"
+  [disabled]="!selectedContract"
+  *bhLinkAccessor="let roles of ['ADMIN', 'HUNTER']"
+  (click)="navigateToAuction()"
+></dx-button>
+
+<dx-button
+  text="Podgląd"
+  class="mb-3"
+  [disabled]="!selectedContract"
+  (click)="navigateToContractPreview()"
+></dx-button>
+
+<dx-data-grid
+  id="resource-users"
+  selection="single"
+  [dataSource]="state"
+  [columnAutoWidth]="true"
+  (selectedRowKeysChange)="onSelect($event)"
+>
+  <dxi-column
+    dataField="name"
+    caption="Temat"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="contractStatus"
+    caption="Status zlecenia"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="payment"
+    caption="Wynagrodzenie"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="priority"
+    caption="Priorytet"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="fromDate"
+    caption="Data rozpoczęcia"
+    dataType="datetime"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="thruDate"
+    caption="Data zakończenia"
+    dataType="datetime"
+  ></dxi-column>
+
+  <dxi-column
+    dataField="thruDate"
+    caption="Data zakończenia"
+    dataType="datetime"
+  ></dxi-column>
+
+</dx-data-grid>
+
